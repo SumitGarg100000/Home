@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore our suite of financial tools including GST Reconciliation and Income Tax Calculator. Simplify your tax compliance with user-friendly solutions.">
+    <meta name="keywords" content="GST Reconciliation, Income Tax Calculator, Tax Tools, Financial Tools, Sumit Garg">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Sumit Garg's Financial Tools">
+    <meta property="og:description" content="Simplify tax compliance with our GST Reconciliation and Income Tax Calculator tools.">
+    <meta property="og:image" content="https://sumitgarg100000.github.io/GSTReconciliation/Image.jpg">
+    <title>Sumit Garg's Financial Tools</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #e6f3ff, #f0f8ff);
+            color: #333;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 61, 115, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #0e4377;
+            font-size: 2.5em;
+            margin-bottom: 1.5rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .service-card {
+            background: #f5f9ff;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border: 1px solid #cce0ff;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 61, 115, 0.2);
+            background: linear-gradient(145deg, #1a73e8, #0d47a1);
+            color: white;
+        }
+
+        .service-card:hover h3,
+        .service-card:hover p,
+        .service-card:hover i {
+            color: white;
+        }
+
+        .service-card i {
+            font-size: 2.5em;
+            color: #1a73e8;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5em;
+            color: #0e4377;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-card p {
+            font-size: 1em;
+            color: #555;
+        }
+
+        footer {
+            background: linear-gradient(145deg, #0e4377, #1a5fb4);
+            color: #ffffff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .footer-links a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(145deg, #25d366, #128C7E);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.3);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .whatsapp-btn i {
+            font-size: 2em;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card {
+                padding: 15px;
+            }
+
+            .footer-links a {
+                display: block;
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Sumit Garg's Financial Tools</h1>
+        <p class="text-center text-lg text-gray-600 mb-8">Simplify your tax compliance with our user-friendly tools designed for efficiency and accuracy.</p>
+
+        <div class="services-grid">
+            <!-- GST Reconciliation Card -->
+            <a href="https://sumitgarg100000.github.io/GSTReconciliation/" class="service-card">
+                <!-- Replace [INSERT_GST_RECONCILIATION_LINK_HERE] with the URL of your GST Reconciliation tool page -->
+                <!-- Example: https://sumitgarg100000.github.io/GSTReconciliation/index.html -->
+                <i class="fas fa-file-invoice-dollar"></i>
+                <h3>GST Reconciliation Tool</h3>
+                <p>Effortlessly compare and match your GSTR-2B and GSTR-3B data. Upload your Excel files, reconcile data, and download results with ease.</p>
+            </a>
+
+            <!-- Income Tax Calculator Card -->
+            <a href="https://sumitgarg100000.github.io/IncometaxCalculator/" class="service-card">
+                <!-- Replace [INSERT_INCOME_TAX_CALCULATOR_LINK_HERE] with the URL of your Income Tax Calculator tool page -->
+                <!-- Example: https://sumitgarg100000.github.io/IncomeTaxCalculator/index.html -->
+                <i class="fas fa-calculator"></i>
+                <h3>Income Tax Calculator</h3>
+                <p>Calculate your income tax liability quickly and accurately. Input your income details and get instant tax computations.</p>
+            </a>
+
+            <!-- Add more service cards here as needed -->
+            <!-- Example of how to add a new service card:
+            <a href="[INSERT_NEW_SERVICE_LINK_HERE]" class="service-card">
+                <i class="fas fa-icon-name"></i>
+                <h3>New Service Name</h3>
+                <p>Description of the new service.</p>
+            </a>
+            -->
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="tel:+919716804520"><i class="fas fa-phone mr-2"></i> Ph: 9716804520</a>
+            <a href="mailto:Sumitgarg100000@gmail.com"><i class="fas fa-envelope mr-2"></i> Email: Sumitgarg100000@gmail.com</a>
+            <a href="https://maps.google.com/?q=Rohini,+Delhi-110086" target="_blank"><i class="fas fa-map-marker-alt mr-2"></i> Address: Rohini, Delhi-110086</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/9716804520" class="whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+</body>
+</html>
