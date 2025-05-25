@@ -485,7 +485,7 @@
                 <!-- Month-Wise TDS Deducted -->
                 <div class="card mb-4">
                     <div class="card-header" onclick="toggleSection('monthly-tds')">
-                        <h3><i class="fas fa-calendar-alt mr-2"></i>Month-Wise TDS Deducted</h3>
+                        <h3><i class="fas fa-calendar-alt mr-2"></i>Month-Wise TDS Deducted(By current employer)</h3>
                         <i class="fas fa-chevron-down icon"></i>
                     </div>
                     <div class="card-body active" id="monthly-tds">
@@ -824,11 +824,11 @@
                                         <td id="grosstaxpayable">0</td>
                                     </tr>
                                     <tr>
-                                        <td>TDS/TCS Deducted</td>
+                                        <td>TDS/TCS Deducted(other than Salary)</td>
                                         <td id="prior_tds_result">0</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Remaining Annual Tax Liability</strong></td>
+                                        <td><strong>Annual Tax Liability(for employee)</strong></td>
                                         <td id="annual_tax_liability" class="font-bold">0</td>
                                     </tr>
                                 </tbody>
@@ -861,31 +861,11 @@
 
                     <!-- Total TDS Summary -->
                     <div class="result-card">
-                        <div class="result-header">
-                            <i class="fas fa-receipt mr-2"></i>Total TDS Summary
-                        </div>
                         <div class="result-body">
-                            <table class="result-table">
-                                <thead>
-                                    <tr>
-                                        <th>Particulars</th>
-                                        <th>Amount (₹)</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Total TDS Deducted</td>
-                                        <td id="total_tds_deducted">0</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Total TDS Liability</td>
-                                        <td id="total_tds_liability">0</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            
                             
                             <div class="result-summary">
-                                <div class="summary-title">Average Monthly TDS (Remaining Months)</div>
+                                <div class="summary-title">Average Monthly TDS</div>
                                 <div class="summary-amount" id="monthly_tds_amount">₹ 0</div>
                             </div>
                         </div>
@@ -1388,8 +1368,7 @@
             let remainingMonthsData = tdsData.slice(currentMonth);
             let avgMonthlyTDS = annualTaxLiability / 12;
                 
-            document.getElementById('total_tds_deducted').textContent = priorTDS.toFixed(2);
-            document.getElementById('total_tds_liability').textContent = totalTDSLiability.toFixed(2);
+            
             document.getElementById('monthly_tds_amount').textContent = `₹ ${avgMonthlyTDS.toFixed(2)}`;
 
             // Update Chart
