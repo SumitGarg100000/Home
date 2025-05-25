@@ -7,6 +7,7 @@
     <title>TDS on Salary Calculator - FY 2025-26</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -14,257 +15,707 @@
             --primary-color: #0e4377;
             --secondary-color: #1a73e8;
             --accent-color: #4285f4;
+            --accent-color-2: #34a853;
+            --accent-color-3: #fbbc05;
             --text-light: #FFFFFF;
             --text-dark: #2C3E50;
             --table-header: #1a73e8;
             --table-row-alt: #F8F9FA;
+            --card-bg: #ffffff;
+            --input-bg: #f9fafc;
+            --input-border: #dae1e7;
+            --input-focus: #c3dafe;
         }
+        
+        * {
+            box-sizing: border-box;
+            transition: all 0.2s ease;
+        }
+        
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Poppins', 'Montserrat', sans-serif;
             line-height: 1.6;
-            background-color: #f5f9ff;
+            background: linear-gradient(135deg, #f5f9ff 0%, #e9f2ff 100%);
             color: var(--text-dark);
             padding-bottom: 2rem;
+            margin: 0;
         }
+        
         header {
-            background: linear-gradient(145deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             color: var(--text-light);
-            padding: 1.5rem 0;
+            padding: 2rem 0;
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 20px rgba(26, 115, 232, 0.2);
+            position: relative;
+            overflow: hidden;
         }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.5;
+            z-index: 0;
+        }
+        
+        header .container {
+            position: relative;
+            z-index: 1;
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 1rem;
         }
+        
         .card {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-            margin-bottom: 1rem;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            margin-bottom: 1.5rem;
             overflow: hidden;
             transition: all 0.3s ease;
+            border: 1px solid rgba(226, 232, 240, 0.7);
         }
+        
         .card:hover {
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
         }
+        
         .card-header {
             background: linear-gradient(145deg, #f8f9fa, #ffffff);
-            padding: 0.75rem 1rem;
+            padding: 1rem 1.25rem;
             border-bottom: 1px solid #eaeaea;
             display: flex;
             align-items: center;
             cursor: pointer;
+            position: relative;
         }
+        
         .card-header h3 {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: 600;
             color: var(--primary-color);
             margin: 0;
             flex-grow: 1;
+            display: flex;
+            align-items: center;
         }
+        
+        .card-header h3 i {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-right: 0.75rem;
+            font-size: 1.2rem;
+        }
+        
         .card-header .icon {
             transition: transform 0.3s ease;
+            color: var(--accent-color);
         }
+        
         .card-header.active .icon {
             transform: rotate(180deg);
         }
+        
         .card-body {
-            padding: 1rem;
+            padding: 1.25rem;
             display: none;
+            border-top: 1px solid rgba(226, 232, 240, 0.5);
         }
+        
         .card-body.active {
             display: block;
             animation: fadeIn 0.3s ease;
         }
+        
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
+        
         .form-row {
             display: flex;
             flex-wrap: wrap;
             margin: -0.5rem;
         }
+        
         .form-group {
             padding: 0.5rem;
             flex: 1 1 calc(50% - 1rem);
             min-width: 220px;
         }
+        
         .form-control {
             width: 100%;
-            padding: 0.6rem;
-            border: 1px solid #cbd5e0;
-            border-radius: 6px;
-            font-size: 0.9rem;
+            padding: 0.75rem;
+            border: 1px solid var(--input-border);
+            border-radius: 8px;
+            font-size: 0.95rem;
             transition: all 0.3s ease;
+            background-color: var(--input-bg);
+            color: var(--text-dark);
         }
+        
         .form-control:focus {
             border-color: var(--accent-color);
             box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.15);
             outline: none;
+            background-color: #ffffff;
         }
+        
+        .form-control::placeholder {
+            color: #a0aec0;
+        }
+        
         label {
             display: block;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.5rem;
             font-weight: 500;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: #4a5568;
         }
+        
         .btn {
-            padding: 0.75rem 1.5rem;
+            padding: 0.75rem 1.75rem;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
+        
+        .btn i {
+            margin-right: 0.5rem;
+        }
+        
         .btn-primary {
-            background: linear-gradient(145deg, var(--secondary-color), var(--primary-color));
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
             color: white;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
         }
+        
+        .btn-primary::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            transition: all 0.5s ease;
+            z-index: -1;
+        }
+        
+        .btn-primary:hover::before {
+            left: 0;
+        }
+        
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(26, 115, 232, 0.3);
         }
+        
         .btn-secondary {
             background: #e2e8f0;
             color: #4a5568;
         }
+        
         .btn-secondary:hover {
             background: #cbd5e0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
+        
         .result-card {
             background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-            margin: 1.5rem 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            margin: 1.75rem 0;
             overflow: hidden;
+            border: 1px solid rgba(226, 232, 240, 0.7);
         }
+        
         .result-header {
-            background: linear-gradient(145deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
-            padding: 1rem;
+            padding: 1.25rem;
             font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
         }
+        
+        .result-header i {
+            margin-right: 0.75rem;
+            font-size: 1.25rem;
+        }
+        
         .result-body {
-            padding: 1rem;
+            padding: 1.25rem;
         }
+        
         .result-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 0.5rem 0 1rem;
+            margin: 0.75rem 0 1.25rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
+        
         .result-table th,
         .result-table td {
-            padding: 0.5rem 0.75rem;
+            padding: 0.75rem 1rem;
             text-align: left;
             border: 1px solid #e2e8f0;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
         }
+        
         .result-table th {
-            background-color: var(--accent-color);
+            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
             color: white;
             font-weight: 600;
+            position: relative;
         }
+        
         .result-table tr:nth-child(even) {
-            background-color: #f8fafc;
+            background-color: rgba(247, 250, 252, 0.7);
         }
+        
+        .result-table tr:hover {
+            background-color: rgba(237, 242, 247, 0.8);
+        }
+        
         .result-summary {
-            background: linear-gradient(145deg, var(--secondary-color), var(--primary-color));
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
             color: white;
-            padding: 1rem;
-            border-radius: 8px;
+            padding: 1.5rem;
+            border-radius: 10px;
             text-align: center;
-            margin: 1rem 0;
-        }
-        .summary-title {
-            font-size: 1rem;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-        }
-        .summary-amount {
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-        .chart-container {
-            height: 300px;
             margin: 1.5rem 0;
+            box-shadow: 0 5px 15px rgba(26, 115, 232, 0.2);
+            position: relative;
+            overflow: hidden;
         }
+        
+        .result-summary::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .summary-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            position: relative;
+        }
+        
+        .summary-amount {
+            font-size: 2rem;
+            font-weight: 700;
+            position: relative;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .chart-container {
+            height: 350px;
+            margin: 1.75rem 0;
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
         .footer {
-            background: linear-gradient(145deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
             text-align: center;
-            padding: 1rem;
-            margin-top: 2rem;
+            padding: 1.5rem;
+            margin-top: 3rem;
+            position: relative;
+            overflow: hidden;
         }
+        
+        .footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
         .tab-container {
-            margin: 1rem 0;
+            margin: 1.5rem 0;
+            padding-top: 0.5rem;
         }
+        
         .tabs {
             display: flex;
             flex-wrap: wrap;
-            border-bottom: 1px solid #e2e8f0;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
         }
+        
         .tab-btn {
-            padding: 0.75rem 1.5rem;
+            padding: 1rem 1.5rem;
             background: transparent;
             border: none;
-            border-bottom: 3px solid transparent;
             font-weight: 600;
             color: #718096;
             cursor: pointer;
             transition: all 0.3s ease;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            flex: 1;
+            text-align: center;
+            justify-content: center;
         }
+        
+        .tab-btn i {
+            margin-right: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .tab-btn::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+            transition: all 0.3s ease;
+        }
+        
+        .tab-btn:hover {
+            color: var(--accent-color);
+        }
+        
         .tab-btn.active {
             color: var(--accent-color);
-            border-bottom-color: var(--accent-color);
         }
+        
+        .tab-btn.active::before {
+            width: 80%;
+        }
+        
         .tab-content {
             display: none;
         }
+        
         .tab-content.active {
             display: block;
-            animation: fadeIn 0.3s ease;
+            animation: fadeIn 0.4s ease;
         }
+        
+        #calculate-btn {
+            min-width: 200px;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            margin: 2rem auto;
+        }
+        
+        /* Enhanced visual elements */
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+            text-transform: uppercase;
+        }
+        
+        .badge-primary {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        
+        .badge-secondary {
+            background-color: var(--accent-color-2);
+            color: white;
+        }
+        
+        .section-divider {
+            display: flex;
+            align-items: center;
+            margin: 2rem 0;
+        }
+        
+        .section-divider::before,
+        .section-divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .section-divider h2 {
+            padding: 0 1rem;
+            color: var(--primary-color);
+            font-size: 1.25rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        
+        .highlight-amount {
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+        
+        .info-tooltip {
+            display: inline-block;
+            margin-left: 0.25rem;
+            cursor: help;
+            position: relative;
+        }
+        
+        .info-tooltip i {
+            color: var(--accent-color);
+            font-size: 0.85rem;
+        }
+        
+        .info-tooltip .tooltip-text {
+            visibility: hidden;
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #2d3748;
+            color: white;
+            text-align: center;
+            border-radius: 6px;
+            padding: 0.5rem 0.75rem;
+            width: 200px;
+            font-size: 0.8rem;
+            font-weight: normal;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 10;
+        }
+        
+        .info-tooltip .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #2d3748 transparent transparent transparent;
+        }
+        
+        .info-tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        /* Animated elements */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .float-animation {
+            animation: float 5s ease-in-out infinite;
+        }
+        
+        /* Responsive improvements */
         @media (max-width: 768px) {
             .form-group {
                 flex: 100%;
             }
+            
             .btn {
                 width: 100%;
-                margin-bottom: 0.5rem;
+                margin-bottom: 0.75rem;
             }
+            
             .tabs {
                 flex-direction: column;
+                border-radius: 10px;
             }
+            
             .tab-btn {
                 width: 100%;
                 text-align: left;
-                border-left: 3px solid transparent;
-                border-bottom: none;
+                padding: 0.85rem 1rem;
+                border-bottom: 1px solid #edf2f7;
+                justify-content: flex-start;
             }
-            .tab-btn.active {
-                border-left-color: var(--accent-color);
-                border-bottom: none;
-                background: rgba(66, 133, 244, 0.1);
+            
+            .tab-btn::before {
+                left: 0;
+                transform: none;
+                width: 3px;
+                height: 0;
             }
+            
+            .tab-btn.active::before {
+                width: 3px;
+                height: 80%;
+            }
+            
+            .card-header h3 {
+                font-size: 1rem;
+            }
+            
+            .summary-amount {
+                font-size: 1.75rem;
+            }
+            
+            .chart-container {
+                height: 280px;
+            }
+        }
+        
+        /* Header enhancements */
+        .calculator-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(135deg, #ffffff, #e6f0ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+        
+        .calculator-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+        
+        .header-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        /* Extra decorative elements */
+        .decorative-icon {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.1);
+            font-size: 4rem;
+            z-index: 0;
+        }
+        
+        .icon-1 {
+            top: 20px;
+            left: 5%;
+            transform: rotate(-15deg);
+        }
+        
+        .icon-2 {
+            bottom: 20px;
+            right: 5%;
+            transform: rotate(15deg);
+        }
+        
+        /* Font awesome icons in form elements */
+        .input-icon {
+            position: relative;
+        }
+        
+        .input-icon i {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #a0aec0;
+        }
+        
+        .input-icon input {
+            padding-left: 2.5rem;
+        }
+        
+        /* Custom styling for select dropdowns */
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a0aec0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1em;
+            padding-right: 2.5rem;
+        }
+        
+        /* Progressive loading effect */
+        @keyframes shimmer {
+            0% {
+                background-position: -468px 0;
+            }
+            100% {
+                background-position: 468px 0;
+            }
+        }
+        
+        .loading {
+            background: linear-gradient(to right, #f6f7f8 8%, #edeef1 18%, #f6f7f8 33%);
+            background-size: 800px 104px;
+            animation: shimmer 1.5s infinite linear;
+            border-radius: 8px;
         }
     </style>
 </head>
 <body>
     <header>
+        <div class="decorative-icon icon-1">
+            <i class="fas fa-calculator"></i>
+        </div>
+        <div class="decorative-icon icon-2">
+            <i class="fas fa-coins"></i>
+        </div>
         <div class="container">
-            <h1 class="text-2xl font-bold mb-1">TDS on Salary Calculator</h1>
-            <h2 class="text-lg font-medium mb-3">FY 2025-26 (AY 2026-27)</h2>
-            <div class="flex justify-center space-x-4">
+            <h1 class="calculator-title">TDS on Salary Calculator</h1>
+            <h2 class="calculator-subtitle">FY 2025-26 (AY 2026-27)</h2>
+            <div class="header-buttons">
                 <button class="btn btn-secondary" onclick="resetValues()">
-                    <i class="fas fa-redo-alt mr-2"></i>Reset
+                    <i class="fas fa-redo-alt"></i>Reset
                 </button>
                 <button class="btn btn-primary" onclick="printAsPDF()">
-                    <i class="fas fa-file-pdf mr-2"></i>Print as PDF
+                    <i class="fas fa-file-pdf"></i>Print as PDF
                 </button>
             </div>
         </div>
@@ -274,16 +725,16 @@
         <div class="tab-container">
             <div class="tabs">
                 <button class="tab-btn active" onclick="openTab(event, 'income-tab')">
-                    <i class="fas fa-money-bill-wave mr-2"></i>Income Details
+                    <i class="fas fa-money-bill-wave"></i>Income Details
                 </button>
                 <button class="tab-btn" onclick="openTab(event, 'deductions-tab')">
-                    <i class="fas fa-chart-bar mr-2"></i>Deductions
+                    <i class="fas fa-chart-bar"></i>Deductions
                 </button>
                 <button class="tab-btn" onclick="openTab(event, 'tds-tab')">
-                    <i class="fas fa-receipt mr-2"></i>TDS Details
+                    <i class="fas fa-receipt"></i>TDS Details
                 </button>
                 <button class="tab-btn" onclick="openTab(event, 'results-tab')" id="results-tab-btn">
-                    <i class="fas fa-calculator mr-2"></i>Results
+                    <i class="fas fa-calculator"></i>Results
                 </button>
             </div>
             
@@ -292,25 +743,40 @@
                 <!-- Basic Details -->
                 <div class="card mb-4">
                     <div class="card-header" onclick="toggleSection('basic-details')">
-                        <h3><i class="fas fa-user mr-2"></i>Basic Details</h3>
+                        <h3><i class="fas fa-user"></i>Basic Details</h3>
                         <i class="fas fa-chevron-down icon"></i>
                     </div>
                     <div class="card-body active" id="basic-details">
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="employee_name">Name</label>
-                                <input type="text" id="employee_name" class="form-control" placeholder="Enter employee name">
+                                <div class="input-icon">
+                                    <i class="fas fa-user-circle"></i>
+                                    <input type="text" id="employee_name" class="form-control" placeholder="Enter employee name">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="pan_number">PAN Number</label>
-                                <input type="text" id="pan_number" class="form-control" placeholder="Enter PAN number">
+                                <div class="input-icon">
+                                    <i class="fas fa-id-card"></i>
+                                    <input type="text" id="pan_number" class="form-control" placeholder="Enter PAN number">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="age">Age</label>
-                                <input type="number" id="age" class="form-control" placeholder="Enter age" min="1">
+                                <div class="input-icon">
+                                    <i class="fas fa-birthday-cake"></i>
+                                    <input type="number" id="age" class="form-control" placeholder="Enter age" min="1">
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="tax_scheme">Tax Regime</label>
+                                <label for="tax_scheme">
+                                    Tax Regime 
+                                    <span class="info-tooltip">
+                                        <i class="fas fa-info-circle"></i>
+                                        <span class="tooltip-text">Choose between the new default tax regime or the old tax regime with deductions</span>
+                                    </span>
+                                </label>
                                 <select id="tax_scheme" class="form-control" onchange="toggleDeductions()">
                                     <option value="new">New Tax Regime (Default)</option>
                                     <option value="old">Old Tax Regime</option>
@@ -323,42 +789,78 @@
                 <!-- Salary Details -->
                 <div class="card mb-4">
                     <div class="card-header" onclick="toggleSection('salary-details')">
-                        <h3><i class="fas fa-money-check-alt mr-2"></i>Salary Income (Annual)</h3>
+                        <h3><i class="fas fa-money-check-alt"></i>Salary Income (Annual)</h3>
                         <i class="fas fa-chevron-down icon"></i>
                     </div>
                     <div class="card-body active" id="salary-details">
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="basicsalary">Basic Salary</label>
-                                <input type="number" id="basicsalary" class="form-control" placeholder="Enter basic salary" min="0">
+                                <div class="input-icon">
+                                    <i class="fas fa-rupee-sign"></i>
+                                    <input type="number" id="basicsalary" class="form-control" placeholder="Enter basic salary" min="0">
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="hra">HRA</label>
-                                <input type="number" id="hra" class="form-control" placeholder="Enter HRA" min="0">
+                                <label for="hra">
+                                    HRA
+                                    <span class="info-tooltip">
+                                        <i class="fas fa-info-circle"></i>
+                                        <span class="tooltip-text">House Rent Allowance provided by your employer</span>
+                                    </span>
+                                </label>
+                                <div class="input-icon">
+                                    <i class="fas fa-rupee-sign"></i>
+                                    <input type="number" id="hra" class="form-control" placeholder="Enter HRA" min="0">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="bonus">Bonus/Incentive</label>
-                                <input type="number" id="bonus" class="form-control" placeholder="Enter bonus" min="0">
+                                <div class="input-icon">
+                                    <i class="fas fa-rupee-sign"></i>
+                                    <input type="number" id="bonus" class="form-control" placeholder="Enter bonus" min="0">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="specialallowance">Special Allowance</label>
-                                <input type="number" id="specialallowance" class="form-control" placeholder="Enter special allowance" min="0">
+                                <div class="input-icon">
+                                    <i class="fas fa-rupee-sign"></i>
+                                    <input type="number" id="specialallowance" class="form-control" placeholder="Enter special allowance" min="0">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="other_allowance">Other Allowance</label>
-                                <input type="number" id="other_allowance" class="form-control" placeholder="Enter other allowance" min="0">
+                                <div class="input-icon">
+                                    <i class="fas fa-rupee-sign"></i>
+                                    <input type="number" id="other_allowance" class="form-control" placeholder="Enter other allowance" min="0">
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="exemptionsec13a">HRA Exemption u/s 10(13A)</label>
-                                <input type="number" id="exemptionsec13a" class="form-control" placeholder="Enter HRA exemption amount" min="0">
+                                <label for="exemptionsec13a">
+                                    HRA Exemption u/s 10(13A)
+                                    <span class="info-tooltip">
+                                        <i class="fas fa-info-circle"></i>
+                                        <span class="tooltip-text">Exemption amount as per Section 10(13A)</span>
+                                    </span>
+                                </label>
+                                <div class="input-icon">
+                                    <i class="fas fa-rupee-sign"></i>
+                                    <input type="number" id="exemptionsec13a" class="form-control" placeholder="Enter HRA exemption amount" min="0">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="otherexemption">Exempt Allowance</label>
-                                <input type="number" id="otherexemption" class="form-control" placeholder="Enter exempt allowance" min="0">
+                                <div class="input-icon">
+                                    <i class="fas fa-rupee-sign"></i>
+                                    <input type="number" id="otherexemption" class="form-control" placeholder="Enter exempt allowance" min="0">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="professionaltax">Professional Tax Paid</label>
-                                <input type="number" id="professionaltax" class="form-control" placeholder="Enter professional tax" min="0">
+                                <div class="input-icon">
+                                    <i class="fas fa-rupee-sign"></i>
+                                    <input type="number" id="professionaltax" class="form-control" placeholder="Enter professional tax" min="0">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -367,26 +869,44 @@
                 <!-- House Property -->
                 <div class="card mb-4">
                     <div class="card-header" onclick="toggleSection('house-property')">
-                        <h3><i class="fas fa-home mr-2"></i>House Property</h3>
+                        <h3><i class="fas fa-home"></i>House Property</h3>
                         <i class="fas fa-chevron-down icon"></i>
                     </div>
                     <div class="card-body" id="house-property">
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="grossannualvalue">Gross Annual Value</label>
-                                <input type="number" id="grossannualvalue" class="form-control" placeholder="Enter gross annual value" min="0">
+                                <div class="input-icon">
+                                    <i class="fas fa-rupee-sign"></i>
+                                    <input type="number" id="grossannualvalue" class="form-control" placeholder="Enter gross annual value" min="0">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="municipaltaxes">Municipal Tax Paid</label>
-                                <input type="number" id="municipaltaxes" class="form-control" placeholder="Enter municipal tax paid" min="0">
+                                <div class="input-icon">
+                                    <i class="fas fa-rupee-sign"></i>
+                                    <input type="number" id="municipaltaxes" class="form-control" placeholder="Enter municipal tax paid" min="0">
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="interestselfoccupied">Interest (Self-Occupied)</label>
-                                <input type="number" id="interestselfoccupied" class="form-control" placeholder="Max 2 lakh" min="0">
+                                <label for="interestselfoccupied">
+                                    Interest (Self-Occupied)
+                                    <span class="badge badge-primary">Max ₹2L</span>
+                                </label>
+                                <div class="input-icon">
+                                    <i class="fas fa-rupee-sign"></i>
+                                    <input type="number" id="interestselfoccupied" class="form-control" placeholder="Enter interest amount" min="0">
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="interestletout">Interest (Let-Out)</label>
-                                <input type="number" id="interestletout" class="form-control" placeholder="Max 2 lakh" min="0">
+                                <label for="interestletout">
+                                    Interest (Let-Out)
+                                    <span class="badge badge-primary">Max ₹2L</span>
+                                </label>
+                                <div class="input-icon">
+                                    <i class="fas fa-rupee-sign"></i>
+                                    <input type="number" id="interestletout" class="form-control" placeholder="Enter interest amount" min="0">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -395,18 +915,24 @@
                 <!-- Income from Other Sources -->
                 <div class="card mb-4">
                     <div class="card-header" onclick="toggleSection('other-sources')">
-                        <h3><i class="fas fa-coins mr-2"></i>Income from Other Sources</h3>
+                        <h3><i class="fas fa-coins"></i>Income from Other Sources</h3>
                         <i class="fas fa-chevron-down icon"></i>
                     </div>
                     <div class="card-body" id="other-sources">
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="dividendincome">Dividend Income</label>
-                                <input type="number" id="dividendincome" class="form-control" placeholder="Enter dividend income" min="0">
+                                <div class="input-icon">
+                                    <i class="fas fa-rupee-sign"></i>
+                                    <input type="number" id="dividendincome" class="form-control" placeholder="Enter dividend income" min="0">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="otherincome">Other Income</label>
-                                <input type="number" id="otherincome" class="form-control" placeholder="Enter other income" min="0">
+                                <div class="input-icon">
+                                    <i class="fas fa-rupee-sign"></i>
+                                    <input type="number" id="otherincome" class="form-control" placeholder="Enter other income" min="0">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -418,46 +944,97 @@
                 <!-- Deductions (Old Regime) -->
                 <div class="card mb-4" id="old-regime-deductions">
                     <div class="card-header" onclick="toggleSection('old-regime-deductions-body')">
-                        <h3><i class="fas fa-percentage mr-2"></i>Deductions (Old Tax Regime)</h3>
+                        <h3><i class="fas fa-percentage"></i>Deductions (Old Tax Regime)</h3>
                         <i class="fas fa-chevron-down icon"></i>
                     </div>
                     <div class="card-body active" id="old-regime-deductions-body">
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="deduction80c">Section 80C Investments</label>
-                                <input type="number" id="deduction80c" class="form-control" placeholder="Max 1.5 lakh" min="0">
+                                <label for="deduction80c">
+                                    Section 80C Investments
+                                    <span class="badge badge-primary">Max ₹1.5L</span>
+                                </label>
+                                <div class="input-icon">
+                                    <i class="fas fa-rupee-sign"></i>
+                                    <input type="number" id="deduction80c" class="form-control" placeholder="Enter 80C investments" min="0">
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="deduction80ccc">Section 80CCC (Pension Plans)</label>
-                                <input type="number" id="deduction80ccc" class="form-control" placeholder="Max 1.5 lakh" min="0">
+                                <label for="deduction80ccc">
+                                    Section 80CCC (Pension Plans)
+                                    <span class="badge badge-primary">Max ₹1.5L</span>
+                                </label>
+                                <div class="input-icon">
+                                    <i class="fas fa-rupee-sign"></i>
+                                    <input type="number" id="deduction80ccc" class="form-control" placeholder="Enter pension plan amount" min="0">
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="deduction80ccd1">Section 80CCD(1) (NPS)</label>
-                                <input type="number" id="deduction80ccd1" class="form-control" placeholder="Max 1.5 lakh" min="0">
+                                <label for="deduction80ccd1">
+                                    Section 80CCD(1) (NPS)
+                                    <span class="badge badge-primary">Max ₹1.5L</span>
+                                </label>
+                                <div class="input-icon">
+                                    <i class="fas fa-rupee-sign"></i>
+                                    <input type="number" id="deduction80ccd1" class="form-control" placeholder="Enter NPS contribution" min="0">
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="deduction80ccd1b">Section 80CCD(1B) (Extra NPS)</label>
-                                <input type="number" id="deduction80ccd1b" class="form-control" placeholder="Max 50,000" min="0">
+                                <label for="deduction80ccd1b">
+                                    Section 80CCD(1B) (Extra NPS)
+                                    <span class="badge badge-primary">Max ₹50K</span>
+                                </label>
+                                <div class="input-icon">
+                                    <i class="fas fa-rupee-sign"></i>
+                                    <input type="number" id="deduction80ccd1b" class="form-control" placeholder="Enter additional NPS" min="0">
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="deduction80ccd2">Section 80CCD(2) (Employer NPS)</label>
-                                <input type="number" id="deduction80ccd2" class="form-control" placeholder="Max 10% of salary" min="0">
+                                <label for="deduction80ccd2">
+                                    Section 80CCD(2) (Employer NPS)
+                                    <span class="info-tooltip">
+                                        <i class="fas fa-info-circle"></i>
+                                        <span class="tooltip-text">Max 10% of salary (basic + DA)</span>
+                                    </span>
+                                </label>
+                                <div class="input-icon">
+                                    <i class="fas fa-rupee-sign"></i>
+                                    <input type="number" id="deduction80ccd2" class="form-control" placeholder="Enter employer NPS contribution" min="0">
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="deduction80d">Section 80D (Health Insurance)</label>
-                                <input type="number" id="deduction80d" class="form-control" placeholder="Max 25,000/50,000" min="0">
+                                <label for="deduction80d">
+                                    Section 80D (Health Insurance)
+                                    <span class="badge badge-secondary">Max ₹25K/50K</span>
+                                </label>
+                                <div class="input-icon">
+                                    <i class="fas fa-rupee-sign"></i>
+                                    <input type="number" id="deduction80d" class="form-control" placeholder="Enter health insurance premium" min="0">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="deduction80e">Section 80E (Education Loan)</label>
-                                <input type="number" id="deduction80e" class="form-control" placeholder="Enter loan interest" min="0">
+                                <div class="input-icon">
+                                    <i class="fas fa-rupee-sign"></i>
+                                    <input type="number" id="deduction80e" class="form-control" placeholder="Enter education loan interest" min="0">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="deduction80g">Section 80G (Donations)</label>
-                                <input type="number" id="deduction80g" class="form-control" placeholder="Enter donation amount" min="0">
+                                <div class="input-icon">
+                                    <i class="fas fa-rupee-sign"></i>
+                                    <input type="number" id="deduction80g" class="form-control" placeholder="Enter donation amount" min="0">
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="deduction80tta">Section 80TTA/TTB (Interest)</label>
-                                <input type="number" id="deduction80tta" class="form-control" placeholder="Max 10,000/50,000" min="0">
+                                <label for="deduction80tta">
+                                    Section 80TTA/TTB (Interest)
+                                    <span class="badge badge-secondary">Max ₹10K/50K</span>
+                                </label>
+                                <div class="input-icon">
+                                    <i class="fas fa-rupee-sign"></i>
+                                    <input type="number" id="deduction80tta" class="form-control" placeholder="Enter interest earned" min="0">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -469,14 +1046,17 @@
                 <!-- TDS/TCS deducted -->
                 <div class="card mb-4">
                     <div class="card-header" onclick="toggleSection('tdstcs-section')">
-                        <h3><i class="fas fa-receipt mr-2"></i>TDS/TCS (Other than current employer)</h3>
+                        <h3><i class="fas fa-receipt"></i>TDS/TCS (Other than Salary)</h3>
                         <i class="fas fa-chevron-down icon"></i>
                     </div>
                     <div class="card-body active" id="tdstcs-section">
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="tdstcs">TDS/TCS Amount</label>
-                                <input type="number" id="tdstcs" class="form-control" placeholder="Enter TDS/TCS" min="0">
+                                <div class="input-icon">
+                                    <i class="fas fa-rupee-sign"></i>
+                                    <input type="number" id="tdstcs" class="form-control" placeholder="Enter TDS/TCS amount" min="0">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -485,58 +1065,94 @@
                 <!-- Month-Wise TDS Deducted -->
                 <div class="card mb-4">
                     <div class="card-header" onclick="toggleSection('monthly-tds')">
-                        <h3><i class="fas fa-calendar-alt mr-2"></i>Month-Wise TDS Deducted(By current employer)</h3>
+                        <h3><i class="fas fa-calendar-alt"></i>Month-Wise TDS Deducted (By current employer)</h3>
                         <i class="fas fa-chevron-down icon"></i>
                     </div>
                     <div class="card-body active" id="monthly-tds">
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                             <div class="form-group">
                                 <label for="tds_apr">April</label>
-                                <input type="number" id="tds_apr" class="form-control" placeholder="April TDS" min="0">
+                                <div class="input-icon">
+                                    <i class="fas fa-rupee-sign"></i>
+                                    <input type="number" id="tds_apr" class="form-control" placeholder="April TDS" min="0">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="tds_may">May</label>
-                                <input type="number" id="tds_may" class="form-control" placeholder="May TDS" min="0">
+                                <div class="input-icon">
+                                    <i class="fas fa-rupee-sign"></i>
+                                    <input type="number" id="tds_may" class="form-control" placeholder="May TDS" min="0">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="tds_jun">June</label>
-                                <input type="number" id="tds_jun" class="form-control" placeholder="June TDS" min="0">
+                                <div class="input-icon">
+                                    <i class="fas fa-rupee-sign"></i>
+                                    <input type="number" id="tds_jun" class="form-control" placeholder="June TDS" min="0">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="tds_jul">July</label>
-                                <input type="number" id="tds_jul" class="form-control" placeholder="July TDS" min="0">
+                                <div class="input-icon">
+                                    <i class="fas fa-rupee-sign"></i>
+                                    <input type="number" id="tds_jul" class="form-control" placeholder="July TDS" min="0">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="tds_aug">August</label>
-                                <input type="number" id="tds_aug" class="form-control" placeholder="August TDS" min="0">
+                                <div class="input-icon">
+                                    <i class="fas fa-rupee-sign"></i>
+                                    <input type="number" id="tds_aug" class="form-control" placeholder="August TDS" min="0">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="tds_sep">September</label>
-                                <input type="number" id="tds_sep" class="form-control" placeholder="September TDS" min="0">
+                                <div class="input-icon">
+                                    <i class="fas fa-rupee-sign"></i>
+                                    <input type="number" id="tds_sep" class="form-control" placeholder="September TDS" min="0">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="tds_oct">October</label>
-                                <input type="number" id="tds_oct" class="form-control" placeholder="October TDS" min="0">
+                                <div class="input-icon">
+                                    <i class="fas fa-rupee-sign"></i>
+                                    <input type="number" id="tds_oct" class="form-control" placeholder="October TDS" min="0">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="tds_nov">November</label>
-                                <input type="number" id="tds_nov" class="form-control" placeholder="November TDS" min="0">
+                                <div class="input-icon">
+                                    <i class="fas fa-rupee-sign"></i>
+                                    <input type="number" id="tds_nov" class="form-control" placeholder="November TDS" min="0">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="tds_dec">December</label>
-                                <input type="number" id="tds_dec" class="form-control" placeholder="December TDS" min="0">
+                                <div class="input-icon">
+                                    <i class="fas fa-rupee-sign"></i>
+                                    <input type="number" id="tds_dec" class="form-control" placeholder="December TDS" min="0">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="tds_jan">January</label>
-                                <input type="number" id="tds_jan" class="form-control" placeholder="January TDS" min="0">
+                                <div class="input-icon">
+                                    <i class="fas fa-rupee-sign"></i>
+                                    <input type="number" id="tds_jan" class="form-control" placeholder="January TDS" min="0">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="tds_feb">February</label>
-                                <input type="number" id="tds_feb" class="form-control" placeholder="February TDS" min="0">
+                                <div class="input-icon">
+                                    <i class="fas fa-rupee-sign"></i>
+                                    <input type="number" id="tds_feb" class="form-control" placeholder="February TDS" min="0">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="tds_mar">March</label>
-                                <input type="number" id="tds_mar" class="form-control" placeholder="March TDS" min="0">
+                                <div class="input-icon">
+                                    <i class="fas fa-rupee-sign"></i>
+                                    <input type="number" id="tds_mar" class="form-control" placeholder="March TDS" min="0">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -546,10 +1162,14 @@
             <!-- Results Tab -->
             <div id="results-tab" class="tab-content">
                 <div id="results-section" style="display: none;">
+                    <div class="section-divider">
+                        <h2><i class="fas fa-file-invoice-dollar mr-2"></i> Tax Calculation Results</h2>
+                    </div>
+                    
                     <!-- Income Breakup -->
                     <div class="result-card">
                         <div class="result-header">
-                            <i class="fas fa-money-bill-wave mr-2"></i>Income Breakup
+                            <i class="fas fa-money-bill-wave"></i>Income Breakup
                         </div>
                         <div class="result-body">
                             <table class="result-table">
@@ -582,7 +1202,7 @@
                                     </tr>
                                     <tr>
                                         <td><strong>Gross Salary</strong></td>
-                                        <td id="gross_salary" class="font-bold">0</td>
+                                        <td id="gross_salary" class="highlight-amount">0</td>
                                     </tr>
                                     <tr>
                                         <td>HRA Exemption u/s 10(13A)</td>
@@ -602,11 +1222,11 @@
                                     </tr>
                                     <tr>
                                         <td><strong>Total Exemptions & Deductions</strong></td>
-                                        <td id="total_exemptions" class="font-bold">0</td>
+                                        <td id="total_exemptions" class="highlight-amount">0</td>
                                     </tr>
                                     <tr>
                                         <td><strong>Net Salary Income</strong></td>
-                                        <td id="net_salary" class="font-bold">0</td>
+                                        <td id="net_salary" class="highlight-amount">0</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -616,7 +1236,7 @@
                     <!-- House Property -->
                     <div class="result-card">
                         <div class="result-header">
-                            <i class="fas fa-home mr-2"></i>House Property
+                            <i class="fas fa-home"></i>House Property
                         </div>
                         <div class="result-body">
                             <table class="result-table">
@@ -653,7 +1273,7 @@
                                     </tr>
                                     <tr>
                                         <td><strong>Net Income from House Property</strong></td>
-                                        <td id="net_income_hp_result" class="font-bold">0</td>
+                                        <td id="net_income_hp_result" class="highlight-amount">0</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -663,7 +1283,7 @@
                     <!-- Income from Other Sources -->
                     <div class="result-card">
                         <div class="result-header">
-                            <i class="fas fa-coins mr-2"></i>Income from Other Sources
+                            <i class="fas fa-coins"></i>Income from Other Sources
                         </div>
                         <div class="result-body">
                             <table class="result-table">
@@ -684,7 +1304,7 @@
                                     </tr>
                                     <tr>
                                         <td><strong>Total Income from Other Sources</strong></td>
-                                        <td id="total_other_income_result" class="font-bold">0</td>
+                                        <td id="total_other_income_result" class="highlight-amount">0</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -694,7 +1314,7 @@
                     <!-- Gross Total Income -->
                     <div class="result-card">
                         <div class="result-header">
-                            <i class="fas fa-chart-line mr-2"></i>Gross Total Income
+                            <i class="fas fa-chart-line"></i>Gross Total Income
                         </div>
                         <div class="result-body">
                             <table class="result-table">
@@ -707,7 +1327,7 @@
                                 <tbody>
                                     <tr>
                                         <td><strong>Gross Total Income</strong></td>
-                                        <td id="gross_total_income" class="font-bold">0</td>
+                                        <td id="gross_total_income" class="highlight-amount">0</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -717,7 +1337,7 @@
                     <!-- Deductions -->
                     <div class="result-card" id="deductions-section">
                         <div class="result-header">
-                            <i class="fas fa-percentage mr-2"></i><span id="deductions-header">Deductions</span>
+                            <i class="fas fa-percentage"></i><span id="deductions-header">Deductions</span>
                         </div>
                         <div class="result-body">
                             <table class="result-table" id="deductions-table">
@@ -766,7 +1386,7 @@
                                     </tr>
                                     <tr>
                                         <td><strong>Total Deductions</strong></td>
-                                        <td id="total_deductions" class="font-bold">0</td>
+                                        <td id="total_deductions" class="highlight-amount">0</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -776,7 +1396,7 @@
                     <!-- Tax Calculation -->
                     <div class="result-card">
                         <div class="result-header">
-                            <i class="fas fa-calculator mr-2"></i>Tax Calculation
+                            <i class="fas fa-calculator"></i>Tax Calculation
                         </div>
                         <div class="result-body">
                             <table class="result-table">
@@ -797,7 +1417,7 @@
                                     </tr>
                                     <tr>
                                         <td><strong>Net Taxable Income</strong></td>
-                                        <td id="net_taxable_income" class="font-bold">0</td>
+                                        <td id="net_taxable_income" class="highlight-amount">0</td>
                                     </tr>
                                     <tr>
                                         <td>Income Tax</td>
@@ -821,15 +1441,15 @@
                                     </tr>
                                     <tr>
                                         <td><strong>Gross tax payable</strong></td>
-                                        <td id="grosstaxpayable">0</td>
+                                        <td id="grosstaxpayable" class="highlight-amount">0</td>
                                     </tr>
                                     <tr>
-                                        <td>TDS/TCS Deducted(other than Salary)</td>
+                                        <td>TDS/TCS Deducted (other than Salary)</td>
                                         <td id="prior_tds_result">0</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Annual Tax Liability(for employee)</strong></td>
-                                        <td id="annual_tax_liability" class="font-bold">0</td>
+                                        <td><strong>Annual Tax Liability (for employee)</strong></td>
+                                        <td id="annual_tax_liability" class="highlight-amount">0</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -839,7 +1459,7 @@
                     <!-- Monthly TDS Breakdown -->
                     <div class="result-card">
                         <div class="result-header">
-                            <i class="fas fa-calendar-alt mr-2"></i>Monthly TDS Breakdown
+                            <i class="fas fa-calendar-alt"></i>Monthly TDS Breakdown
                         </div>
                         <div class="result-body">
                             <div class="chart-container">
@@ -862,9 +1482,7 @@
                     <!-- Total TDS Summary -->
                     <div class="result-card">
                         <div class="result-body">
-                            
-                            
-                            <div class="result-summary">
+                            <div class="result-summary pulse-animation">
                                 <div class="summary-title">Average Monthly TDS</div>
                                 <div class="summary-amount" id="monthly_tds_amount">₹ 0</div>
                             </div>
@@ -876,14 +1494,17 @@
 
         <!-- Calculate Button -->
         <div class="text-center my-6">
-            <button id="calculate-btn" class="btn btn-primary" onclick="calculateTDS()">
-                <i class="fas fa-calculator mr-2"></i>Calculate TDS
+            <button id="calculate-btn" class="btn btn-primary pulse-animation" onclick="calculateTDS()">
+                <i class="fas fa-calculator"></i>Calculate TDS
             </button>
         </div>
     </div>
 
     <footer class="footer">
-        <p>© 2025 TDS Calculator. All rights reserved.</p>
+        <div class="container">
+            <p>© 2025 TDS Calculator. All rights reserved.</p>
+            <p class="mt-2 text-sm opacity-75">Developed for Indian Income Tax calculations</p>
+        </div>
     </footer>
 
     <script>
@@ -984,11 +1605,27 @@
 
         // Main calculation function
         function calculateTDS() {
-            CalculateAllIncome();
-            document.getElementById('results-section').style.display = 'block';
-            // Switch to results tab
-            openTab({ currentTarget: document.getElementById('results-tab-btn') }, 'results-tab');
-            saveToLocalStorage();
+            // Add loading effect during calculation
+            document.getElementById('calculate-btn').innerHTML = '<i class="fas fa-spinner fa-spin"></i> Calculating...';
+            document.getElementById('calculate-btn').disabled = true;
+            
+            // Slight delay to show the loading effect
+            setTimeout(() => {
+                CalculateAllIncome();
+                document.getElementById('results-section').style.display = 'block';
+                
+                // Return button to normal state
+                document.getElementById('calculate-btn').innerHTML = '<i class="fas fa-calculator"></i> Calculate TDS';
+                document.getElementById('calculate-btn').disabled = false;
+                
+                // Switch to results tab
+                openTab({ currentTarget: document.getElementById('results-tab-btn') }, 'results-tab');
+                
+                // Scroll to results
+                document.getElementById('results-tab').scrollIntoView({ behavior: 'smooth' });
+                
+                saveToLocalStorage();
+            }, 600);
         }
 
         function CalculateAllIncome() {
@@ -1005,6 +1642,7 @@
             let oldstandarddeduction = Math.min(oldgrosssalary, 50000);
             let oldnetsalary = oldgrosssalary - (oldexemptionsec13a + oldotherexemption + oldprofessionaltax + oldstandarddeduction);
 
+
             let newbasicsalary = Math.max(0, Number(document.getElementById('basicsalary').value) || 0);
             let newhra = Math.max(0, Number(document.getElementById('hra').value) || 0);
             let newbonus = Math.max(0, Number(document.getElementById('bonus').value) || 0);
@@ -1016,6 +1654,7 @@
             let newprofessionaltax = Math.min(Math.max(0, Number(document.getElementById('professionaltax').value) || 0), 2500);
             let newstandarddeduction = Math.min(newgrosssalary, 75000);
             let newnetsalary = newgrosssalary - (newexemptionsec13a + newotherexemption + newprofessionaltax + newstandarddeduction);
+
 
             // Income from House Property
             let grossAnnualValue = Math.max(0, Number(document.getElementById('grossannualvalue').value) || 0);
@@ -1048,6 +1687,7 @@
                 newnetincomehp = 0;
             }
 
+
             // Income from Other Sources
             let olddividendincome = Math.max(0, Number(document.getElementById('dividendincome').value) || 0);
             let oldotherincome = Math.max(0, Number(document.getElementById('otherincome').value) || 0);
@@ -1057,9 +1697,11 @@
             let newotherincome = Math.max(0, Number(document.getElementById('otherincome').value) || 0);
             let newnetothersources = newdividendincome + newotherincome;
 
+
             // Calculate Gross Total Income
             let oldgrosstotalincome = Math.max(0, oldnetsalary + oldnetincomehp + oldnetothersources);
             let newgrosstotalincome = Math.max(0, newnetsalary + newnetincomehp + newnetothersources);
+
 
             // Deductions
             let olddeduction80c = Math.min(150000, Math.max(0, Number(document.getElementById('deduction80c').value) || 0));
@@ -1076,6 +1718,7 @@
             let oldeligiblededuction = Math.min(Math.max(oldgrosstotalincome, 0), oldtotaldeduction);
             let oldnetincome = Math.max(oldgrosstotalincome - oldeligiblededuction, 0);
 
+
             // For new regime - only NPS employer contribution is allowed
             let newdeduction80c = 0;
             let newdeduction80ccc = 0;
@@ -1091,8 +1734,10 @@
             let neweligiblededuction = Math.min(Math.max(newgrosstotalincome, 0), newtotaldeduction);
             let newnetincome = Math.max(newgrosstotalincome - neweligiblededuction, 0);
 
+
             let oldroundoff = Math.round(oldnetincome / 10) * 10;
             let newroundoff = Math.round(newnetincome / 10) * 10;
+
 
             // Old Regime Tax Calculation
             let oldnormalincome = oldroundoff;
@@ -1102,6 +1747,7 @@
             let oldsurcharge = 0;
             let oldmarginalrelief = 0;
             let age = parseInt(document.getElementById('age').value) || 30;
+
 
             if (age < 60) {
                 if (oldnormalincome <= 250000) {
@@ -1132,6 +1778,7 @@
                     oldtaxonnormalincome = 100000 + 0.3 * (oldnormalincome - 1000000);
                 }
             }
+
 
             let oldtaxbeforerebate = oldtaxonnormalincome;
             if (oldtotalincome <= 500000) {
@@ -1168,6 +1815,7 @@
                 oldsurcharge = 0;
             }
 
+
             // Marginal relief for old regime
             if (oldtotalincome > 50000000) {
                 oldmarginalrelief = Math.max((oldtaxbeforesurcharge + oldsurcharge - 18515625) - (oldtotalincome - 50000000), 0);
@@ -1181,10 +1829,12 @@
                 oldmarginalrelief = 0;
             }
 
+
             let oldtaxbeforecess = oldtaxbeforesurcharge + oldsurcharge - oldmarginalrelief;
             let oldcess = Math.max(0, oldtaxbeforecess * 0.04);
             let tdstcs = Math.max(0, Number(document.getElementById('tdstcs').value) || 0);
             let oldgrosstaxpayable = Math.max(oldtaxbeforecess + oldcess, 0);
+
 
             // New Regime Tax Calculation
             let newnormalincome = newroundoff;
@@ -1193,6 +1843,7 @@
             let newrebate = 0;
             let newsurcharge = 0;
             let newmarginalrelief = 0;
+
 
             // New Tax Regime slabs
             if (newnormalincome <= 400000) {
@@ -1211,6 +1862,7 @@
                 newtaxonnormalincome = 300000 + 0.3 * (newnormalincome - 2400000);
             }
 
+
             let newtaxbeforerebate = newtaxonnormalincome;
             
             // Rebate u/s 87A for new regime
@@ -1220,7 +1872,9 @@
                 newrebate = 0;
             }
 
+
             let newtaxbeforesurcharge = newtaxbeforerebate - newrebate;
+
 
             // Surcharge for new regime
             if (newnormalincome > 20000000) {
@@ -1233,6 +1887,7 @@
                 newsurcharge = 0;
             }
 
+
             // Marginal relief for new regime
             if (newtotalincome > 20000000) {
                 newmarginalrelief = Math.max((newtaxbeforesurcharge + newsurcharge - 5580000) - (newtotalincome - 20000000), 0);
@@ -1244,10 +1899,12 @@
                 newmarginalrelief = 0;
             }
 
+
             let newtaxbeforecess = newtaxbeforesurcharge + newsurcharge - newmarginalrelief;
             let newcess = Math.max(0, newtaxbeforecess * 0.04);
         
             let newgrosstaxpayable = Math.max(newtaxbeforecess + newcess, 0);
+
 
             // Prior TDS Deducted
             let tdsMonths = ['apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec', 'jan', 'feb', 'mar'];
@@ -1255,6 +1912,7 @@
             tdsMonths.forEach(month => {
                 priorTDS += Math.max(0, Number(document.getElementById(`tds_${month}`).value) || 0);
             });
+
 
             // Select regime
             let taxScheme = document.getElementById('tax_scheme').value;
@@ -1278,59 +1936,86 @@
             let cess = taxScheme === 'old' ? oldcess : newcess;
             let grossTaxPayable = taxScheme === 'old' ? oldgrosstaxpayable : newgrosstaxpayable;
 
+
             // Calculate remaining tax liability
             let annualTaxLiability = Math.max(grossTaxPayable - tdstcs, 0);
 
+
+            // Format numbers with commas for better readability
+            const formatCurrency = (value) => {
+                return new Intl.NumberFormat('en-IN', { 
+                    style: 'decimal',
+                    maximumFractionDigits: 2,
+                    minimumFractionDigits: 2
+                }).format(value);
+            };
+
             // Update results
-            document.getElementById('basic_salary_result').textContent = oldbasicsalary.toFixed(2);
-            document.getElementById('hra_result').textContent = oldhra.toFixed(2);
-            document.getElementById('bonus_result').textContent = oldbonus.toFixed(2);
-            document.getElementById('special_allowance_result').textContent = oldspecialallowance.toFixed(2);
-            document.getElementById('other_allowance_result').textContent = oldotherallowance.toFixed(2);
-            document.getElementById('gross_salary').textContent = grossSalary.toFixed(2);
-            document.getElementById('hra_exemption_result').textContent = hraExemption.toFixed(2);
-            document.getElementById('exempt_allowance_result').textContent = exemptAllowance.toFixed(2);
-            document.getElementById('professional_tax_result').textContent = professionalTax.toFixed(2);
-            document.getElementById('standard_deduction').textContent = standardDeduction.toFixed(2);
-            document.getElementById('total_exemptions').textContent = (hraExemption + exemptAllowance + professionalTax + standardDeduction).toFixed(2);
-            document.getElementById('net_salary').textContent = netSalary.toFixed(2);
-            document.getElementById('gross_annual_value_result').textContent = grossAnnualValue.toFixed(2);
-            document.getElementById('municipal_tax_result').textContent = municipalTax.toFixed(2);
-            document.getElementById('nav_result').textContent = nav.toFixed(2);
-            document.getElementById('standard_deduction_24a_result').textContent = standardDeduction24a.toFixed(2);
-            document.getElementById('interest_self_result').textContent = (taxScheme === 'old' ? oldinterestself : newinterestself).toFixed(2);
-            document.getElementById('interest_letout_result').textContent = (taxScheme === 'old' ? oldinterestletout : newinterestletout).toFixed(2);
-            document.getElementById('net_income_hp_result').textContent = netIncomeHP.toFixed(2);
-            document.getElementById('dividend_income_result').textContent = dividendIncome.toFixed(2);
-            document.getElementById('other_income_result').textContent = otherIncome.toFixed(2);
-            document.getElementById('total_other_income_result').textContent = netOtherSources.toFixed(2);
-            document.getElementById('gross_total_income').textContent = grossTotalIncome.toFixed(2);
-            document.getElementById('section_80c_result').textContent = (taxScheme === 'old' ? olddeduction80c : 0).toFixed(2);
-            document.getElementById('section_80ccc_result').textContent = (taxScheme === 'old' ? olddeduction80ccc : 0).toFixed(2);
-            document.getElementById('section_80ccd1_result').textContent = (taxScheme === 'old' ? olddeduction80ccd1 : 0).toFixed(2);
-            document.getElementById('section_80ccd1b_result').textContent = (taxScheme === 'old' ? olddeduction80ccd1b : 0).toFixed(2);
-            document.getElementById('section_80ccd2_result').textContent = (taxScheme === 'old' ? olddeduction80ccd2 : newdeduction80ccd2).toFixed(2);
-            document.getElementById('section_80d_result').textContent = (taxScheme === 'old' ? olddeduction80d : 0).toFixed(2);
-            document.getElementById('section_80e_result').textContent = (taxScheme === 'old' ? olddeduction80e : 0).toFixed(2);
-            document.getElementById('section_80g_result').textContent = (taxScheme === 'old' ? olddeduction80g : 0).toFixed(2);
-            document.getElementById('section_80tta_result').textContent = (taxScheme === 'old' ? olddeduction80tta : 0).toFixed(2);
-            document.getElementById('total_deductions').textContent = totalDeduction.toFixed(2);
-            document.getElementById('gross_income_tax').textContent = grossTotalIncome.toFixed(2);
-            document.getElementById('total_deductions_tax').textContent = totalDeduction.toFixed(2);
-            document.getElementById('net_taxable_income').textContent = netTaxableIncome.toFixed(2);
-            document.getElementById('income_tax').textContent = incomeTax.toFixed(2);
-            document.getElementById('rebate').textContent = rebate.toFixed(2);
-            document.getElementById('surcharge').textContent = surcharge.toFixed(2);
-            document.getElementById('tax_after_rebate').textContent = taxBeforeCess.toFixed(2);
-            document.getElementById('cess').textContent = cess.toFixed(2);
-            document.getElementById('grosstaxpayable').textContent = grossTaxPayable.toFixed(2);
-            document.getElementById('prior_tds_result').textContent = tdstcs.toFixed(2);
-            document.getElementById('annual_tax_liability').textContent = annualTaxLiability.toFixed(2);
+            document.getElementById('basic_salary_result').textContent = formatCurrency(oldbasicsalary);
+            document.getElementById('hra_result').textContent = formatCurrency(oldhra);
+            document.getElementById('bonus_result').textContent = formatCurrency(oldbonus);
+            document.getElementById('special_allowance_result').textContent = formatCurrency(oldspecialallowance);
+            document.getElementById('other_allowance_result').textContent = formatCurrency(oldotherallowance);
+            document.getElementById('gross_salary').textContent = formatCurrency(grossSalary);
+            document.getElementById('hra_exemption_result').textContent = formatCurrency(hraExemption);
+            document.getElementById('exempt_allowance_result').textContent = formatCurrency(exemptAllowance);
+            document.getElementById('professional_tax_result').textContent = formatCurrency(professionalTax);
+            document.getElementById('standard_deduction').textContent = formatCurrency(standardDeduction);
+            document.getElementById('total_exemptions').textContent = formatCurrency(hraExemption + exemptAllowance + professionalTax + standardDeduction);
+            document.getElementById('net_salary').textContent = formatCurrency(netSalary);
+            document.getElementById('gross_annual_value_result').textContent = formatCurrency(grossAnnualValue);
+            document.getElementById('municipal_tax_result').textContent = formatCurrency(municipalTax);
+            document.getElementById('nav_result').textContent = formatCurrency(nav);
+            document.getElementById('standard_deduction_24a_result').textContent = formatCurrency(standardDeduction24a);
+            document.getElementById('interest_self_result').textContent = formatCurrency(taxScheme === 'old' ? oldinterestself : newinterestself);
+            document.getElementById('interest_letout_result').textContent = formatCurrency(taxScheme === 'old' ? oldinterestletout : newinterestletout);
+            document.getElementById('net_income_hp_result').textContent = formatCurrency(netIncomeHP);
+            document.getElementById('dividend_income_result').textContent = formatCurrency(dividendIncome);
+            document.getElementById('other_income_result').textContent = formatCurrency(otherIncome);
+            document.getElementById('total_other_income_result').textContent = formatCurrency(netOtherSources);
+            document.getElementById('gross_total_income').textContent = formatCurrency(grossTotalIncome);
+            document.getElementById('section_80c_result').textContent = formatCurrency(taxScheme === 'old' ? olddeduction80c : 0);
+            document.getElementById('section_80ccc_result').textContent = formatCurrency(taxScheme === 'old' ? olddeduction80ccc : 0);
+            document.getElementById('section_80ccd1_result').textContent = formatCurrency(taxScheme === 'old' ? olddeduction80ccd1 : 0);
+            document.getElementById('section_80ccd1b_result').textContent = formatCurrency(taxScheme === 'old' ? olddeduction80ccd1b : 0);
+            document.getElementById('section_80ccd2_result').textContent = formatCurrency(taxScheme === 'old' ? olddeduction80ccd2 : newdeduction80ccd2);
+            document.getElementById('section_80d_result').textContent = formatCurrency(taxScheme === 'old' ? olddeduction80d : 0);
+            document.getElementById('section_80e_result').textContent = formatCurrency(taxScheme === 'old' ? olddeduction80e : 0);
+            document.getElementById('section_80g_result').textContent = formatCurrency(taxScheme === 'old' ? olddeduction80g : 0);
+            document.getElementById('section_80tta_result').textContent = formatCurrency(taxScheme === 'old' ? olddeduction80tta : 0);
+            document.getElementById('total_deductions').textContent = formatCurrency(totalDeduction);
+            document.getElementById('gross_income_tax').textContent = formatCurrency(grossTotalIncome);
+            document.getElementById('total_deductions_tax').textContent = formatCurrency(totalDeduction);
+            document.getElementById('net_taxable_income').textContent = formatCurrency(netTaxableIncome);
+            document.getElementById('income_tax').textContent = formatCurrency(incomeTax);
+            document.getElementById('rebate').textContent = formatCurrency(rebate);
+            document.getElementById('surcharge').textContent = formatCurrency(surcharge);
+            document.getElementById('tax_after_rebate').textContent = formatCurrency(taxBeforeCess);
+            document.getElementById('cess').textContent = formatCurrency(cess);
+            document.getElementById('grosstaxpayable').textContent = formatCurrency(grossTaxPayable);
+            document.getElementById('prior_tds_result').textContent = formatCurrency(tdstcs);
+            document.getElementById('annual_tax_liability').textContent = formatCurrency(annualTaxLiability);
             
             // Monthly TDS Breakdown
             let monthlyTDS = annualTaxLiability / 12;
             let totalTDSLiability = grossTaxPayable;
             let tdsData = tdsMonths.map((month, index) => {
+                let monthDisplay;
+                switch(month) {
+                    case 'apr': monthDisplay = 'April'; break;
+                    case 'may': monthDisplay = 'May'; break;
+                    case 'jun': monthDisplay = 'June'; break;
+                    case 'jul': monthDisplay = 'July'; break;
+                    case 'aug': monthDisplay = 'August'; break;
+                    case 'sep': monthDisplay = 'September'; break;
+                    case 'oct': monthDisplay = 'October'; break;
+                    case 'nov': monthDisplay = 'November'; break;
+                    case 'dec': monthDisplay = 'December'; break;
+                    case 'jan': monthDisplay = 'January'; break;
+                    case 'feb': monthDisplay = 'February'; break;
+                    case 'mar': monthDisplay = 'March'; break;
+                }
+                
                 let deducted = Math.max(0, Number(document.getElementById(`tds_${month}`).value) || 0);
                 // Calculate cumulative TDS deducted up to the current month
                 let cumulativeTDS = 0;
@@ -1348,7 +2033,7 @@
                 let tdsToBeDeducted = remainingMonths > 0 ? remainingLiability / remainingMonths : 0;
                 
                 return {
-                    month: month.charAt(0).toUpperCase() + month.slice(1),
+                    month: monthDisplay,
                     liability: monthlyTDS,
                     deducted: deducted,
                     toBeDeducted: tdsToBeDeducted
@@ -1359,7 +2044,7 @@
             monthlyTdsTable.innerHTML = '';
             tdsData.forEach(data => {
                 let row = document.createElement('tr');
-                row.innerHTML = `<td>${data.month}</td><td>${data.liability.toFixed(2)}</td><td>${data.deducted.toFixed(2)}</td><td>${data.toBeDeducted.toFixed(2)}</td>`;
+                row.innerHTML = `<td>${data.month}</td><td>${formatCurrency(data.liability)}</td><td>${formatCurrency(data.deducted)}</td><td class="highlight-amount">${formatCurrency(data.toBeDeducted)}</td>`;
                 monthlyTdsTable.appendChild(row);
             });
 
@@ -1368,12 +2053,26 @@
             let remainingMonthsData = tdsData.slice(currentMonth);
             let avgMonthlyTDS = annualTaxLiability / 12;
                 
-            
-            document.getElementById('monthly_tds_amount').textContent = `₹ ${avgMonthlyTDS.toFixed(2)}`;
+            document.getElementById('monthly_tds_amount').textContent = `₹ ${formatCurrency(avgMonthlyTDS)}`;
 
             // Update Chart
             if (window.tdsChart) window.tdsChart.destroy();
-            window.tdsChart = new Chart(document.getElementById('tds-chart'), {
+            const ctx = document.getElementById('tds-chart').getContext('2d');
+            
+            // Create gradient fills for chart
+            const liabilityGradient = ctx.createLinearGradient(0, 0, 0, 400);
+            liabilityGradient.addColorStop(0, 'rgba(26, 115, 232, 0.7)');
+            liabilityGradient.addColorStop(1, 'rgba(26, 115, 232, 0.1)');
+            
+            const deductedGradient = ctx.createLinearGradient(0, 0, 0, 400);
+            deductedGradient.addColorStop(0, 'rgba(77, 208, 225, 0.7)');
+            deductedGradient.addColorStop(1, 'rgba(77, 208, 225, 0.1)');
+            
+            const toBeDeductedGradient = ctx.createLinearGradient(0, 0, 0, 400);
+            toBeDeductedGradient.addColorStop(0, 'rgba(46, 204, 113, 0.7)');
+            toBeDeductedGradient.addColorStop(1, 'rgba(46, 204, 113, 0.1)');
+            
+            window.tdsChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: tdsData.map(data => data.month),
@@ -1381,31 +2080,112 @@
                         {
                             label: 'TDS Liability',
                             data: tdsData.map(data => data.liability),
-                            backgroundColor: 'rgba(26, 115, 232, 0.5)',
+                            backgroundColor: liabilityGradient,
                             borderColor: 'rgba(26, 115, 232, 1)',
-                            borderWidth: 1
+                            borderWidth: 1,
+                            borderRadius: 4,
+                            barPercentage: 0.7,
+                            categoryPercentage: 0.8
                         },
                         {
                             label: 'TDS Deducted',
                             data: tdsData.map(data => data.deducted),
-                            backgroundColor: 'rgba(77, 208, 225, 0.5)',
+                            backgroundColor: deductedGradient,
                             borderColor: 'rgba(77, 208, 225, 1)',
-                            borderWidth: 1
+                            borderWidth: 1,
+                            borderRadius: 4,
+                            barPercentage: 0.7,
+                            categoryPercentage: 0.8
                         },
                         {
                             label: 'TDS to be Deducted',
                             data: tdsData.map(data => data.toBeDeducted),
-                            backgroundColor: 'rgba(46, 204, 113, 0.5)',
+                            backgroundColor: toBeDeductedGradient,
                             borderColor: 'rgba(46, 204, 113, 1)',
-                            borderWidth: 1
+                            borderWidth: 1,
+                            borderRadius: 4,
+                            barPercentage: 0.7,
+                            categoryPercentage: 0.8
                         }
                     ]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                font: {
+                                    family: "'Poppins', sans-serif",
+                                    size: 12
+                                },
+                                boxWidth: 15,
+                                padding: 15
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            titleFont: {
+                                family: "'Poppins', sans-serif",
+                                size: 14,
+                                weight: 'bold'
+                            },
+                            bodyFont: {
+                                family: "'Poppins', sans-serif",
+                                size: 13
+                            },
+                            padding: 10,
+                            displayColors: true,
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += new Intl.NumberFormat('en-IN', {
+                                            style: 'currency',
+                                            currency: 'INR'
+                                        }).format(context.parsed.y);
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
                     scales: {
-                        y: { beginAtZero: true }
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)',
+                                drawBorder: false
+                            },
+                            ticks: {
+                                font: {
+                                    family: "'Poppins', sans-serif",
+                                    size: 11
+                                },
+                                callback: function(value) {
+                                    return '₹' + value.toLocaleString('en-IN');
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                font: {
+                                    family: "'Poppins', sans-serif",
+                                    size: 11
+                                }
+                            }
+                        }
+                    },
+                    animation: {
+                        duration: 1500,
+                        easing: 'easeOutQuart'
                     }
                 }
             });
