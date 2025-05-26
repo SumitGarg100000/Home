@@ -66,15 +66,15 @@
         }
 
         h1 {
-    text-align: center;
-    color: #0e4377;
-    font-size: 2.8em;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-    position: relative;
-    width: 100%;
-    display: block;
+            text-align: center;
+            color: #0e4377;
+            font-size: 2.8em;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            position: relative;
+            width: 100%;
+            display: block;
         }
 
         h1::after {
@@ -503,6 +503,36 @@
             height: 15px;
         }
 
+        .about-section {
+            padding: 3rem 0;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-section p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-section .icon-wrapper {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            background: rgba(26, 115, 232, 0.1);
+        }
+
+        .about-section i {
+            font-size: 2.5em;
+            color: var(--primary-color);
+        }
+
         @keyframes pulse {
             0%, 100% {
                 transform: translateZ(30px) scale(1);
@@ -690,10 +720,10 @@
                 <span>Sumit Garg</span>
             </a>
             <div class="nav-links">
-                <a href="#">Home</a>
-                <a href="#">Services</a>
-                <a href="#">About</a>
-                <a href="#">Contact</a>
+                <a href="https://sumitgarg100000.github.io/Home/" class="nav-home">Home</a>
+                <a href="#services" class="nav-services">Services</a>
+                <a href="#about" class="nav-about">About</a>
+                <a href="#contact" class="nav-contact">Contact</a>
             </div>
             <button class="mobile-menu-btn">
                 <i class="fas fa-bars"></i>
@@ -703,7 +733,7 @@
         <h1 class="slide-up" style="animation-delay: 0.2s">Welcome to <span class="highlight">Sumit Garg's</span> Financial Tools</h1>
         <p class="intro-text slide-up" style="animation-delay: 0.4s">Simplify your tax compliance with our user-friendly tools designed for efficiency and accuracy. Our solutions help businesses and individuals manage their financial obligations with confidence.</p>
 
-        <div class="services-grid">
+        <div id="services" class="services-grid">
             <!-- GST Reconciliation Card -->
             <a href="https://sumitgarg100000.github.io/GSTReconciliation/" class="service-card" data-aos="fade-up" data-aos-delay="100">
                 <div class="icon-wrapper">
@@ -740,7 +770,17 @@
                 <div class="card-glow"></div>
             </a>
         </div>
-        
+
+        <!-- About Section -->
+        <div id="about" class="about-section" data-aos="fade-up">
+            <div class="section-title">About Sumit Garg</div>
+            <div class="icon-wrapper">
+                <i class="fas fa-user-tie"></i>
+            </div>
+            <p>Sumit Garg is a seasoned financial expert with over 10 years of experience in providing top-notch tax consultancy and financial services. Specializing in GST, income tax, Excel, MIS preparation, and more, Sumit has helped countless businesses and individuals navigate complex financial landscapes with ease and confidence.</p>
+            <p>With a deep understanding of tax regulations and a commitment to delivering accurate and efficient solutions, Sumit Garg's Financial Tools are designed to simplify compliance and empower clients to focus on their core objectives.</p>
+        </div>
+
         <div class="section-title" data-aos="fade-up">Why Choose Our Tools?</div>
         <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
             <div class="service-card glass-card" data-aos="fade-up" data-aos-delay="100" style="cursor: default;">
@@ -769,7 +809,7 @@
         </div>
     </div>
 
-    <footer data-aos="fade-up">
+    <footer id="contact" data-aos="fade-up">
         <div class="footer-container">
             <div class="footer-section">
                 <h4>Contact Us</h4>
@@ -783,10 +823,10 @@
             <div class="footer-section">
                 <h4>Quick Links</h4>
                 <div class="footer-links">
-                    <a href="#"><i class="fas fa-chevron-right"></i> Home</a>
-                    <a href="#"><i class="fas fa-chevron-right"></i> Services</a>
-                    <a href="#"><i class="fas fa-chevron-right"></i> About Us</a>
-                    <a href="#"><i class="fas fa-chevron-right"></i> Contact</a>
+                    <a href="https://sumitgarg100000.github.io/Home/"><i class="fas fa-chevron-right"></i> Home</a>
+                    <a href="#services"><i class="fas fa-chevron-right"></i> Services</a>
+                    <a href="#about"><i class="fas fa-chevron-right"></i> About</a>
+                    <a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a>
                 </div>
             </div>
             
@@ -819,7 +859,8 @@
             const menuBtn = document.querySelector('.mobile-menu-btn');
             const container = document.querySelector('.container');
             
-            menuBtn.addEventListener('click', function() {
+            menuBtn.addEventListener('click', function(event) {
+                event.stopPropagation();
                 container.classList.toggle('mobile-menu-open');
             });
             
@@ -828,6 +869,20 @@
                 if (!event.target.closest('.mobile-menu-btn') && !event.target.closest('.nav-links')) {
                     container.classList.remove('mobile-menu-open');
                 }
+            });
+
+            // Smooth scroll for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                    // Close mobile menu after clicking a link
+                    container.classList.remove('mobile-menu-open');
+                });
             });
             
             // Add 3D effect to service cards based on mouse position
