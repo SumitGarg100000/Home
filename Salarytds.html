@@ -3,22 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TDS Calculator for FY 2025-26/AY 2026-27 aligned with Form 16.">
-    <title>TDS on Salary Calculator - FY 2025-26</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <meta name="description" content="TDS on Salary Calculator for FY 2025-26/AY 2026-27 aligned with Form 16. Simplify your tax compliance with user-friendly solutions.">
+    <meta name="keywords" content="TDS Calculator, Income Tax Calculator, Tax Tools, Financial Tools, Sumit Garg">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Sumit Garg's TDS on Salary Calculator">
+    <meta property="og:description" content="Calculate TDS on salary for FY 2025-26 with our user-friendly tool aligned with Form 16.">
+    <meta property="og:image" content="">
+    <title>Sumit Garg's TDS on Salary Calculator - FY 2025-26</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Montserrat', 'Segoe UI', Arial, sans-serif;
+        }
+
         :root {
-            --primary-color: #0e4377;
-            --secondary-color: #1a73e8;
-            --accent-color: #4285f4;
-            --accent-color-2: #34a853;
-            --accent-color-3: #fbbc05;
+            --primary-color: #1a73e8;
+            --primary-dark: #0d47a1;
+            --secondary-color: #4285f4;
+            --accent-color: #34a853;
+            --accent-color-2: #fbbc05;
+            --text-primary: #2C3E50;
+            --text-secondary: #666666;
             --text-light: #FFFFFF;
-            --text-dark: #2C3E50;
+            --bg-gradient-1: linear-gradient(135deg, #f5f7fa, #e4f1ff);
             --table-header: #1a73e8;
             --table-row-alt: #F8F9FA;
             --card-bg: #ffffff;
@@ -26,32 +40,114 @@
             --input-border: #dae1e7;
             --input-focus: #c3dafe;
         }
-        
-        * {
-            box-sizing: border-box;
-            transition: all 0.2s ease;
-        }
-        
+
         body {
-            font-family: 'Poppins', 'Montserrat', sans-serif;
+            background: var(--bg-gradient-1);
+            color: var(--text-primary);
+            padding: 20px;
             line-height: 1.6;
-            background: linear-gradient(135deg, #f5f9ff 0%, #e9f2ff 100%);
-            color: var(--text-dark);
-            padding-bottom: 2rem;
-            margin: 0;
         }
-        
-        header {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 61, 115, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(135deg, #1a73e8, #0d47a1);
+        }
+
+        /* Header Navigation */
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+        }
+
+        .nav-links a {
+            margin-left: 25px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            cursor: pointer;
+        }
+
+        /* Calculator Header Styling */
+        .calculator-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: var(--text-light);
-            padding: 2rem 0;
+            padding: 2rem;
             text-align: center;
             box-shadow: 0 4px 20px rgba(26, 115, 232, 0.2);
             position: relative;
             overflow: hidden;
+            border-radius: 12px;
+            margin-bottom: 2rem;
         }
-        
-        header::before {
+
+        .calculator-header::before {
             content: "";
             position: absolute;
             top: 0;
@@ -62,18 +158,56 @@
             opacity: 0.5;
             z-index: 0;
         }
-        
-        header .container {
+
+        .calculator-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(135deg, #ffffff, #e6f0ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
             position: relative;
             z-index: 1;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
+        .calculator-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
         }
-        
+
+        .header-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .decorative-icon {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.1);
+            font-size: 4rem;
+            z-index: 0;
+        }
+
+        .icon-1 {
+            top: 20px;
+            left: 5%;
+            transform: rotate(-15deg);
+        }
+
+        .icon-2 {
+            bottom: 20px;
+            right: 5%;
+            transform: rotate(15deg);
+        }
+
+        /* Calculator Styling */
         .card {
             background: var(--card-bg);
             border-radius: 12px;
@@ -83,12 +217,12 @@
             transition: all 0.3s ease;
             border: 1px solid rgba(226, 232, 240, 0.7);
         }
-        
+
         .card:hover {
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
             transform: translateY(-2px);
         }
-        
+
         .card-header {
             background: linear-gradient(145deg, #f8f9fa, #ffffff);
             padding: 1rem 1.25rem;
@@ -98,17 +232,17 @@
             cursor: pointer;
             position: relative;
         }
-        
+
         .card-header h3 {
             font-size: 1.15rem;
             font-weight: 600;
-            color: var(--primary-color);
+            color: var(--primary-dark);
             margin: 0;
             flex-grow: 1;
             display: flex;
             align-items: center;
         }
-        
+
         .card-header h3 i {
             background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
             -webkit-background-clip: text;
@@ -116,44 +250,44 @@
             margin-right: 0.75rem;
             font-size: 1.2rem;
         }
-        
+
         .card-header .icon {
             transition: transform 0.3s ease;
-            color: var(--accent-color);
+            color: var(--secondary-color);
         }
-        
+
         .card-header.active .icon {
             transform: rotate(180deg);
         }
-        
+
         .card-body {
             padding: 1.25rem;
             display: none;
             border-top: 1px solid rgba(226, 232, 240, 0.5);
         }
-        
+
         .card-body.active {
             display: block;
             animation: fadeIn 0.3s ease;
         }
-        
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
+
         .form-row {
             display: flex;
             flex-wrap: wrap;
             margin: -0.5rem;
         }
-        
+
         .form-group {
             padding: 0.5rem;
             flex: 1 1 calc(50% - 1rem);
             min-width: 220px;
         }
-        
+
         .form-control {
             width: 100%;
             padding: 0.75rem;
@@ -162,20 +296,20 @@
             font-size: 0.95rem;
             transition: all 0.3s ease;
             background-color: var(--input-bg);
-            color: var(--text-dark);
+            color: var(--text-primary);
         }
-        
+
         .form-control:focus {
-            border-color: var(--accent-color);
+            border-color: var(--secondary-color);
             box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.15);
             outline: none;
             background-color: #ffffff;
         }
-        
+
         .form-control::placeholder {
             color: #a0aec0;
         }
-        
+
         label {
             display: block;
             margin-bottom: 0.5rem;
@@ -183,7 +317,7 @@
             font-size: 0.95rem;
             color: #4a5568;
         }
-        
+
         .btn {
             padding: 0.75rem 1.75rem;
             border: none;
@@ -197,19 +331,19 @@
             justify-content: center;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
-        
+
         .btn i {
             margin-right: 0.5rem;
         }
-        
+
         .btn-primary {
-            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-dark));
             color: white;
             position: relative;
             z-index: 1;
             overflow: hidden;
         }
-        
+
         .btn-primary::before {
             content: "";
             position: absolute;
@@ -217,31 +351,31 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(135deg, var(--primary-dark), var(--secondary-color));
             transition: all 0.5s ease;
             z-index: -1;
         }
-        
+
         .btn-primary:hover::before {
             left: 0;
         }
-        
+
         .btn-primary:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(26, 115, 232, 0.3);
         }
-        
+
         .btn-secondary {
             background: #e2e8f0;
             color: #4a5568;
         }
-        
+
         .btn-secondary:hover {
             background: #cbd5e0;
             transform: translateY(-2px);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
-        
+
         .result-card {
             background: white;
             border-radius: 12px;
@@ -250,9 +384,9 @@
             overflow: hidden;
             border: 1px solid rgba(226, 232, 240, 0.7);
         }
-        
+
         .result-header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(135deg, var(--primary-dark), var(--secondary-color));
             color: white;
             padding: 1.25rem;
             font-weight: 600;
@@ -260,16 +394,16 @@
             display: flex;
             align-items: center;
         }
-        
+
         .result-header i {
             margin-right: 0.75rem;
             font-size: 1.25rem;
         }
-        
+
         .result-body {
             padding: 1.25rem;
         }
-        
+
         .result-table {
             width: 100%;
             border-collapse: collapse;
@@ -278,7 +412,7 @@
             overflow: hidden;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
-        
+
         .result-table th,
         .result-table td {
             padding: 0.75rem 1rem;
@@ -286,24 +420,24 @@
             border: 1px solid #e2e8f0;
             font-size: 0.95rem;
         }
-        
+
         .result-table th {
-            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
             color: white;
             font-weight: 600;
             position: relative;
         }
-        
+
         .result-table tr:nth-child(even) {
             background-color: rgba(247, 250, 252, 0.7);
         }
-        
+
         .result-table tr:hover {
             background-color: rgba(237, 242, 247, 0.8);
         }
-        
+
         .result-summary {
-            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-dark));
             color: white;
             padding: 1.5rem;
             border-radius: 10px;
@@ -313,7 +447,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .result-summary::before {
             content: "";
             position: absolute;
@@ -323,21 +457,21 @@
             height: 100%;
             background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
         }
-        
+
         .summary-title {
             font-size: 1.1rem;
             font-weight: 500;
             margin-bottom: 0.75rem;
             position: relative;
         }
-        
+
         .summary-amount {
             font-size: 2rem;
             font-weight: 700;
             position: relative;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        
+
         .chart-container {
             height: 350px;
             margin: 1.75rem 0;
@@ -346,32 +480,12 @@
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
-        
-        .footer {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            text-align: center;
-            padding: 1.5rem;
-            margin-top: 3rem;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .footer::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        }
-        
+
         .tab-container {
             margin: 1.5rem 0;
             padding-top: 0.5rem;
         }
-        
+
         .tabs {
             display: flex;
             flex-wrap: wrap;
@@ -382,7 +496,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .tab-btn {
             padding: 1rem 1.5rem;
             background: transparent;
@@ -401,12 +515,12 @@
             text-align: center;
             justify-content: center;
         }
-        
+
         .tab-btn i {
             margin-right: 0.5rem;
             font-size: 1.1rem;
         }
-        
+
         .tab-btn::before {
             content: "";
             position: absolute;
@@ -418,36 +532,35 @@
             background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
             transition: all 0.3s ease;
         }
-        
+
         .tab-btn:hover {
-            color: var(--accent-color);
+            color: var(--secondary-color);
         }
-        
+
         .tab-btn.active {
-            color: var(--accent-color);
+            color: var(--secondary-color);
         }
-        
+
         .tab-btn.active::before {
             width: 80%;
         }
-        
+
         .tab-content {
             display: none;
         }
-        
+
         .tab-content.active {
             display: block;
             animation: fadeIn 0.4s ease;
         }
-        
+
         #calculate-btn {
             min-width: 200px;
             padding: 1rem 2rem;
             font-size: 1.1rem;
             margin: 2rem auto;
         }
-        
-        /* Enhanced visual elements */
+
         .badge {
             display: inline-block;
             padding: 0.25rem 0.75rem;
@@ -457,55 +570,55 @@
             margin-left: 0.5rem;
             text-transform: uppercase;
         }
-        
+
         .badge-primary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .badge-secondary {
             background-color: var(--accent-color);
             color: white;
         }
-        
-        .badge-secondary {
-            background-color: var(--accent-color-2);
-            color: white;
-        }
-        
+
         .section-divider {
             display: flex;
             align-items: center;
             margin: 2rem 0;
         }
-        
+
         .section-divider::before,
         .section-divider::after {
             content: "";
             flex: 1;
             border-bottom: 1px solid #e2e8f0;
         }
-        
+
         .section-divider h2 {
             padding: 0 1rem;
-            color: var(--primary-color);
+            color: var(--primary-dark);
             font-size: 1.25rem;
             font-weight: 600;
             white-space: nowrap;
         }
-        
+
         .highlight-amount {
             font-weight: 700;
-            color: var(--accent-color);
+            color: var(--secondary-color);
         }
-        
+
         .info-tooltip {
             display: inline-block;
             margin-left: 0.25rem;
             cursor: help;
             position: relative;
         }
-        
+
         .info-tooltip i {
-            color: var(--accent-color);
+            color: var(--secondary-color);
             font-size: 0.85rem;
         }
-        
+
         .info-tooltip .tooltip-text {
             visibility: hidden;
             position: absolute;
@@ -524,7 +637,7 @@
             transition: opacity 0.3s;
             z-index: 10;
         }
-        
+
         .info-tooltip .tooltip-text::after {
             content: "";
             position: absolute;
@@ -535,130 +648,16 @@
             border-style: solid;
             border-color: #2d3748 transparent transparent transparent;
         }
-        
+
         .info-tooltip:hover .tooltip-text {
             visibility: visible;
             opacity: 1;
         }
-        
-        /* Animated elements */
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        
-        .pulse-animation {
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        .float-animation {
-            animation: float 5s ease-in-out infinite;
-        }
-        
-        /* Responsive improvements */
-        @media (max-width: 768px) {
-            .form-group {
-                flex: 100%;
-            }
-            
-            .btn {
-                width: 100%;
-                margin-bottom: 0.75rem;
-            }
-            
-            .tabs {
-                flex-direction: column;
-                border-radius: 10px;
-            }
-            
-            .tab-btn {
-                width: 100%;
-                text-align: left;
-                padding: 0.85rem 1rem;
-                border-bottom: 1px solid #edf2f7;
-                justify-content: flex-start;
-            }
-            
-            .tab-btn::before {
-                left: 0;
-                transform: none;
-                width: 3px;
-                height: 0;
-            }
-            
-            .tab-btn.active::before {
-                width: 3px;
-                height: 80%;
-            }
-            
-            .card-header h3 {
-                font-size: 1rem;
-            }
-            
-            .summary-amount {
-                font-size: 1.75rem;
-            }
-            
-            .chart-container {
-                height: 280px;
-            }
-        }
-        
-        /* Header enhancements */
-        .calculator-title {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            background: linear-gradient(135deg, #ffffff, #e6f0ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
-        }
-        
-        .calculator-subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            margin-bottom: 1.5rem;
-        }
-        
-        .header-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-        }
-        
-        /* Extra decorative elements */
-        .decorative-icon {
-            position: absolute;
-            color: rgba(255, 255, 255, 0.1);
-            font-size: 4rem;
-            z-index: 0;
-        }
-        
-        .icon-1 {
-            top: 20px;
-            left: 5%;
-            transform: rotate(-15deg);
-        }
-        
-        .icon-2 {
-            bottom: 20px;
-            right: 5%;
-            transform: rotate(15deg);
-        }
-        
-        /* Font awesome icons in form elements */
+
         .input-icon {
             position: relative;
         }
-        
+
         .input-icon i {
             position: absolute;
             left: 0.75rem;
@@ -666,12 +665,11 @@
             transform: translateY(-50%);
             color: #a0aec0;
         }
-        
+
         .input-icon input {
             padding-left: 2.5rem;
         }
-        
-        /* Custom styling for select dropdowns */
+
         select.form-control {
             appearance: none;
             background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a0aec0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
@@ -680,34 +678,313 @@
             background-size: 1em;
             padding-right: 2.5rem;
         }
-        
-        /* Progressive loading effect */
-        @keyframes shimmer {
-            0% {
-                background-position: -468px 0;
-            }
-            100% {
-                background-position: 468px 0;
-            }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
-        
+
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .float-animation {
+            animation: float 5s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -468px 0; }
+            100% { background-position: 468px 0; }
+        }
+
         .loading {
             background: linear-gradient(to right, #f6f7f8 8%, #edeef1 18%, #f6f7f8 33%);
             background-size: 800px 104px;
             animation: shimmer 1.5s infinite linear;
             border-radius: 8px;
         }
+
+        /* Footer Styling */
+        footer {
+            background: linear-gradient(135deg, #1a73e8, #0d47a1);
+            color: #ffffff;
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin-top: 50px;
+            text-align: center;
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+            animation: shimmer 3s infinite linear;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 20px;
+            padding: 0 15px;
+        }
+
+        .footer-section h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-section h4::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-links a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0.5rem 0;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links a i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .footer-links a:hover {
+            color: rgba(255, 255, 255, 0.8);
+            transform: translateX(5px);
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(145deg, #25d366, #128C7E);
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                0 5px 15px rgba(37, 211, 102, 0.4),
+                0 0 0 10px rgba(37, 211, 102, 0.1);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 
+                0 8px 25px rgba(37, 211, 102, 0.6),
+                0 0 0 15px rgba(37, 211, 102, 0.2);
+        }
+
+        .whatsapp-btn i {
+            font-size: 2.2em;
+        }
+
+        .whatsapp-tooltip {
+            position: absolute;
+            right: 85px;
+            background: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .whatsapp-btn:hover .whatsapp-tooltip {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .mobile-menu-open .nav-links {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 20px;
+                background: white;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                z-index: 100;
+            }
+
+            .mobile-menu-open .nav-links a {
+                margin: 10px 0;
+            }
+
+            .footer-container {
+                flex-direction: column;
+            }
+
+            .footer-section {
+                margin-bottom: 30px;
+            }
+
+            .form-group {
+                flex: 100%;
+            }
+
+            .btn {
+                width: 100%;
+                margin-bottom: 0.75rem;
+            }
+
+            .tabs {
+                flex-direction: column;
+                border-radius: 10px;
+            }
+
+            .tab-btn {
+                width: 100%;
+                text-align: left;
+                padding: 0.85rem 1rem;
+                border-bottom: 1px solid #edf2f7;
+                justify-content: flex-start;
+            }
+
+            .tab-btn::before {
+                left: 0;
+                transform: none;
+                width: 3px;
+                height: 0;
+            }
+
+            .tab-btn.active::before {
+                width: 3px;
+                height: 80%;
+            }
+
+            .card-header h3 {
+                font-size: 1rem;
+            }
+
+            .summary-amount {
+                font-size: 1.75rem;
+            }
+
+            .chart-container {
+                height: 280px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+
+            .whatsapp-btn {
+                width: 60px;
+                height: 60px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .whatsapp-tooltip {
+                display: none;
+            }
+
+            .calculator-title {
+                font-size: 1.8rem;
+            }
+
+            .calculator-subtitle {
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <header>
-        <div class="decorative-icon icon-1">
-            <i class="fas fa-calculator"></i>
-        </div>
-        <div class="decorative-icon icon-2">
-            <i class="fas fa-coins"></i>
-        </div>
-        <div class="container">
+    <div class="container">
+        <header class="header-nav">
+            <a href="#" class="logo">
+                <i class="fas fa-chart-line"></i>
+                <span>Sumit Garg</span>
+            </a>
+            <div class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">Services</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </header>
+
+        <!-- Calculator Header -->
+        <div class="calculator-header">
+            <div class="decorative-icon icon-1">
+                <i class="fas fa-calculator"></i>
+            </div>
+            <div class="decorative-icon icon-2">
+                <i class="fas fa-coins"></i>
+            </div>
             <h1 class="calculator-title">TDS on Salary Calculator</h1>
             <h2 class="calculator-subtitle">FY 2025-26 (AY 2026-27)</h2>
             <div class="header-buttons">
@@ -719,9 +996,8 @@
                 </button>
             </div>
         </div>
-    </header>
 
-    <div class="container mt-4">
+        <!-- Calculator Content -->
         <div class="tab-container">
             <div class="tabs">
                 <button class="tab-btn active" onclick="openTab(event, 'income-tab')">
@@ -737,7 +1013,7 @@
                     <i class="fas fa-calculator"></i>Results
                 </button>
             </div>
-            
+
             <!-- Income Tab -->
             <div id="income-tab" class="tab-content active">
                 <!-- Basic Details -->
@@ -938,7 +1214,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Deductions Tab -->
             <div id="deductions-tab" class="tab-content">
                 <!-- Deductions (Old Regime) -->
@@ -1040,7 +1316,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- TDS Tab -->
             <div id="tds-tab" class="tab-content">
                 <!-- TDS/TCS deducted -->
@@ -1158,14 +1434,14 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Results Tab -->
             <div id="results-tab" class="tab-content">
                 <div id="results-section" style="display: none;">
                     <div class="section-divider">
                         <h2><i class="fas fa-file-invoice-dollar mr-2"></i> Tax Calculation Results</h2>
                     </div>
-                    
+
                     <!-- Income Breakup -->
                     <div class="result-card">
                         <div class="result-header">
@@ -1500,14 +1776,42 @@
         </div>
     </div>
 
-    <footer class="footer">
-        <div class="container">
-            <p>© 2025 TDS Calculator. All rights reserved.</p>
-            <p class="mt-2 text-sm opacity-75">Developed for Indian Income Tax calculations</p>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <div class="footer-links">
+                    <a href="tel:+919716804520"><i class="fas fa-phone"></i> Ph: 9716804520</a>
+                    <a href="mailto:Sumitgarg100000@gmail.com"><i class="fas fa-envelope"></i> Email: Sumitgarg100000@gmail.com</a>
+                    <a href="https://maps.google.com/?q=Rohini,+Delhi-110086" target="_blank"><i class="fas fa-map-marker-alt"></i> Address: Rohini, Delhi-110086</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <div class="footer-links">
+                    <a href="#"><i class="fas fa-chevron-right"></i> Home</a>
+                    <a href="#"><i class="fas fa-chevron-right"></i> Services</a>
+                    <a href="#"><i class="fas fa-chevron-right"></i> About Us</a>
+                    <a href="#"><i class="fas fa-chevron-right"></i> Contact</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <div class="footer-links">
+                    <a href="#"><i class="fas fa-gavel"></i> Privacy Policy</a>
+                    <a href="#"><i class="fas fa-file-contract"></i> Terms of Service</a>
+                    <a href="#"><i class="fas fa-shield-alt"></i> Data Protection</a>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <script>
+    <a href="https://wa.me/9716804520" class="whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+        <div class="whatsapp-tooltip">Chat with us!</div>
+    </a>
+
+        <script>
         // Toggle sections open/close
         function toggleSection(id) {
             const body = document.getElementById(id);
