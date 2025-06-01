@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Transform your business with expert consultancy services. Reduce costs, improve employee retention, ensure compliance, and build market goodwill with Sumit Garg.">
+    <meta name="keywords" content="Business Consultancy, Cost Reduction, Employee Retention, Compliance, Market Goodwill, Sumit Garg">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Business Consultancy Services - Sumit Garg">
+    <meta property="og:description" content="Unlock your business potential with our consultancy services, designed to cut costs, retain talent, ensure compliance, and enhance customer satisfaction.">
+    <meta property="og:image" content="">
+    <title>Business Consultancy Services - Sumit Garg</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <style>
+        /* Same CSS as homepage to maintain consistency */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+        }
+
+        :root {
+            --primary-color: #1a73e8;
+            --primary-dark: #0d47a1;
+            --primary-light: #e6f3ff;
+            --accent-color: #ff6b6b;
+            --secondary-color: #4caf50;
+            --secondary-dark: #2e7d32;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --bg-gradient-1: linear-gradient(135deg, #f5f7fa, #e4f1ff);
+            --bg-gradient-2: linear-gradient(135deg, #1a73e8, #0d47a1);
+            --bg-gradient-3: linear-gradient(135deg, #4caf50, #2e7d32);
+            --card-gradient-1: linear-gradient(145deg, #ffffff, #f5f9ff);
+            --card-gradient-2: linear-gradient(145deg, #1f87ff, #0d47a1);
+            --card-gradient-3: linear-gradient(145deg, #57c45c, #2e7d32);
+        }
+
+        body {
+            background: var(--bg-gradient-1);
+            color: var(--text-primary);
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 61, 115, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: var(--bg-gradient-2);
+        }
+
+        h1 {
+            text-align: center;
+            color: #0e4377;
+            font-size: 2.8em;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--bg-gradient-2);
+            border-radius: 2px;
+        }
+
+        .intro-text {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .benefits-section {
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 20px 10px;
+        }
+
+        .benefit-card {
+            background: var(--card-gradient-1);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .benefit-card .icon-wrapper {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            background: rgba(26, 115, 232, 0.1);
+        }
+
+        .benefit-card i {
+            font-size: 1.8em;
+            color: var(--primary-color);
+        }
+
+        .benefit-card h4 {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 0.8rem;
+        }
+
+        .benefit-card p {
+            font-size: 1em;
+            color: var(--text-secondary);
+        }
+
+        .example-section {
+            padding: 3rem 0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .example-item {
+            background: var(--card-gradient-1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .example-item h4 {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+        }
+
+        .example-item p {
+            font-size: 1em;
+            color: var(--text-secondary);
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .btn-cta {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-size: 1.1em;
+        }
+
+        .btn-cta:hover {
+            background-color: var(--secondary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            background: var(--bg-gradient-2);
+            color: #ffffff;
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin-top: 50px;
+            text-align: center;
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+            animation: shimmer 3s infinite linear;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 20px;
+            padding: 0 15px;
+        }
+
+        .footer-section h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-section h4::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-links a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0.5rem 0;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links a i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .footer-links a:hover {
+            color: rgba(255, 255, 255, 0.8);
+            transform: translateX(5px);
+        }
+
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(145deg, #25d366, #128C7E);
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                0 5px 15px rgba(37, 211, 102, 0.4),
+                0 0 0 10px rgba(37, 211, 102, 0.1);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 
+                0 8px 25px rgba(37, 211, 102, 0.6),
+                0 0 0 15px rgba(37, 211, 102, 0.2);
+        }
+
+        .whatsapp-btn i {
+            font-size: 2.2em;
+        }
+
+        .whatsapp-tooltip {
+            position: absolute;
+            right: 85px;
+            background: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .whatsapp-btn:hover .whatsapp-tooltip {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+        }
+
+        .nav-links a {
+            margin-left: 25px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin: 3rem 0 2rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 3px;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            cursor: pointer;
+        }
+
+        @media (max-width: 1024px) {
+            .benefits-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2em;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .mobile-menu-open .nav-links {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 20px;
+                background: white;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                z-index: 100;
+            }
+
+            .mobile-menu-open .nav-links a {
+                margin: 10px 0;
+            }
+
+            .footer-container {
+                flex-direction: column;
+            }
+
+            .footer-section {
+                margin-bottom: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .intro-text {
+                font-size: 1rem;
+            }
+
+            .benefit-card {
+                padding: 15px;
+            }
+
+            .benefit-card h4 {
+                font-size: 1.1em;
+            }
+
+            .benefit-card p {
+                font-size: 0.9em;
+            }
+
+            .whatsapp-btn {
+                width: 60px;
+                height: 60px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .whatsapp-tooltip {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container fade-in">
+        <header class="header-nav">
+            <a href="index.html" class="logo">
+                <i class="fas fa-chart-line"></i>
+                <span>Sumit Garg</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-home">Home</a>
+                <a href="index.html#services" class="nav-services">Services</a>
+                <a href="index.html#tools" class="nav-tools">Tools</a>
+                <a href="index.html#about" class="nav-about">About</a>
+                <a href="index.html#contact" class="nav-contact">Contact</a>
+            </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </header>
+
+        <h1 class="slide-up">Business Consultancy Services</h1>
+        <p class="intro-text slide-up" style="animation-delay: 0.4s">
+            Transform your business with our expert consultancy services. We help you cut costs, retain talented employees, deliver exceptional customer service, stay compliant with government regulations, build market goodwill, and create efficient workflows to achieve sustainable growth.
+        </p>
+
+        <div class="benefits-section" data-aos="fade-up">
+            <div class="section-title">Benefits of Our Business Consultancy</div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h4>Reduce Costs</h4>
+                    <p>We identify inefficiencies in your operations, such as excess inventory or redundant processes, and suggest practical ways to save money without compromising quality.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h4>Retain Employees</h4>
+                    <p>By improving workplace culture and streamlining tasks, we help keep your employees motivated, reducing turnover and recruitment costs.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h4>Faster Operations</h4>
+                    <p>Our tailored workflows ensure tasks are completed quickly and efficiently, boosting productivity and meeting deadlines with ease.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-smile"></i>
+                    </div>
+                    <h4>Better Customer Service</h4>
+                    <p>We help you implement strategies to enhance customer satisfaction, turning happy customers into loyal advocates for your brand.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>Government Compliance</h4>
+                    <p>Stay penalty-free with our guidance on GST, TDS, and company law compliance, ensuring all filings are accurate and timely.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>Build Market Goodwill</h4>
+                    <p>Our strategies enhance your brand’s reputation through ethical practices and customer-focused solutions, earning trust in the market.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-sitemap"></i>
+                    </div>
+                    <h4>Optimized Workflows</h4>
+                    <p>We design clear, efficient processes to ensure every task, from production to delivery, runs smoothly and supports your goals.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="example-section" data-aos="fade-up">
+            <div class="section-title">Real-World Examples</div>
+            <div class="example-item" data-aos="fade-up" data-aos-delay="100">
+                <h4>Cost Reduction for a Retail Store</h4>
+                <p>A small retail shop in Delhi was spending heavily on excess inventory. We analyzed their sales data and implemented a just-in-time inventory system, reducing storage costs by 30% and freeing up ₹2 lakh annually for other investments.</p>
+            </div>
+            <div class="example-item" data-aos="fade-up" data-aos-delay="200">
+                <h4>Employee Retention for a Startup</h4>
+                <p>A tech startup faced high employee turnover due to unclear roles. We introduced defined job responsibilities and a monthly feedback system, improving employee satisfaction and reducing attrition by 50% within a year.</p>
+            </div>
+            <div class="example-item" data-aos="fade-up" data-aos-delay="300">
+                <h4>Compliance for a Manufacturing Firm</h4>
+                <p>A manufacturing company struggled with GST and TDS filings, risking penalties. We streamlined their compliance process, ensuring timely submissions on the official GST portal (<a href="https://www.gst.gov.in" target="_blank" rel="noopener noreferrer">www.gst.gov.in</a>) and MCA portal (<a href="https://www.mca.gov.in" target="_blank" rel="noopener noreferrer">www.mca.gov.in</a>), saving them ₹1.5 lakh in fines.</p>
+            </div>
+            <div class="example-item" data-aos="fade-up" data-aos-delay="400">
+                <h4>Customer Service for a Restaurant</h4>
+                <p>A local restaurant received complaints about slow service. We redesigned their order-to-delivery workflow and trained staff on customer interaction, leading to a 4.5-star Google rating and a 25% increase in repeat customers.</p>
+            </div>
+        </div>
+
+        <div class="cta-section" data-aos="fade-up">
+            <div class="section-title">Ready to Grow Your Business?</div>
+            <p class="intro-text">Contact us today to unlock your business’s potential with tailored consultancy solutions that drive results.</p>
+            <a href="https://wa.me/9716804520?text=Interested%20in%20Business%20Consultancy%20Services" class="btn-cta">Get Started Now</a>
+        </div>
+    </div>
+
+    <footer id="contact" data-aos="fade-up">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <div class="footer-links">
+                    <a href="tel:+919716804520"><i class="fas fa-phone"></i> Ph: 9716804520</a>
+                    <a href="mailto:Sumitgarg100000@gmail.com"><i class="fas fa-envelope"></i> Email: Sumitgarg100000@gmail.com</a>
+                    <a href="https://maps.google.com/?q=Rohini,+Delhi-110086" target="_blank"><i class="fas fa-map-marker-alt"></i> Address: Rohini, Delhi-110086</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <div class="footer-links">
+                    <a href="index.html"><i class="fas fa-chevron-right"></i> Home</a>
+                    <a href="index.html#services"><i class="fas fa-chevron-right"></i> Services</a>
+                    <a href="index.html#tools"><i class="fas fa-chevron-right"></i> Tools</a>
+                    <a href="index.html#about"><i class="fas fa-chevron-right"></i> About</a>
+                    <a href="index.html#contact"><i class="fas fa-chevron-right"></i> Contact</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <div class="footer-links">
+                    <a href="#"><i class="fas fa-gavel"></i> Privacy Policy</a>
+                    <a href="#"><i class="fas fa-file-contract"></i> Terms of Service</a>
+                    <a href="#"><i class="fas fa-shield-alt"></i> Data Protection</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/9716804520" class="whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+        <div class="whatsapp-tooltip">Chat with us!</div>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true
+            });
+
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            const container = document.querySelector('.container');
+
+            menuBtn.addEventListener('click', function(event) {
+                event.stopPropagation();
+                container.classList.toggle('mobile-menu-open');
+            });
+
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('.mobile-menu-btn') && !event.target.closest('.nav-links')) {
+                    container.classList.remove('mobile-menu-open');
+                }
+            });
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                    container.classList.remove('mobile-menu-open');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
