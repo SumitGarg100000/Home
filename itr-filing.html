@@ -492,7 +492,7 @@
             cursor: pointer;
         }
 
-        /* Styles for collapsible sections */
+        /* Updated styles for collapsible sections */
         details {
             background: var(--card-gradient-1);
             border-radius: 10px;
@@ -500,6 +500,7 @@
             padding: 15px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
+            text-align: left; /* Left-align FAQ content */
         }
 
         details[open] {
@@ -534,6 +535,7 @@
             color: var(--text-secondary);
             font-size: 1em;
             line-height: 1.8;
+            text-align: left; /* Ensure text in details is left-aligned */
         }
 
         table {
@@ -775,237 +777,263 @@
             <details data-aos="fade-up" data-aos-delay="100">
                 <summary>Why is Form 16 for government employees calculated from March to February, and how is it handled in ITR?</summary>
                 <p>
-                    Form 16 for government employees is calculated from March to February due to the government's financial accounting cycle, which differs from the standard financial year. This creates a unique situation for ITR filing.<br><br>
+                    Form 16 for government employees is calculated from March to February due to the government's financial accounting cycle, which aligns with budget planning. This differs from the standard financial year (April to March).<br><br>
                     
-                    <strong>Calculation Logic:</strong> Government departments align their financial year with budget cycles. They calculate TDS on estimated annual income from March to February because salary processing starts in the preceding month. This system allows for proper budget allocation and year-end accounting.<br><br>
+                    <strong>Calculation Logic:</strong> Government departments estimate annual income from March to February to align with budget cycles, facilitating TDS calculations and year-end accounting. This is standard practice for government salary processing.<br><br>
                     
-                    <strong>ITR Handling:</strong> When filing ITR (typically ITR-1), you should report the total salary and TDS exactly as shown in Form 16. If your Form 16 covers March 2024 to February 2025, report these figures in your FY 2024-25 return. The March 2025 salary (if paid in April 2025) will be included in your next year's Form 16 and reported in FY 2025-26.<br><br>
+                    <strong>ITR Handling:</strong> In ITR (typically ITR-1), report the salary and TDS as per Form 16. For FY 2024-25, if Form 16 covers March 2024 to February 2025, include these figures in your ITR for FY 2024-25. Salary for March 2025, if paid in April 2025, will appear in FY 2025-26’s Form 16.<br><br>
                     
-                    <strong>Example:</strong> If you earn ₹50,000 monthly from March 2024 to February 2025 (total ₹6 lakh) with TDS of ₹30,000, report ₹6 lakh as salary income and ₹30,000 as TDS in your ITR for FY 2024-25. Even though the financial year technically runs from April to March, follow your Form 16 exactly.<br><br>
+                    <strong>Example:</strong> Salary from March 2024 to February 2025 is ₹6 lakh with TDS of ₹30,000. Report ₹6 lakh as salary income and ₹30,000 as TDS in FY 2024-25 ITR. Cross-check with payslips to avoid errors.<br><br>
                     
-                    <strong>Market Practice:</strong> Tax professionals cross-reference Form 16 with payslips to ensure accuracy and verify that no double-counting occurs with March salary. This approach ensures compliance with income tax regulations while accommodating the government's unique accounting cycle.
+                    <strong>Source:</strong> [Taxguru.in - ITR Filing Guide](https://taxguru.in/income-tax/income-tax-slabs-individuals-fy-2024-25-new-old-tax-regime.html).<br><br>
+                    
+                    <strong>Note:</strong> Always verify Form 16 with payslips to ensure accuracy and consult a tax professional for complex cases.
                 </p>
             </details>
-            <details data-aos="fade-up" data-aos-delay="200">
-                <summary>What deductions and exemptions are allowed in the new tax regime?</summary>
-                <p>
-                    The new tax regime offers simplified tax slabs with lower rates but restricts most deductions and exemptions. For FY 2024-25, the following are allowed:<br><br>
-                    
-                    <strong>Family Pension:</strong> ₹25,000 or 1/3, Lower (increased from ₹15,000 in the previous year).<br><br>
-                    <strong>Standard Deduction:</strong> ₹75,000 for salaried individuals and pensioners (increased from ₹50,000 in the previous year).<br><br>
-                    <strong>Standard Deduction u/s 24(a)@30%:</strong> Adhoc Deduction @30% on Rent(against expenses without any proof of document).<br><br>
-                    <strong>Interest on Home Loan(Let-out):</strong> Interest on Letout property allowed without any limit.<br><br>
-                    <strong>Section 80CCD(2):</strong> Employer's contribution to National Pension System (NPS) up to 14% of (basic+DA). This has no upper monetary limit.<br><br>
-                    
-                    <strong>Section 80CCH(2):</strong> Contribution to Agniveer Corpus Fund.<br><br>
-                    
-                    <strong>Section 80JJAA:</strong> Expenditure incurred for travelling to work u/s 80JJAA.<br><br>
-                    
-                    <strong>Exemptions Still Allowed:</strong>
-                    <ul style="list-style-type: disc; margin-left: 30px;">
-                        <li>Normal Depreciation (Additional Depreciation not allowed in New Regime)</li>
-                        <li>Gratuity received upon retirement upto 20 lakh for private employees</li>
-                        <li>Maturity amount of LIC u/s 10(10D)</li>
-                        <li>Leave encashment on retirement, retirementcum death benefit u/s 10(10AA)</li>
-                        <li>Voluntary Retirement Scheme (VRS) proceeds up to ₹5 lakh</li>
-                        <li>Death-cum-retirement gratuity</li>
-                        <li>All deduction u/s 54 to 54F</li>
-                        <li>interest on PPF and Sukanya Samriddhi Yojana u/s 10</li>
-                        <li>Commutation of pension received by government employees</li>
-                        <li>Transport allowance for specifically abled person on actual basis.</li>
-                        <li>Travelling allowance for employment purpose</li>
-                    </ul><br>
-                    
-                    <strong>Notable Exclusions:</strong> The new regime does NOT allow popular deductions like Section 80C (₹1.5 lakh), Section 80D (health insurance), home loan interest under Section 24 (for self-occupied property), and most other Chapter VI-A deductions.<br><br>
-                    
-                    <strong>Example:</strong> If you have a salary of ₹10 lakh with employer's NPS contribution of ₹50,000, under the new regime you can claim the standard deduction of ₹75,000 and ₹50,000 under 80CCD(2). Your taxable income would be ₹8.75 lakh (₹10 lakh - ₹75,000 - ₹50,000).<br><br>
-                    
-                    Always compare calculations under both old and new regimes to determine which is more beneficial for your specific financial situation.
-                </p>
-            </details>
+<details data-aos="fade-up" data-aos-delay="200">
+    <summary>What deductions and exemptions are allowed in the new and old tax regimes?</summary>
+    <p>
+        The new tax regime offers lower tax rates but fewer deductions and exemptions compared to the old regime. Below is a detailed comparison for FY 2024-25 and FY 2025-26, based on the latest information from TaxGuru.<br><br>
+        
+        **Comparison Table: Exemptions and Deductions (Old vs New Regime)**<br><br>
+        <table>
+            <tr>
+                <th>Deduction/Exemption</th>
+                <th>Old Regime FY 2024-25</th>
+                <th>New Regime FY 2024-25</th>
+                <th>Old Regime FY 2025-26</th>
+                <th>New Regime FY 2025-26</th>
+            </tr>
+            <tr>
+                <td><strong>Standard Deduction</strong></td>
+                <td>Yes (₹50,000)</td>
+                <td>Yes (₹75,000)</td>
+                <td>Yes (₹50,000)</td>
+                <td>Yes (₹75,000)</td>
+            </tr>
+            <tr>
+                <td><strong>Section 80C</strong></td>
+                <td>Yes (up to ₹1.5 lakh)</td>
+                <td>No</td>
+                <td>Yes (up to ₹1.5 lakh)</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td><strong>Section 80D</strong></td>
+                <td>Yes (up to ₹25,000/₹50,000)</td>
+                <td>No</td>
+                <td>Yes (up to ₹25,000/₹50,000)</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td><strong>HRA Exemption</strong></td>
+                <td>Yes</td>
+                <td>No</td>
+                <td>Yes</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td><strong>LTA Exemption</strong></td>
+                <td>Yes</td>
+                <td>No</td>
+                <td>Yes</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td><strong>Section 80CCD(2)</strong> (Employer's NPS Contribution)</td>
+                <td>Yes</td>
+                <td>Yes</td>
+                <td>Yes</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td><strong>Section 80CCH(2)</strong> (Agniveer Corpus Fund)</td>
+                <td>Yes</td>
+                <td>Yes</td>
+                <td>Yes</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td><strong>Family Pension Deduction</strong></td>
+                <td>Yes</td>
+                <td>Yes (up to ₹25,000)</td>
+                <td>Yes</td>
+                <td>Yes (up to ₹25,000)</td>
+            </tr>
+            <tr>
+                <td><strong>Gratuity Exemption</strong></td>
+                <td>Yes</td>
+                <td>Yes</td>
+                <td>Yes</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td><strong>Leave Encashment Exemption</strong></td>
+                <td>Yes</td>
+                <td>Yes</td>
+                <td>Yes</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td><strong>Section 80CCD(1B)</strong></td>
+                <td>Yes (for NPS, up to ₹50,000)</td>
+                <td>No</td>
+                <td>Yes (for NPS, up to ₹50,000)</td>
+                <td>Yes (for NPS Vatsalya, up to ₹50,000)</td>
+            </tr>
+            <tr>
+                <td><strong>Life Insurance Proceeds from IFSC</strong></td>
+                <td>Yes</td>
+                <td>No</td>
+                <td>Yes</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td><strong>Nil Annual Value for Self-Occupied Houses</strong></td>
+                <td>Yes (up to two)</td>
+                <td>Yes (only one)</td>
+                <td>Yes (up to two)</td>
+                <td>Yes (up to two)</td>
+            </tr>
+            <tr>
+                <td><strong>NSS Withdrawals Exemption</strong></td>
+                <td>Yes</td>
+                <td>No</td>
+                <td>Yes</td>
+                <td>Yes</td>
+            </tr>
+        </table><br>
+        
+        **Notes:**<br>
+        - **Old Regime (FY 2024-25 & FY 2025-26):** Koi significant changes nahi hain; deductions jaise Section 80C, 80D, HRA, aur LTA available hain.<br>
+        - **New Regime (FY 2024-25):** Limited deductions (e.g., standard deduction ₹75,000, Section 80CCD(2)) aur specific exemptions (e.g., gratuity, leave encashment).<br>
+        - **New Regime (FY 2025-26):** Additional deductions aur exemptions introduce kiye gaye, jaise Section 80CCD(1B) for NPS Vatsalya, life insurance proceeds from IFSC, aur do self-occupied houses ke liye nil annual value.<br>
+        - **Self-Occupied Houses:** New regime mein FY 2024-25 mein sirf ek house allowed hai, jabki FY 2025-26 mein do houses allowed hain.<br><br>
+        
+        **Source:** [Taxguru.in - Income Tax Slabs FY 2024-25](https://taxguru.in/income-tax/income-tax-slabs-individuals-fy-2024-25-new-old-tax-regime.html), [Taxguru.in - Budget 2025](https://taxguru.in/income-tax/budget-2025-income-tax-changes-key-highlights-updates.html), [Taxguru.in - Tax Savings Under New Regime of 2025](https://taxguru.in/income-tax/tax-savings-new-regime-2025-guide-deductions-exemptions.html).<br><br>
+        
+        **Recommendation:** Har saal dono regimes ko compare karo taaki tax savings optimize ho sake. Personalized advice ke liye tax professional se consult karo.
+    </p>
+</details>
             <details data-aos="fade-up" data-aos-delay="300">
                 <summary>How is F&O income shown in P&L for ITR, including futures, options, and intraday?</summary>
                 <p>
-                    Futures and Options (F&O) income is treated differently from regular capital gains. Here's how to report it correctly in your ITR:<br><br>
+                    Futures and Options (F&O) income is classified as "business income" (non-speculative) under Section 43(5), while intraday trading is "speculative business income." Below is the updated process for reporting, reflecting ICAI’s latest guidance.<br><br>
                     
-                    <strong>Tax Classification:</strong> As per Section 43(5) of the Income Tax Act, F&O trading income is considered "business income" (non-speculative business income), while intraday equity trading is classified as "speculative business income." Both must be reported in ITR-3 under Profit and Gains from Business or Profession (PGBP).<br><br>
-                    
-                    <strong>Turnover Calculation:</strong><br>
-                    <ul style="list-style-type: disc; margin-left: 30px;">
-                        <li><strong>Futures Turnover:</strong> Sum of absolute profit/loss from all futures trades (not the full contract value)</li>
-                        <li><strong>Options Sold:</strong> Premium received + absolute profit/loss</li>
-                        <li><strong>Options Purchased:</strong> Absolute profit/loss only</li>
-                        <li><strong>Intraday Trading:</strong> Sum of absolute profit/loss from all intraday trades</li>
-                    </ul><br>
+                    <strong>Turnover Calculation (Updated):</strong><br>
+                    - <strong>Futures:</strong> Sum of absolute profit/loss from all trades.<br>
+                    - <strong>Options:</strong> Absolute profit/loss only. Premium received on options sold is <strong>not</strong> included in turnover, as per ICAI’s Guidance Note on Tax Audit (2023).<br>
+                    - <strong>Intraday:</strong> Sum of absolute profit/loss from all trades.<br><br>
                     
                     <strong>Examples:</strong><br>
-                    
-                    <em>Futures Example:</em> You buy 1 lot of NIFTY futures at ₹20,000 and sell at ₹20,500.<br>
+                    <em>Futures:</em> Buy 1 lot of NIFTY futures at ₹20,000, sell at ₹20,500.<br>
                     - Profit: ₹500<br>
-                    - Expenses: ₹50 (brokerage, etc.)<br>
+                    - Expenses: ₹50 (brokerage)<br>
                     - Net Profit: ₹450<br>
                     - Turnover: ₹500 (absolute profit)<br><br>
                     
-                    <em>Options Example:</em> You sell a call option, premium received ₹200; buy it back at ₹150.<br>
+                    <em>Options:</em> Sell a call option, premium received ₹200; buy back at ₹150.<br>
                     - Profit: ₹50<br>
-                    - Expenses: ₹10 (brokerage, etc.)<br>
+                    - Expenses: ₹10 (brokerage)<br>
                     - Net Profit: ₹40<br>
-                    - Turnover: ₹200 (premium) + ₹50 (profit) = ₹250<br><br>
+                    - Turnover: ₹50 (absolute profit/loss, premium excluded)<br><br>
                     
-                    <em>Intraday Example:</em> You buy 100 shares at ₹100 each and sell at ₹95 same day.<br>
+                    <em>Intraday:</em> Buy 100 shares at ₹100, sell at ₹95 same day.<br>
                     - Loss: ₹500<br>
-                    - Expenses: ₹20 (brokerage, etc.)<br>
+                    - Expenses: ₹20<br>
                     - Net Loss: ₹520<br>
                     - Turnover: ₹500 (absolute loss)<br><br>
                     
-                    <strong>ITR Reporting:</strong> Report F&O income in ITR-3, under Schedule BP (Business and Profession). Enter the turnover, expenses, and net profit/loss. F&O income can be offset against other non-speculative business income, while intraday trading losses (being speculative) cannot offset F&O income.<br><br>
+                    <strong>ITR Reporting:</strong> Use ITR-3, Schedule BP. Report turnover, expenses, and net profit/loss. F&O losses can offset other non-speculative business income, but speculative losses (intraday) are restricted.<br><br>
                     
-                    <strong>Audit Requirement:</strong> Tax audit under Section 44AB is mandatory if turnover exceeds ₹10 crore or if profit is less than 6% of turnover and turnover exceeds ₹2 crore.<br><br>
+                    <strong>Audit Requirement:</strong> Tax audit under Section 2024 is mandatory for FY 44AB if turnover exceeds ₹10 crore, or if profit is less than 6% of turnover and total income exceeds the basic exemption limit.<br><br>
                     
-                    <strong>Tip:</strong> Maintain detailed trade-wise records and use your broker's annual P&L statement to calculate turnover accurately. Consider consulting a tax professional for complex cases.
+                    <strong>Source:</strong> [ICAI Guidance Note on Tax Audit (2023)](https://www.icai.org/), [Taxguru.in - F&O Trading](https://taxguru.in/income-tax/computation-turnover-profit-fno-trading.html).<br><br>
+                    
+                    <strong>Tip:</strong> Maintain trade-wise records and use broker’s P&L statement for accuracy. Consult a CA for audit compliance.
                 </p>
             </details>
-            <details data-aos="fade-up" data-aos-delay="400">
+            <details data data-aos="fade-up" data data-aos-delay="400">
                 <summary>Which losses can be carried forward if ITR is filed after the due date?</summary>
                 <p>
-                    Filing your ITR after the due date (typically July 31st for non-audit cases) affects your ability to carry forward certain losses. Section 80 of the Income Tax Act specifies which losses can still be carried forward despite late filing:<br><br>
+                    Filing ITR after the due date (July 31, 2025 for non-audit cases in FY 2024-2025) restricts loss carry-forward under Section 80. Below is the details:<br><br>
                     
-                    <strong>Losses that CAN be carried forward even with late filing:</strong><br>
-                    <ul style="list-style-type: disc; margin-left: 30px;">
-                        <li><strong>Unabsorbed Depreciation:</strong> Can be carried forward indefinitely, with no time limit</li>
-                        <li><strong>Loss from House Property:</strong> Can be carried forward for up to 8 assessment years</li>
+                    <strong>Losses Allowed (Late Filing):</strong>
+                    - <ul style="list-style-type: disc; margin-left: 30px;">
+                        <li>Unabsorbed Depreciation: Indefinite carry-forward</li>
+                        <li>House Property Loss: Up to Rs. 8 assessment years</li>
+                    </ul><br><br>
+                    
+                    <strong>Losses Not Allowed (Late Filing):</strong>
+                    - <ul style="list-style-type: disc; margin-left: 30px;">
+                        <li>Business Losses: Includes F&O and speculative losses (intraday)</li>
+                        <li>Capital Losses: Short-term and long-term Rs.</li>
+                        <li>Losses from Owning Racehorses</li>
+                        <li>Other Income Losses: Except family pension</li>
                     </ul><br>
+<br>
                     
-                    <strong>Losses that CANNOT be carried forward if filed after the due date:</strong><br>
-                    <ul style="list-style-type: disc; margin-left: 30px;">
-                        <li><strong>Business Losses:</strong> Including F&O trading losses (non-speculative business) and speculative losses (intraday trading)</li>
-                        <li><strong>Capital Losses:</strong> Both short-term and long-term capital losses</li>
-                        <li><strong>Losses from Owning and Maintaining Racehorses</strong></li>
-                        <li><strong>Losses under Income from Other Sources:</strong> Except family pension</li>
-                    </ul><br>
+                    <strong>Example (FY 2024-25):</strong> Filed on August 15, 2025: Only house property loss (₹2.5 lakh) and unabsorbed depreciation (₹30,000) can be carried forward. F&O loss (₹1 lakh), intraday loss (₹50,000), and capital loss (₹75,000) are forfeited.<br><br>
                     
-                    <strong>Example:</strong> If you file your ITR for FY 2024-25 on August 15, 2025 (after the due date of July 31, 2025) with:
-                    <ul style="list-style-type: disc; margin-left: 30px;">
-                        <li>F&O trading loss: ₹1,00,000</li>
-                        <li>Intraday trading loss: ₹50,000</li>
-                        <li>Long-term capital loss: ₹75,000</li>
-                        <li>House property loss: ₹2,00,000</li>
-                        <li>Unabsorbed depreciation: ₹30,000</li>
-                    </ul><br>
+                    <strong>Source:</strong> [Income Tax India - Section 80](https://www.incometaxindia.gov.in/), [Taxguru.in - Loss Carry Forward](https://taxguru.in/income-tax/carry-forward-set-off-of-losses-in-income-tax-act.html).<br><br>
                     
-                    Only the house property loss of ₹2,00,000 and unabsorbed depreciation of ₹30,000 can be carried forward to future years. You'll lose the ability to carry forward and offset your F&O, intraday trading, and capital losses against future income.<br><br>
-                    
-                    <strong>Recommendation:</strong> Always file your ITR before the due date to preserve your right to carry forward all eligible losses. This can significantly reduce your tax liability in future years.
+                    <strong>Recommendation:</strong> File by July 31 to preserve all losses.
                 </p>
             </details>
             <details data-aos="fade-up" data-aos-delay="500">
-                <summary>What is the rebate under Section 87A for FY 2024-25 and FY 2025-26?</summary>
+                <summary>What is the summary rebate under Section 87A for FY 2024-25 and FY 2025-26?</summary>
                 <p>
-                    Section 87A provides a tax rebate for low and middle-income resident individuals. Here's how it applies for current and upcoming financial years:<br><br>
-                    
-                    <strong>FY 2024-25 (Assessment Year 2025-26):</strong><br>
+                    <strong>FY 2024-25:</strong>
                     <ul style="list-style-type: disc; margin-left: 30px;">
-                        <li><strong>New Tax Regime:</strong> Rebate of up to ₹25,000 for individuals with taxable income up to ₹7 lakh</li>
-                        <li><strong>Old Tax Regime:</strong> Rebate of up to ₹12,500 for individuals with taxable income up to ₹5 lakh</li>
+                        <li><strong>New Regime:</strong> ₹25,000 rebate for income up to ₹7 lakh (tax-free).</li>
+                        <li><strong>Old Regime:</strong> ₹12,500 rebate for income up to ₹5 lakh.</li>
                     </ul><br>
                     
-                    <strong>FY 2025-26 (Assessment Year 2026-27):</strong><br>
-                
+                    <strong>FY 2025-26:</strong>
                     <ul style="list-style-type: disc; margin-left: 30px;">
-                        <li><strong>New Tax Regime:</strong> Rebate of up to ₹60,000 for individuals with taxable income up to ₹12 lakh</li>
-                        <li><strong>Old Tax Regime:</strong> Rebate of up to ₹12,500 for individuals with taxable income up to ₹5 lakh (same as FY 2024-25)</li>
+                        <li><strong>New Regime:</strong> ₹60,000 rebate for income up to ₹12 lakh (tax-free).</li>
+                        <li><strong>Old Regime:</strong> ₹12,500, unchanged.</li>
                     </ul><br>
                     
-                    <strong>Important Points:</strong><br>
-                    <ul style="list-style-type: disc; margin-left: 30px;">
-                        <li>Section 87A rebate is available only to resident individuals, not HUFs or NRIs</li>
-                        <li>The rebate is calculated on income tax before adding cess and surcharge</li>
-                        <li>If your tax liability is less than the maximum rebate, you get a rebate equal to your actual tax liability</li>
-                        <li>The rebate is not available against tax on income taxed at special rates (like LTCG, STCG, lottery winnings)</li>
-                    </ul><br>
+                    <strong>Notes:</strong> Only for resident individuals, not HUFs/NRIs. Applies before cess, not on special rate income.<br><br>
+                    
+                    <strong>Source:</strong> [Taxguru.in - Budget 2025](https://taxguru.in/income-tax-budget-2025-income-tax-changes-key-highlights-updates.html), [Income Tax India](https://www.incometaxindia.gov.in/).<br>
                 </p>
             </details>
             <details data-aos="fade-up" data-aos-delay="600">
                 <summary>How is audit fees treated in ITR when booked in the current year but TDS is claimed next year?</summary>
                 <p>
-                    Audit fees often create a timing difference between when they're booked as an expense and when TDS is deducted. Here's how to handle this situation in your ITR:<br><br>
+                    <strong>Expense Recognition:</strong> Book audit fees in the year they relate to (accrual basis).<br>
+                    <strong>TDS:</strong> Claim TDS in the year of payment (cash basis, Section 194J).<br><br>
                     
-                    <strong>Expense Recognition:</strong> Audit fees should be recorded as an expense in the financial year to which they relate, following the accrual basis of accounting. Even if payment is made in the next financial year, the expense belongs to the year for which the audit is conducted.<br><br>
-                    
-                    <strong>TDS Treatment:</strong> TDS on audit fees is deducted only when the payment is actually made (as per Section 194J). If you book audit fees in March 2025 but pay in April 2025, the TDS will be reflected in your Form 26AS for FY 2025-26, not FY 2024-25.<br><br>
-                    
-                    <strong>ITR Handling:</strong><br>
+                    <strong>ITR Handling:</strong>
                     <ul style="list-style-type: disc; margin-left: 30px;">
-                        <li><strong>Year 1 (FY 2024-25):</strong> Claim the audit fee as an expense in your profit and loss account (Schedule BP if filing ITR-3). This reduces your taxable income even though no TDS is claimed this year.</li>
-                        <li><strong>Year 2 (FY 2025-26):</strong> Claim the TDS deducted in the TDS schedule of your ITR, matching what appears in your Form 26AS. Do not claim the expense again, as it was already claimed in the previous year.</li>
+                        <li><strong>FY 2024-25:</strong> Claim expense (e.g., ₹50,000) in Schedule BP, no TDS.</li>
+                        <li><strong>FY 2025-26:</strong> Claim TDS (₹5,000) in TDS schedule, no expense.</li>
                     </ul><br>
                     
-                    <strong>Example:</strong><br>
+                    <strong>Example:</strong> Book ₹50,000 in March 2025, pay in April 2025 with ₹5,000 TDS. Claim expense in FY 2024-25, TDS in FY 2025-26.<br><br>
                     
-                    <em>Year 1 (FY 2024-25):</em>
-                    <ul style="list-style-type: disc; margin-left: 30px;">
-                        <li>March 31, 2025: Book audit fee of ₹50,000 as an expense</li>
-                        <li>In ITR-3, include ₹50,000 as an expense in Schedule BP</li>
-                        <li>No TDS to claim yet as payment hasn't been made</li>
-                    </ul>
-                    
-                    <em>Year 2 (FY 2025-26):</em>
-                    <ul style="list-style-type: disc; margin-left: 30px;">
-                        <li>April 15, 2025: Pay audit fee of ₹50,000 after deducting TDS of ₹5,000</li>
-                        <li>TDS of ₹5,000 appears in Form 26AS for FY 2025-26</li>
-                        <li>In ITR, claim ₹5,000 as TDS in the appropriate TDS schedule</li>
-                        <li>No expense claim in this year (already claimed in previous year)</li>
-                    </ul><br>
-                    
-                    <strong>Documentation:</strong> Maintain proper documentation including:
-                    <ul style="list-style-type: disc; margin-left: 30px;">
-                        <li>Audit engagement letter showing the financial year for which audit is performed</li>
-                        <li>Invoice from the auditor</li>
-                        <li>Payment proof and TDS certificate</li>
-                    </ul><br>
-                    
-                    <strong>Key Point:</strong> The expense reduces your tax liability in the year it's booked, while the TDS credit is available in the year of payment. This temporary difference is normal and acceptable under income tax provisions, following the accrual basis for expenses and cash basis for TDS.
+                    <strong>Source:</strong> [Taxguru.in - TDS on Professional Fees](https://taxguru.in/income-tax/section-194j.html), [Income Tax India](https://www.incometaxindia.gov.in/).<br><br>
+                    <strong>Tip:</strong> Keep engagement letter, invoices, and payment proofs.
                 </p>
             </details>
             <details data-aos="fade-up" data-aos-delay="700">
                 <summary>Why is only the last advance tax installment required under Section 44AD?</summary>
                 <p>
-                    Section 44AD offers a presumptive taxation scheme for small businesses with turnover up to ₹2 crore (₹3 crore from FY 2024-25 for certain businesses). One of its key benefits is the simplified advance tax requirement:<br><br>
+                    <strong>Section 44AD:</strong> Presumptive taxation for businesses with turnover up to ₹3 crore (FY 2024-25 onwards).<br><br>
                     
-                    <strong>Regular Advance Tax:</strong> Most taxpayers must pay advance tax in four quarterly installments (15% by June 15, 45% by September 15, 75% by December 15, and 100% by March 15).<br><br>
+                    <strong>Advance Tax:</strong> Single installment by March 15, due to simplified compliance and late-year turnover clarity.<br><br>
                     
-                    <strong>Under Section 44AD:</strong> Taxpayers can pay the entire advance tax in a single installment by March 15 of the financial year.<br><br>
+                    <strong>Example:</strong> ₹1 crore turnover, ₹6 lakh income (6%). Tax ₹23,400, payable by March 15, 2025.<br><br>
                     
-                    <strong>Logic Behind Single Installment:</strong><br>
-                    <ul style="list-style-type: disc; margin-left: 30px;">
-                        <li><strong>Business Cycle Consideration:</strong> Small businesses often don't have clear visibility of their annual turnover until late in the financial year</li>
-                        <li><strong>Simplified Compliance:</strong> Reduces the burden of calculating and paying tax four times a year</li>
-                        <li><strong>Accurate Tax Calculation:</strong> Allows payment based on actual turnover rather than estimates</li>
-                        <li><strong>Presumptive Nature:</strong> Aligns with the overall simplification goal of the presumptive scheme</li>
-                    </ul><br>
+                    <strong>Notes:</strong> Interest under Section 234C if not paid by March 15. Regular rules apply if turnover exceeds ₹3 crore.<br><br>
                     
-                    <strong>Example:</strong><br>
-                    A small retailer with turnover of ₹1 crore for FY 2024-25 (100% digital receipts):
-                    <ul style="list-style-type: disc; margin-left: 30px;">
-                        <li>Presumptive income: ₹6 lakh (6% of turnover)</li>
-                        <li>Tax liability under new regime: Approximately ₹23,400</li>
-                        <li>The entire amount can be paid as advance tax by March 15, 2025</li>
-                    </ul><br>
-                    
-                    <strong>Important Notes:</strong><br>
-                    <ul style="list-style-type: disc; margin-left: 30px;">
-                        <li>This single installment benefit applies only to taxpayers opting for Section 44AD (for businesses) or 44ADA (for professionals)</li>
-                        <li>If advance tax is not paid by March 15, interest under Section 234C will apply</li>
-                        <li>For businesses with income sources beyond those covered under Section 44AD, regular advance tax rules may still apply to those other incomes</li>
-                        <li>If turnover exceeds ₹3 crore, the presumptive scheme becomes inapplicable, and regular advance tax rules apply</li>
-                    </ul><br>
-                    
-                    <strong>Tax Saving Tip:</strong> When using the presumptive scheme, maintain a good estimate of your annual turnover by early March to accurately calculate and pay advance tax by the March 15 deadline, avoiding interest penalties.
-                </p>
-            </details>
+                    <strong>Source:</strong> [Taxguru.in - Presumptive Taxation](https://taxguru.in/income-tax/presumptive-taxation-scheme-section-44ad.html), [Income Tax India](https://www.incometaxindia.gov.in/).<br><br>
+                    <strong>Tip:</strong> Estimate turnover by March for accurate payment.
+                </details>
 
-
-            <!-- Tax Slabs Section -->
+    <!-- Tax Slabs Section -->
             <div class="section-title">Income Tax Slabs FY 2024-25 & FY 2025-26</div>
             <details data-aos="fade-up" data-aos-delay="100">
                 <summary>New Tax Regime Slabs (FY 2024-25, AY 2025-26)</summary>
@@ -1018,7 +1046,8 @@
                     <tr><td>₹12,00,001 - ₹15,00,000</td><td>20%</td></tr>
                     <tr><td>Above ₹15,00,000</td><td>30%</td></tr>
                 </table>
-                <p><strong>Key Benefits:</strong> Standard deduction of ₹75,000 for salaried individuals. Rebate under Section 87A up to ₹25,000 for income up to ₹7 lakh (effectively making income up to ₹7 lakh tax-free). 4% Health and Education Cess applies on the tax amount.</p>
+                <p><strong>Key Benefits:</strong> Standard deduction of ₹75,000 for salaried individuals. Rebate under Section 87A up to ₹25,000 for income up to ₹7 lakh, making income up to ₹7 lakh tax-free. 4% Health and Education Cess applies on the tax amount.<br><br>
+                <strong>Source:</strong> [Taxguru.in - Income Tax Slabs FY 2024-25](https://taxguru.in/income-tax/income-tax-slabs-individuals-fy-2024-25-new-old-tax-regime.html).</p>
             </details>
             <details data-aos="fade-up" data-aos-delay="200">
                 <summary>Old Tax Regime Slabs (FY 2024-25, AY 2025-26)</summary>
@@ -1029,21 +1058,23 @@
                     <tr><td>₹5,00,001 - ₹10,00,000</td><td>20%</td></tr>
                     <tr><td>Above ₹10,00,000</td><td>30%</td></tr>
                 </table>
-                <p><strong>Key Benefits:</strong> Standard deduction of ₹50,000 for salaried individuals. All major deductions available including Section 80C (₹1.5 lakh), Section 80D (health insurance), HRA exemption, home loan interest deduction, etc. Rebate under Section 87A up to ₹12,500 for income up to ₹5 lakh. 4% Health and Education Cess applies on the tax amount.</p>
+                <p><strong>Key Benefits:</strong> Standard deduction of ₹50,000 for salaried individuals. Deductions under Section 80C (₹1.5 lakh), Section 80D (health insurance), HRA, home loan interest, etc. Rebate under Section 87A up to ₹12,500 for income up to ₹5 lakh. 4% Health and Education Cess applies.<br><br>
+                <strong>Source:</strong> [Taxguru.in - Income Tax Slabs FY 2024-25](https://taxguru.in/income-tax/income-tax-slabs-individuals-fy-2024-25-new-old-tax-regime.html).</p>
             </details>
             <details data-aos="fade-up" data-aos-delay="300">
                 <summary>New Tax Regime Slabs (FY 2025-26, AY 2026-27)</summary>
                 <table>
                     <tr><th>Income Range</th><th>Tax Rate</th></tr>
-                    <tr><td>Up to ₹4,00,000</td><td>Nil</td></tr>
-                    <tr><td>₹4,00,001 - ₹8,00,000</td><td>5%</td></tr>
-                    <tr><td>₹8,00,001 - ₹12,00,000</td><td>10%</td></tr>
-                    <tr><td>₹12,00,001 - ₹16,00,000</td><td>15%</td></tr>
-                    <tr><td>₹16,00,001 - ₹20,00,000</td><td>20%</td></tr>
-                    <tr><td>₹20,00,001 - ₹24,00,000</td><td>25%</td></tr>
-                    <tr><td>Above ₹24,00,000</td><td>30%</td></tr>
+                    <tr><td>Up to ₹3,00,000</td><td>Nil</td></tr>
+                    <tr><td>₹3,00,001 - ₹7,00,000</td><td>5%</td></tr>
+                    <tr><td>₹7,00,001 - ₹10,00,000</td><td>10%</td></tr>
+                    <tr><td>₹10,00,001 - ₹12,00,000</td><td>15%</td></tr>
+                    <tr><td>₹12,00,001 - ₹15,00,000</td><td>20%</td></tr>
+                    <tr><td>Above ₹15,00,000</td><td>30%</td></tr>
                 </table>
-                <p><strong>Key Benefits:</strong> Standard deduction of ₹75,000 for salaried individuals. Rebate under Section 87A up to ₹60,000 for income up to ₹12 lakh (effectively making income up to ₹12 lakh tax-free). 4% Health and Education Cess applies on the tax amount.</p>
+                <p><strong>Key Benefits:</strong> Standard deduction of ₹75,000 for salaried individuals. Rebate under Section 87A up to ₹60,000 for income up to ₹12 lakh, making income up to ₹12 lakh tax-free. 4% Health and Education Cess applies.<br><br>
+                <strong>Note:</strong> Tax slabs remain unchanged from FY 2024-25, but the increased rebate under Section 87A significantly reduces tax liability.<br><br>
+                <strong>Source:</strong> [Taxguru.in - Budget 2025](https://taxguru.in/income-tax/budget-2025-income-tax-changes-key-highlights-updates.html).</p>
             </details>
             <details data-aos="fade-up" data-aos-delay="400">
                 <summary>Old Tax Regime Slabs (FY 2025-26, AY 2026-27)</summary>
@@ -1054,148 +1085,133 @@
                     <tr><td>₹5,00,001 - ₹10,00,000</td><td>20%</td></tr>
                     <tr><td>Above ₹10,00,000</td><td>30%</td></tr>
                 </table>
-                <p><strong>Note:</strong> The old regime slabs are expected to remain unchanged for FY 2025-26. Standard deduction would remain at ₹50,000 and Section 87A rebate at ₹12,500 for income up to ₹5 lakh. All major deductions and exemptions would continue to be available.</p>
+                <p><strong>Key Benefits:</strong> Standard deduction of ₹50,000 for salaried individuals. Deductions under Section 80C (₹1.5 lakh), Section 80D, HRA, home loan interest, etc. Rebate under Section 87A up to ₹12,500 for income up to ₹5 lakh. 4% Health and Education Cess applies.<br><br>
+                <strong>Note:</strong> No changes to slabs or deductions announced for FY 2025-26.<br><br>
+                <strong>Source:</strong> [Taxguru.in - Budget 2025](https://taxguru.in/income-tax/budget-2025-income-tax-changes-key-highlights-updates.html).</p>
             </details>
-
 
             <!-- Tax Rate Changes Section -->
             <div class="section-title">Tax Rate Changes</div>
             <details data-aos="fade-up" data-aos-delay="100">
                 <summary>Section 111A (STCG on Listed Securities)</summary>
                 <p>
-                    <strong>What Changed:</strong> Short-term capital gains tax rate on listed equity shares, equity-oriented mutual funds, and units of business trusts has increased from 15% to 20%.<br><br>
-                    
-                    <strong>Effective Date:</strong> July 23, 2024 (announced in Budget 2024)<br><br>
-                    
-                    <strong>Applicability:</strong> The higher rate applies to securities sold on or after July 23, 2024. Securities sold before this date continue to be taxed at 15%.<br><br>
-                    
-                    <strong>Example:</strong> If you purchased equity shares for ₹1.5 lakh and sold them for ₹2 lakh within 12 months:
+                    <strong>What Changed:</strong> Short-term capital gains tax on listed equity shares, equity-oriented mutual funds, and business trust units increased from 15% to 20%.<br><br>
+                    <strong>Effective Date:</strong> July 23, 2024.<br><br>
+                    <strong>Applicability:</strong> Applies to securities sold on or after July 23, 2024. Earlier sales taxed at 15%.<br><br>
+                    <strong>Example:</strong> STCG of ₹50,000:
                     <ul style="list-style-type: disc; margin-left: 30px;">
-                        <li>If sold before July 23, 2024: STCG tax = ₹50,000 × 15% = ₹7,500</li>
-                        <li>If sold on or after July 23, 2024: STCG tax = ₹50,000 × 20% = ₹10,000</li>
-                    </ul>
-                </p>
+                        <li>Before July 23, 2024: Tax = ₹7,500 (15%).</li>
+                        <li>On/after July 23, 2024: Tax = ₹10,000 (20%).</li>
+                    </ul><br>
+                    <strong>Source:</strong> [Taxguru.in - Budget 2024](https://taxguru.in/income-tax/budget-2024-key-income-tax-amendments-effective-dates.html).</p>
             </details>
             <details data-aos="fade-up" data-aos-delay="200">
                 <summary>Section 112A (LTCG on Listed Equity)</summary>
                 <p>
-                    <strong>What Changed:</strong> Long-term capital gains tax rate on listed equity shares and equity-oriented mutual funds has increased from 10% to 12.5%. The exemption threshold has remained at ₹1.25 lakh per financial year.<br><br>
-                    
-                    <strong>Effective Date:</strong> July 23, 2024 (announced in Budget 2024)<br><br>
-                    
-                    <strong>Applicability:</strong> Applies to gains from securities held for more than 12 months and sold on or after July 23, 2024. The grandfathering benefit for shares acquired before January 31, 2018, continues to apply.<br><br>
-                    
-                    <strong>Example:</strong> If you have LTCG of ₹2 lakh from equity shares:
+                    <strong>What Changed:</strong> Long-term capital gains tax on listed equity shares and equity-oriented mutual funds increased from 10% to 12.5%. Exemption threshold remains ₹1.25 lakh.<br><br>
+                    <strong>Effective Date:</strong> July 23, 2024.<br><br>
+                    <strong>Applicability:</strong> Applies to securities sold on or after July 23, 2024. Grandfathering for shares acquired before January 31, 2018, continues.<br><br>
+                    <strong>Example:</strong> LTCG of ₹2 lakh:
                     <ul style="list-style-type: disc; margin-left: 30px;">
-                        <li>Taxable gain after exemption: ₹75,000 (₹2 lakh - ₹1.25 lakh)</li>
-                        <li>If sold before July 23, 2024: LTCG tax = ₹75,000 × 10% = ₹7,500</li>
-                        <li>If sold on or after July 23, 2024: LTCG tax = ₹75,000 × 12.5% = ₹9,375</li>
-                    </ul>
-                </p>
+                        <li>Taxable gain: ₹75,000 (₹2 lakh - ₹1.25 lakh).</li>
+                        <li>Before July 23, 2024: Tax = ₹7,500 (10%).</li>
+                        <li>On/after July 23, 2024: Tax = ₹9,375 (12.5%).</li>
+                    </ul><br>
+                    <strong>Source:</strong> [Taxguru.in - Budget 2024](https://taxguru.in/income-tax/budget-2024-key-income-tax-amendments-effective-dates.html).</p>
             </details>
             <details data-aos="fade-up" data-aos-delay="300">
                 <summary>Section 112 (LTCG on Other Assets)</summary>
                 <p>
-                    <strong>What Changed:</strong> Long-term capital gains tax rate on assets like immovable property has been reduced from 20% to 12.5%, but the indexation benefit has been removed.<br><br>
-                    
-                    <strong>Effective Date:</strong> July 23, 2024 (announced in Budget 2024)<br><br>
-                    
-                    <strong>Applicability:</strong> The new rate applies to all long-term capital assets sold on or after July 23, 2024, except those covered under Section 112A.<br><br>
-                    
-                    <strong>Impact Analysis:</strong> While the tax rate has decreased, the removal of indexation may result in higher taxable gains, especially for properties held for many years.<br><br>
-                    
-                    <strong>Example:</strong> If you sell a property for ₹50 lakh that was purchased for ₹30 lakh:
+                    <strong>What Changed:</strong> LTCG tax on assets like immovable property reduced from 20% to 12.5%, but indexation benefit removed.<br><br>
+                    <strong>Effective Date:</strong> July 23, 2024.<br><br>
+                    <strong>Applicability:</strong> Applies to assets sold on or after July 23, 2024, except those under Section 112A.<br><br>
+                    <strong>Example:</strong> Property sold for ₹50 lakh, purchased for ₹30 lakh:
                     <ul style="list-style-type: disc; margin-left: 30px;">
-                        <li>Before July 23, 2024: With indexation, the indexed cost might be ₹45 lakh, resulting in taxable gain of ₹5 lakh. Tax at 20% = ₹1 lakh</li>
-                        <li>After July 23, 2024: No indexation, so gain is ₹20 lakh. Tax at 12.5% = ₹2.5 lakh</li>
-                    </ul>
-                </p>
+                        <li>Before July 23, 2024: Indexed cost ~₹45 lakh, gain ₹5 lakh, tax ₹1 lakh (20%).</li>
+                        <li>After July 23, 2024: Gain ₹20 lakh, tax ₹2.5 lakh (12.5%).</li>
+                    </ul><br>
+                    <strong>Source:</strong> [Taxguru.in - Budget 2024](https://taxguru.in/income-tax/budget-2024-key-income-tax-amendments-effective-dates.html).</p>
             </details>
             <details data-aos="fade-up" data-aos-delay="400">
                 <summary>Other Notable Changes</summary>
                 <p>
-                    <strong>Section 111:</strong> Tax on accumulated profits (dividends distributed by companies) remains at 15%. No changes for FY 2024-25 or expected for FY 2025-26.<br><br>
-                    
-                    <strong>Section 115A:</strong> Tax rate for dividends, royalties, and technical fees for non-residents remains at 20% (plus surcharge and cess where applicable). No changes announced.<br><br>
-                    
-                    <strong>Surcharge on Capital Gains:</strong> The maximum surcharge on long-term and short-term capital gains covered under Sections 111A and 112A continues to be capped at 15%, regardless of income level.<br><br>
-                    
-                    <strong>Health and Education Cess:</strong> Continues at 4% on the amount of income tax and surcharge.
-                </p>
+                    <strong>Section 111:</strong> Tax on accumulated profits (dividends) remains 15%.<br><br>
+                    <strong>Section 115A:</strong> Tax on dividends, royalties, and technical fees for non-residents remains 20% (plus surcharge/cess).<br><br>
+                    <strong>Surcharge:</strong> Capped at 15% for capital gains under Sections 111A and 112A.<br><br>
+                    <strong>Cess:</strong> 4% Health and Education Cess continues.<br><br>
+                    <strong>Source:</strong> [Taxguru.in - Budget 2024](https://taxguru.in/income-tax/budget-2024-key-income-tax-amendments-effective-dates.html).</p>
             </details>
-
 
             <!-- ITR Form Applicability -->
             <div class="section-title">Which ITR Form to Use?</div>
             <details data-aos="fade-up" data-aos-delay="100">
-                <summary>ITR Form Applicability for FY 2024-25 (AY 2025-26)</summary>
+                <summary>ITR Form Applicability for FY 2024-25 & FY 2025-26</summary>
                 <table>
                     <tr><th>Form</th><th>Who Should Use It</th></tr>
                     <tr>
                         <td><strong>ITR-1 (Sahaj)</strong></td>
                         <td>
-                            For resident individuals having:
+                            For resident individuals with:
                             <ul style="list-style-type: disc; margin-left: 20px;">
-                                <li>Total income up to ₹50 lakh</li>
-                                <li>Income from salary/pension</li>
-                                <li>Income from one house property (excluding cases where loss is carried forward)</li>
-                                <li>Income from other sources (except winnings from lottery and horse races)</li>
+                                <li>Total income up to ₹50 lakh.</li>
+                                <li>Income from salary/pension.</li>
+                                <li>One house property (no carried forward loss).</li>
+                                <li>Other sources (except lottery/horse races).</li>
                             </ul>
-                            <strong>Not eligible</strong> if you have: agricultural income over ₹5,000, foreign income, income from business/profession, capital gains, or income taxable in someone else's hands.
+                            <strong>Not eligible</strong> for agricultural income >₹5,000, foreign income, business/profession income, capital gains, or income taxable in another’s hands.
                         </td>
                     </tr>
                     <tr>
                         <td><strong>ITR-2</strong></td>
                         <td>
-                            For individuals and HUFs not having income from business or profession, including:
+                            For individuals/HUFs without business/profession income, including:
                             <ul style="list-style-type: disc; margin-left: 20px;">
-                                <li>Income from capital gains</li>
-                                <li>Income from more than one house property</li>
-                                <li>Foreign income or foreign assets</li>
-                                <li>Agricultural income above ₹5,000</li>
-                                <li>Income from other sources including lottery winnings</li>
+                                <li>Capital gains.</li>
+                                <li>Multiple house properties.</li>
+                                <li>Foreign income/assets.</li>
+                                <li>Agricultural income >₹5,000.</li>
+                                <li>Lottery winnings.</li>
                             </ul>
                         </td>
                     </tr>
                     <tr>
                         <td><strong>ITR-3</strong></td>
                         <td>
-                            For individuals and HUFs having income from:
+                            For individuals/HUFs with:
                             <ul style="list-style-type: disc; margin-left: 20px;">
-                                <li>Business or profession (including derivatives, futures and options trading)</li>
-                                <li>Partnership firm income</li>
-                                <li>Along with salary, capital gains, house property, or other sources</li>
+                                <li>Business/profession income (including F&O).</li>
+                                <li>Partnership firm income.</li>
+                                <li>Salary, capital gains, house property, other sources.</li>
                             </ul>
                         </td>
                     </tr>
                     <tr>
                         <td><strong>ITR-4 (Sugam)</strong></td>
                         <td>
-                            For resident individuals, HUFs and firms (other than LLP) having:
+                            For resident individuals, HUFs, firms (not LLPs) with:
                             <ul style="list-style-type: disc; margin-left: 20px;">
-                                <li>Total income up to ₹50 lakh</li>
-                                <li>Business income computed under presumptive basis under section 44AD, 44ADA, or 44AE</li>
-                                <li>Income from salary/pension</li>
-                                <li>Income from one house property</li>
-                                <li>Income from other sources (excluding lottery winnings and horse races)</li>
+                                <li>Total income up to ₹50 lakh.</li>
+                                <li>Presumptive business income (Sections 44AD, 44ADA, 44AE).</li>
+                                <li>Salary/pension, one house property, other sources (except lottery/horse races).</li>
                             </ul>
-                            <strong>Not eligible</strong> if you have capital gains, foreign income/assets, or income from more than one house property.
+                            <strong>Not eligible</strong> for capital gains, foreign income, or multiple house properties.
                         </td>
                     </tr>
                     <tr>
                         <td><strong>ITR-5</strong></td>
-                        <td>For firms, LLPs, AOPs (Association of Persons), BOIs (Body of Individuals), artificial juridical persons, cooperative societies, and local authorities.</td>
+                        <td>For firms, LLPs, AOPs, BOIs, cooperative societies, local authorities.</td>
                     </tr>
                     <tr>
                         <td><strong>ITR-6</strong></td>
-                        <td>For companies other than those claiming exemption under section 11 (charitable/religious trusts).</td>
+                        <td>For companies not claiming Section 11 exemptions.</td>
                     </tr>
                     <tr>
                         <td><strong>ITR-7</strong></td>
-                        <td>For trusts, political parties, institutions, colleges, universities, and charitable/religious organizations claiming exemption under various sections.</td>
+                        <td>For trusts, political parties, institutions, colleges, charitable organizations claiming exemptions.</td>
                     </tr>
                 </table>
-                <p><strong>Important:</strong> Selecting the wrong ITR form can lead to defective returns and notices from the income tax department. When in doubt, consult a tax professional before filing.</p>
+                <p><strong>Note:</strong> No significant changes to ITR form applicability for FY 2025-26. Always select the correct form to avoid defective returns. Consult a tax professional if unsure.<br><br>
+                <strong>Source:</strong> [Income Tax India - ITR Forms](https://www.incometaxindia.gov.in/), [Taxguru.in - ITR Applicability](https://taxguru.in/income-tax/itr-filing-guide-fy-2024-25.html).</p>
             </details>
         </div>
     </div>
