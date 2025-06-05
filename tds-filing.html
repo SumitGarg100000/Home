@@ -295,6 +295,11 @@
             text-align: center;
         }
 
+        .tds-table-container {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
         .tds-table {
             width: 100%;
             border-collapse: collapse;
@@ -303,23 +308,54 @@
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            font-size: 0.9em;
         }
 
         .tds-table th,
         .tds-table td {
-            padding: 15px;
+            padding: 12px 8px;
             text-align: left;
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            vertical-align: top;
         }
 
         .tds-table th {
             background: var(--primary-dark);
             color: white;
             font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .tds-table td {
+            color: var(--text-primary);
         }
 
         .tds-table tr:hover {
             background: rgba(26, 115, 232, 0.05);
+        }
+
+        /* Responsive table adjustments */
+        @media (max-width: 768px) {
+            .tds-table {
+                font-size: 0.85em;
+                min-width: 800px; /* Ensures horizontal scroll on mobile */
+            }
+
+            .tds-table th,
+            .tds-table td {
+                padding: 10px 6px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tds-table {
+                font-size: 0.8em;
+            }
+
+            .tds-table th,
+            .tds-table td {
+                padding: 8px 4px;
+            }
         }
 
         footer {
@@ -600,15 +636,6 @@
             .footer-section {
                 margin-bottom: 30px;
             }
-
-            .tds-table {
-                font-size: 0.9em;
-            }
-
-            .tds-table th,
-            .tds-table td {
-                padding: 10px;
-            }
         }
 
         @media (max-width: 480px) {
@@ -645,10 +672,6 @@
 
             .whatsapp-tooltip {
                 display: none;
-            }
-
-            .tds-table {
-                font-size: 0.8em;
             }
         }
     </style>
@@ -725,66 +748,244 @@
             </div>
         </div>
 
-        <div class="tds-rates-section" data-aos="fade-up">
-            <div class="section-title">Latest TDS Rate Chart for FY 2025-26 (AY 2026-27)</div>
-            <p class="intro-text">Below is the updated TDS rate chart for key sections applicable for FY 2025-26, ensuring you deduct tax at the correct rates to avoid penalties.</p>
-            <table class="tds-table">
-                <thead>
-                    <tr>
-                        <th>Section</th>
-                        <th>Nature of Payment</th>
-                        <th>Threshold (₹)</th>
-                        <th>TDS Rate</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>192</td>
-                        <td>Salary</td>
-                        <td>Basic exemption limit</td>
-                        <td>As per income tax slab</td>
-                    </tr>
-                    <tr>
-                        <td>194C</td>
-                        <td>Payments to contractors</td>
-                        <td>30,000 (single) / 1,00,000 (aggregate)</td>
-                        <td>1% (individual/HUF), 2% (others)</td>
-                    </tr>
-                    <tr>
-                        <td>194J</td>
-                        <td>Professional/technical services</td>
-                        <td>30,000</td>
-                        <td>2% (technical), 10% (professional)</td>
-                    </tr>
-                    <tr>
-                        <td>194T</td>
-                        <td>Partner remuneration/interest</td>
-                        <td>20,000</td>
-                        <td>10%</td>
-                    </tr>
-                    <tr>
-                        <td>194-IA</td>
-                        <td>TDS on property sale</td>
-                        <td>50,00,000</td>
-                        <td>1%</td>
-                    </tr>
-                    <tr>
-                        <td>194A</td>
-                        <td>Interest (banks/co-op/post office)</td>
-                        <td>50,000 (senior citizens), 40,000 (others)</td>
-                        <td>10%</td>
-                    </tr>
-                    <tr>
-                        <td>194R</td>
-                        <td>Benefits/perquisites from business</td>
-                        <td>20,000</td>
-                        <td>10%</td>
-                    </tr>
-                </tbody>
-            </table>
-            <p class="intro-text">Note: Rates are subject to change based on Budget 2025 announcements. Always verify with the latest CBDT notifications.</p>
-        </div>
-
+<div class="tds-rates-section" data-aos="fade-up">
+    <div class="section-title">Latest TDS Rate Chart for FY 2025-26 (AY 2026-27)</div>
+    <p class="intro-text">Below is the updated TDS rate chart for key sections applicable for FY 2025-26, ensuring you deduct tax at the correct rates to avoid penalties. Includes comparison with FY 2024-25 for key changes.</p>
+    <div class="tds-table-container">
+        <table class="tds-table">
+            <thead>
+                <tr>
+                    <th>Section</th>
+                    <th>Nature of Payment</th>
+                    <th>Threshold Limit (₹) FY 2025-26</th>
+                    <th>TDS Rate FY 2025-26</th>
+                    <th>Threshold Limit (₹) FY 2024-25</th>
+                    <th>TDS Rate FY 2024-25</th>
+                    <th>Key Changes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>192</td>
+                    <td>Salary</td>
+                    <td>As per slab rates</td>
+                    <td>As per slab rates</td>
+                    <td>As per slab rates</td>
+                    <td>As per slab rates</td>
+                    <td>No change in rates; slab rates apply under old/new tax regimes.</td>
+                </tr>
+                <tr>
+                    <td>192A</td>
+                    <td>PF Withdrawal</td>
+                    <td>₹50,000</td>
+                    <td>10% (20% without PAN)</td>
+                    <td>₹50,000</td>
+                    <td>10% (20% without PAN)</td>
+                    <td>No change; PAN-less rate fixed at 20% since FY 2023-24.</td>
+                </tr>
+                <tr>
+                    <td>193</td>
+                    <td>Interest on Securities</td>
+                    <td>₹2,500</td>
+                    <td>10%</td>
+                    <td>₹2,500</td>
+                    <td>10%</td>
+                    <td>No change; applies to listed debentures.</td>
+                </tr>
+                <tr>
+                    <td>194</td>
+                    <td>Dividends</td>
+                    <td>₹5,000</td>
+                    <td>10%</td>
+                    <td>₹5,000</td>
+                    <td>10%</td>
+                    <td>No change; applies to dividends exceeding threshold.</td>
+                </tr>
+                <tr>
+                    <td>194A</td>
+                    <td>Interest (Other than Securities)</td>
+                    <td>₹50,000 (non-senior citizens), ₹1,00,000 (senior citizens)</td>
+                    <td>10%</td>
+                    <td>₹40,000 (non-senior citizens), ₹50,000 (senior citizens)</td>
+                    <td>10%</td>
+                    <td>Threshold for non-senior citizens increased to ₹50,000; for senior citizens to ₹1,00,000.</td>
+                </tr>
+                <tr>
+                    <td>194B</td>
+                    <td>Lottery/Game Winnings</td>
+                    <td>No threshold</td>
+                    <td>30%</td>
+                    <td>No threshold</td>
+                    <td>30%</td>
+                    <td>No change.</td>
+                </tr>
+                <tr>
+                    <td>194BA</td>
+                    <td>Online Gaming Winnings</td>
+                    <td>No threshold</td>
+                    <td>30%</td>
+                    <td>No threshold</td>
+                    <td>30%</td>
+                    <td>No change; effective since April 1, 2023.</td>
+                </tr>
+                <tr>
+                    <td>194C</td>
+                    <td>Contractor Payments</td>
+                    <td>₹30,000 (single), ₹1,00,000 (aggregate)</td>
+                    <td>1% (Individual/HUF), 2% (Others)</td>
+                    <td>₹30,000 (single), ₹1,00,000 (aggregate)</td>
+                    <td>1% (Individual/HUF), 2% (Others)</td>
+                    <td>No change in rates or thresholds.</td>
+                </tr>
+                <tr>
+                    <td>194D</td>
+                    <td>Insurance Commission</td>
+                    <td>₹20,000</td>
+                    <td>2%</td>
+                    <td>₹15,000</td>
+                    <td>5%</td>
+                    <td>Threshold increased to ₹20,000; rate reduced to 2%.</td>
+                </tr>
+                <tr>
+                    <td>194G</td>
+                    <td>Commission on Lottery Tickets</td>
+                    <td>₹20,000</td>
+                    <td>5%</td>
+                    <td>₹15,000</td>
+                    <td>5%</td>
+                    <td>Threshold increased to ₹20,000.</td>
+                </tr>
+                <tr>
+                    <td>194H</td>
+                    <td>Commission/Brokerage</td>
+                    <td>₹20,000</td>
+                    <td>5%</td>
+                    <td>₹15,000</td>
+                    <td>5%</td>
+                    <td>Threshold increased to ₹20,000.</td>
+                </tr>
+                <tr>
+                    <td>194I</td>
+                    <td>Rent (Land/Building)</td>
+                    <td>₹6,00,000</td>
+                    <td>10%</td>
+                    <td>₹2,40,000</td>
+                    <td>10%</td>
+                    <td>Threshold increased to ₹6,00,000.</td>
+                </tr>
+                <tr>
+                    <td>194I</td>
+                    <td>Rent (Plant/Machinery)</td>
+                    <td>₹6,00,000</td>
+                    <td>2%</td>
+                    <td>₹2,40,000</td>
+                    <td>2%</td>
+                    <td>Threshold increased to ₹6,00,000.</td>
+                </tr>
+                <tr>
+                    <td>194IA</td>
+                    <td>Sale of Immovable Property</td>
+                    <td>₹50,00,000</td>
+                    <td>1%</td>
+                    <td>₹50,00,000</td>
+                    <td>1%</td>
+                    <td>No change.</td>
+                </tr>
+                <tr>
+                    <td>194IB</td>
+                    <td>Rent by Individual/HUF</td>
+                    <td>₹6,00,000</td>
+                    <td>2% (from Oct 1, 2024)</td>
+                    <td>₹2,40,000</td>
+                    <td>5%</td>
+                    <td>Threshold increased to ₹6,00,000; rate reduced to 2% from Oct 1, 2024.</td>
+                </tr>
+                <tr>
+                    <td>194J</td>
+                    <td>Professional/Technical Fees</td>
+                    <td>₹50,000</td>
+                    <td>10% (Professional Services), 2% (Technical Services, Call Centers)</td>
+                    <td>₹30,000</td>
+                    <td>10% (Professional Services), 2% (Technical Services, Call Centers)</td>
+                    <td>Threshold increased from ₹30,000 to ₹50,000; no change in rates.</td>
+                </tr>
+                <tr>
+                    <td>194K</td>
+                    <td>Income from Mutual Funds</td>
+                    <td>₹5,000</td>
+                    <td>10%</td>
+                    <td>₹5,000</td>
+                    <td>10%</td>
+                    <td>No change.</td>
+                </tr>
+                <tr>
+                    <td>194LBC</td>
+                    <td>Income from Securitization Trust</td>
+                    <td>No threshold</td>
+                    <td>10% (resident)</td>
+                    <td>No threshold</td>
+                    <td>25% (Individual/HUF), 30% (Others)</td>
+                    <td>Rate reduced to 10% for all residents.</td>
+                </tr>
+                <tr>
+                    <td>194M</td>
+                    <td>Certain Payments by Individual/HUF</td>
+                    <td>₹50,00,000</td>
+                    <td>5%</td>
+                    <td>₹50,00,000</td>
+                    <td>5%</td>
+                    <td>No change.</td>
+                </tr>
+                <tr>
+                    <td>194N</td>
+                    <td>Cash Withdrawals (Co-operative Societies)</td>
+                    <td>₹3,00,00,000</td>
+                    <td>2%</td>
+                    <td>₹3,00,00,000</td>
+                    <td>2%</td>
+                    <td>Threshold increased to ₹3 crore since April 1, 2023; no further change.</td>
+                </tr>
+                <tr>
+                    <td>194O</td>
+                    <td>E-commerce Payments</td>
+                    <td>₹5,00,000</td>
+                    <td>0.1% (from Oct 1, 2024)</td>
+                    <td>₹5,00,000</td>
+                    <td>1%</td>
+                    <td>Rate reduced to 0.1% from Oct 1, 2024.</td>
+                </tr>
+                <tr>
+                    <td>194S</td>
+                    <td>Virtual Digital Assets</td>
+                    <td>₹50,000 (specified person), ₹10,000 (others)</td>
+                    <td>1%</td>
+                    <td>₹50,000 (specified person), ₹10,000 (others)</td>
+                    <td>1%</td>
+                    <td>No change.</td>
+                </tr>
+                <tr>
+                    <td>194T</td>
+                    <td>Partner’s Remuneration (Salary, Bonus, Commission, Interest)</td>
+                    <td>₹20,000</td>
+                    <td>10%</td>
+                    <td>Not applicable</td>
+                    <td>Not applicable</td>
+                    <td>New section introduced from April 1, 2025, for partnership firms/LLPs.</td>
+                </tr>
+                <tr>
+                    <td>206AB</td>
+                    <td>Higher TDS for Non-filers</td>
+                    <td>Not applicable</td>
+                    <td>Omitted</td>
+                    <td>Applicable</td>
+                    <td>Higher rates</td>
+                    <td>Section 206AB omitted from April 1, 2025.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <p class="intro-text">Note: Rates and thresholds are subject to change based on Budget 2025 announcements. Verify with CBDT notifications or consult our experts for compliance. PAN absence results in higher TDS rates under Section 206AA (typically 20%). Form 15G/15H can be used for exemption if income is below taxable limits.</p>
+</div>
         <div class="features-section" data-aos="fade-up">
             <div class="section-title">Why Choose Our TDS Services?</div>
             <div class="features-grid">
