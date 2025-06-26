@@ -1,124 +1,258 @@
-# 🌟 Sumit Garg's Financial Services
+<div align="center">
 
-[![GitHub stars](https://img.shields.io/github/stars/sumitgarg100000/Home?style=social)](https://github.com/sumitgarg100000/Home) 
-[![GitHub forks](https://img.shields.io/github/forks/sumitgarg100000/Home?style=social)](https://github.com/sumitgarg100000/Home)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+# 💼 Sumit Garg's Financial Services
+### *Empowering Your Financial Journey with Expert Solutions* 🚀
 
-Welcome to **Sumit Garg's Financial Services**! 🚀  
-Simplify your tax compliance and financial management with our expertly crafted tools and professional services. From GST reconciliation to income tax calculations, we empower businesses and individuals to manage their finances with ease and confidence.
+[![GitHub stars](https://img.shields.io/github/stars/sumitgarg100000/Home?style=for-the-badge&logo=github&color=gold)](https://github.com/sumitgarg100000/Home)
+[![GitHub forks](https://img.shields.io/github/forks/sumitgarg100000/Home?style=for-the-badge&logo=github)](https://github.com/sumitgarg100000/Home)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
+[![Website](https://img.shields.io/badge/Website-Live-brightgreen.svg?style=for-the-badge&logo=safari)](https://sumitgarg100000.github.io/Home/)
 
-🌐 **Visit our live website**: [Sumit Garg's Financial Tools](https://sumitgarg100000.github.io/Home/)  
-📧 **Contact us**: [Sumitgarg100000@gmail.com](mailto:Sumitgarg100000@gmail.com) | 📞 **Call/WhatsApp**: [+91 9716804520](https://wa.me/9716804520)
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=2196F3&center=true&vCenter=true&multiline=true&width=600&height=100&lines=Tax+Compliance+Made+Simple;Financial+Management+Excellence;10%2B+Years+of+Expert+Experience" alt="Typing SVG" />
+</p>
 
----
+🌐 **Live Website**: [Financial Tools Hub](https://sumitgarg100000.github.io/Home/)  
+📧 **Email**: [Sumitgarg100000@gmail.com](mailto:Sumitgarg100000@gmail.com)  
+📱 **WhatsApp**: [+91 9716804520](https://wa.me/9716804520)
 
-## 🎯 Our Services
-
-We offer a comprehensive suite of financial services designed to streamline your compliance and optimize your financial processes. Explore our offerings:
-
-- **📑 Income Tax Return Filing**  
-  Professional assistance for individuals and businesses to file income tax returns, ensuring maximum tax benefits and compliance.  
-  🔗 [Learn More](https://sumitgarg100000.github.io/Home/itr-filing.html)
-
-- **🧾 GST Return Filing**  
-  Accurate and timely GST return filing services to meet all regulatory requirements.  
-  🔗 [Learn More](https://sumitgarg100000.github.io/Home/gst-filing.html)
-
-- **💰 GST Refund Processing**  
-  Streamlined support to claim and process GST refunds, maximizing your cash flow.  
-  🔗 [Learn More](https://sumitgarg100000.github.io/Home/gst-refund.html)
-
-- **📊 TDS Filing Services**  
-  Complete TDS filing solutions, including preparation, verification, and submission.  
-  🔗 [Learn More](https://sumitgarg100000.github.io/Home/tds-filing.html)
-
-- **💼 Business Consultancy**  
-  Strategic consulting to optimize financial processes and drive business growth.  
-  🔗 [Learn More](https://sumitgarg100000.github.io/Home/business-consultancy.html)
-
-- **📈 MIS Preparation Service**  
-  Detailed Management Information System reports for clear insights into business performance.  
-  🔗 [Learn More](https://sumitgarg100000.github.io/Home/mis-service.html)
-
-- **📑 Excel Automation Solutions**  
-  Custom Excel automation to streamline operations and enhance data management.  
-  🔗 [Learn More](https://sumitgarg100000.github.io/Home/excel-automation.html)
+</div>
 
 ---
 
-## 🛠️ Our Financial Tools
+## 🎯 Our Premium Services
 
-Our user-friendly tools are designed to make tax compliance and financial calculations effortless. Try them out!
+<table>
+<tr>
+<td width="50%">
 
-| **Tool** | **Description** | **Live Demo** |
-|----------|-----------------|---------------|
-| **GST Reconciliation Tool** | Compare and match GSTR-2B and GSTR-3B data with ease. Upload Excel files and download reconciled results. | [Try Now](https://sumitgarg100000.github.io/GSTReconciliation/) |
-| **Income Tax Calculator** | Calculate your income tax liability quickly and accurately with a simple input of your income details. | [Try Now](https://sumitgarg100000.github.io/IncometaxCalculator/) |
-| **TDS on Salary Calculator** | Compute TDS on your salary instantly by entering your salary details. | [Try Now](https://sumitgarg100000.github.io/Home/Salarytds.html) |
+### 💰 Tax Services
+- **📊 Income Tax Return Filing**
+  - Individual & Business ITR
+  - Maximum tax benefits
+  - Complete compliance assurance
+  
+- **🧾 GST Services**
+  - GST Return Filing
+  - GST Refund Processing
+  - GSTR reconciliation
 
----
+</td>
+<td width="50%">
 
-## 🌟 Why Choose Us?
+### 📈 Business Solutions
+- **💼 Business Consultancy**
+  - Strategic financial planning
+  - Process optimization
+  - Growth-focused strategies
 
-- **⚡ Fast & Efficient**: Streamlined processes to save you time.  
-- **🔒 Secure & Reliable**: Your data is handled with utmost confidentiality and compliance.  
-- **🎯 Expert Solutions**: Tailored financial advice from a seasoned professional.
+- **📑 Specialized Services**
+  - TDS Filing & Management
+  - MIS Report Preparation
+  - Excel Automation Solutions
 
----
-
-## 👨‍💼 About Sumit Garg
-
-Sumit Garg is a financial expert with over **10 years of experience** in tax consultancy and financial services. Specializing in GST, income tax, Excel automation, and MIS preparation, Sumit has empowered countless clients to navigate complex financial landscapes with confidence.
-
-Our mission is to provide **accurate, efficient, and user-friendly solutions** that simplify compliance and help you focus on your core objectives.
-
----
-
-## 📬 Contact Us
-
-We’re here to help! Reach out to us for any inquiries or to explore our services:
-
-- **📍 Address**: Rohini, Delhi-110086  
-- **📞 Phone/WhatsApp**: [+91 9716804520](https://wa.me/9716804520)  
-- **📧 Email**: [Sumitgarg100000@gmail.com](mailto:Sumitgarg100000@gmail.com)  
-- **🌐 Website**: [Sumit Garg's Financial Tools](https://sumitgarg100000.github.io/Home/)  
-
-Connect with us on social platforms:  
-[<img src="https://img.icons8.com/color/48/000000/linkedin.png" alt="LinkedIn" width="32"/>](https://www.linkedin.com/) 
-[<img src="https://img.icons8.com/color/48/000000/twitter.png" alt="Twitter" width="32"/>](https://x.com/) 
-[<img src="https://img.icons8.com/color/48/000000/whatsapp.png" alt="WhatsApp" width="32"/>](https://wa.me/9716804520)
+</td>
+</tr>
+</table>
 
 ---
 
-## 🛠️ Technologies Used
+## 🛠️ Interactive Financial Tools
 
-Our tools and services are built with cutting-edge technologies to ensure performance and reliability:
+<div align="center">
 
-- **HTML5** & **CSS3**: For responsive and visually appealing interfaces.  
-  🔗 [Learn about HTML5](https://developer.mozilla.org/en-US/docs/Web/HTML) | [Learn about CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS)  
-- **JavaScript**: For interactive and dynamic tool functionality.  
-  🔗 [Learn about JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)  
-- **Tailwind CSS**: For modern and sleek UI design.  
-  🔗 [Tailwind CSS](https://tailwindcss.com/)  
-- **Font Awesome**: For professional icons that enhance user experience.  
-  🔗 [Font Awesome](https://fontawesome.com/)  
-- **AOS (Animate on Scroll)**: For smooth animations that bring our pages to life.  
-  🔗 [AOS Library](https://michalsnik.github.io/aos/)  
+| 🔧 **Tool Name** | 📝 **Description** | 🚀 **Action** |
+|:---|:---|:---:|
+| **GST Reconciliation Engine** | Advanced Excel-based reconciliation for GSTR-2B & GSTR-3B matching | [🔥 Launch Tool](https://sumitgarg100000.github.io/GSTReconciliation/) |
+| **Smart Income Tax Calculator** | AI-powered tax calculation with real-time updates | [⚡ Calculate Now](https://sumitgarg100000.github.io/IncometaxCalculator/) |
+| **TDS Salary Calculator** | Instant TDS computation with detailed breakdowns | [💫 Try Now](https://sumitgarg100000.github.io/Home/Salarytds.html) |
+
+</div>
 
 ---
 
-## 🚀 Get Started
+## 🌟 Why Choose Sumit Garg's Financial Services?
 
-Ready to simplify your financial journey?  
-1. Visit our [website](https://sumitgarg100000.github.io/Home/) to explore our tools and services.  
-2. Try our tools directly: [GST Reconciliation](https://sumitgarg100000.github.io/GSTReconciliation/) | [Income Tax Calculator](https://sumitgarg100000.github.io/IncometaxCalculator/) | [TDS Calculator](https://sumitgarg100000.github.io/Home/Salarytds.html)  
-3. Contact us via [WhatsApp](https://wa.me/9716804520) or [email](mailto:Sumitgarg100000@gmail.com) for personalized assistance.
+<div align="center">
+
+| 🎯 **Expertise** | ⚡ **Speed** | 🔒 **Security** | 🤝 **Support** |
+|:---:|:---:|:---:|:---:|
+| 10+ Years Experience | Lightning Fast Processing | Bank-Grade Security | 24/7 Professional Support |
+| Certified Professional | Automated Workflows | Data Privacy Guaranteed | Personal Consultation |
+
+</div>
 
 ---
 
-⭐ **Star this repository** if you find our tools helpful!  
-Contributions and feedback are welcome. Feel free to open an [issue](https://github.com/sumitgarg100000/Home/issues) or submit a [pull request](https://github.com/sumitgarg100000/Home/pulls).
+## 👨‍💼 Meet Sumit Garg
+
+<div align="center">
+
+<img src="https://img.shields.io/badge/Experience-10%2B%20Years-brightgreen?style=for-the-badge&logo=award" alt="Experience"/>
+<img src="https://img.shields.io/badge/Specialization-Tax%20%26%20Finance-blue?style=for-the-badge&logo=chart-line" alt="Specialization"/>
+<img src="https://img.shields.io/badge/Clients%20Served-500%2B-orange?style=for-the-badge&logo=users" alt="Clients"/>
+
+</div>
+
+> *"Transforming complex financial challenges into simple, automated solutions. My mission is to empower businesses and individuals with accurate, efficient, and user-friendly financial tools that drive success."*
+
+### 🎓 **Core Expertise:**
+- ✅ GST Compliance & Reconciliation
+- ✅ Income Tax Planning & Filing  
+- ✅ Excel Automation & VBA Development
+- ✅ Financial Process Optimization
+- ✅ Management Information Systems (MIS)
 
 ---
 
-*Built with 💙 by Sumit Garg | © 2025 All Rights Reserved*
+## 🚀 Tech Stack & Tools
+
+<div align="center">
+
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Excel](https://img.shields.io/badge/Microsoft_Excel-217346?style=for-the-badge&logo=microsoft-excel&logoColor=white)
+![VBA](https://img.shields.io/badge/VBA-217346?style=for-the-badge&logo=microsoft-office&logoColor=white)
+
+</div>
+
+---
+
+## 📊 Success Metrics
+
+<div align="center">
+
+
+</div>
+
+---
+
+## 📞 Connect With Us
+
+<div align="center">
+
+### 🏢 **Office Address**
+📍 Rohini, Delhi-110086, India
+
+### 📱 **Quick Contact**
+[![WhatsApp](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/9716804520)
+[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:Sumitgarg100000@gmail.com)
+[![Website](https://img.shields.io/badge/Website-4285F4?style=for-the-badge&logo=google-chrome&logoColor=white)](https://sumitgarg100000.github.io/Home/)
+
+### 🌐 **Social Media**
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/)
+[![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://x.com/)
+
+</div>
+
+---
+
+## 🚀 Quick Start Guide
+
+<div align="center">
+
+### 🔥 **Get Started in 3 Simple Steps**
+
+**Step 1** → 🌐 Visit our [website](https://sumitgarg100000.github.io/Home/) and explore tools  
+**Step 2** → 🛠️ Try our free calculators and financial tools  
+**Step 3** → 📞 Contact us for personalized solutions via [WhatsApp](https://wa.me/9716804520)
+
+</div>
+
+---
+
+## 📋 Service Details
+
+<details>
+<summary>🏢 <strong>Business Services</strong></summary>
+
+### Income Tax Return Filing
+- Individual ITR filing (ITR-1, ITR-2, ITR-3, ITR-4)
+- Business ITR filing with detailed computation
+- Tax planning and optimization strategies
+- Amendment and revised return filing
+
+### GST Services  
+- Monthly GST return filing (GSTR-1, GSTR-3B)
+- GST registration and cancellation
+- Input tax credit reconciliation
+- GST audit and compliance
+
+### TDS Services
+- TDS return filing (24Q, 26Q, 27Q, 27EQ)
+- TDS certificate generation
+- Lower deduction certificates
+- TDS compliance management
+
+</details>
+
+<details>
+<summary>💻 <strong>Digital Tools</strong></summary>
+
+### Excel Automation
+- Custom VBA macros development
+- Financial dashboard creation
+- Automated report generation
+- Data processing solutions
+
+### MIS Reporting
+- Monthly financial reports
+- Business performance analytics  
+- Cash flow analysis
+- Expense tracking systems
+
+</details>
+
+---
+
+## 🤝 Contributing & Feedback
+
+<div align="center">
+
+We value your feedback and contributions!
+
+[![Issues](https://img.shields.io/github/issues/sumitgarg100000/Home?style=for-the-badge&logo=github)](https://github.com/sumitgarg100000/Home/issues)
+[![Pull Requests](https://img.shields.io/github/issues-pr/sumitgarg100000/Home?style=for-the-badge&logo=github)](https://github.com/sumitgarg100000/Home/pulls)
+
+**Found this helpful?** ⭐ Star this repository!  
+**Have suggestions?** 💡 Open an issue or send us a message!
+
+</div>
+
+---
+
+## 📈 Repository Stats
+
+<div align="center">
+
+![GitHub language count](https://img.shields.io/github/languages/count/sumitgarg100000/Home?style=flat-square)
+![GitHub top language](https://img.shields.io/github/languages/top/sumitgarg100000/Home?style=flat-square)
+![GitHub repo size](https://img.shields.io/github/repo-size/sumitgarg100000/Home?style=flat-square)
+![GitHub last commit](https://img.shields.io/github/last-commit/sumitgarg100000/Home?style=flat-square)
+
+</div>
+
+---
+
+<div align="center">
+
+### 💙 **Built with passion by Sumit Garg**
+
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=18&duration=2000&pause=1000&color=FF6B6B&center=true&vCenter=true&width=400&lines=Made+with+%E2%9D%A4%EF%B8%8F+in+India;Simplifying+Finance+Since+2014;Your+Success+is+Our+Mission" alt="Footer Typing SVG" />
+
+---
+
+**© 2025 Sumit Garg's Financial Services | All Rights Reserved**
+
+*Empowering businesses and individuals through innovative financial solutions* 🚀
+
+### 🙏 **Thank you for visiting!**
+
+If you found our tools helpful, please consider:
+- ⭐ Starring this repository
+- 🔄 Sharing with your network  
+- 📝 Providing feedback for improvements
+
+</div>
