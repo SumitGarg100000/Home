@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF to Excel Converter - Professional Tool</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    
+    <style>
+    /* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+.app-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.app-header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 1.5rem 0;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    text-align: center;
+}
+.header-content h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 0.5rem;
+}
+
+.header-content h1 i {
+    color: #48bb78;
+    margin-right: 0.5rem;
+}
+
+.header-content p {
+    font-size: 1.1rem;
+    color: #718096;
+    font-weight: 400;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Upload Section */
+.upload-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+}
+.upload-area {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 2px dashed #cbd5e0;
+    border-radius: 20px;
+    padding: 3rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    min-width: 400px;
+}
+
+.upload-area:hover {
+    border-color: #4299e1;
+    background: rgba(255, 255, 255, 1);
+    transform: translateY(-2px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.upload-area.dragover {
+    border-color: #48bb78;
+    background: rgba(72, 187, 120, 0.05);
+}
+
+.upload-icon {
+    font-size: 4rem;
+    color: #4299e1;
+    margin-bottom: 1rem;
+}
+
+.upload-area h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 0.5rem;
+}
+
+.upload-area p {
+    color: #718096;
+    margin-bottom: 1.5rem;
+}
+
+/* Processing Section */
+.processing-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+}
+
+.progress-container {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 2rem;
+    min-width: 400px;
+    text-align: center;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4299e1, #48bb78);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+    width: 0%;
+}
+
+#progressText {
+    color: #4a5568;
+    font-weight: 500;
+}
+
+/* Editor Section */
+.editor-section {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Controls Panel */
+.controls-panel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: #f7fafc;
+    border-radius: 15px;
+    border: 1px solid #e2e8f0;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.control-group label {
+    font-weight: 600;
+    color: #2d3748;
+    font-size: 0.875rem;
+}
+.control-select {
+    padding: 0.5rem 1rem;
+    border: 1px solid #cbd5e0;
+    border-radius: 8px;
+    background: white;
+    font-size: 0.875rem;
+    min-width: 200px;
+}
+
+.control-buttons {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-left: auto;
+}
+
+/* Buttons */
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    text-decoration: none;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #4299e1, #3182ce);
+    color: white;
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #718096, #4a5568);
+    color: white;
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #48bb78, #38a169);
+    color: white;
+}
+
+.btn-small {
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Editor Container */
+.editor-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    min-height: 600px;
+}
+/* PDF Viewer */
+.pdf-viewer-container {
+    border: 1px solid #e2e8f0;
+    border-radius: 15px;
+    overflow: hidden;
+    background: white;
+}
+
+.viewer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background: #f7fafc;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.viewer-header h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.page-navigation {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#pageInfo {
+    font-size: 0.875rem;
+    color: #4a5568;
+    font-weight: 500;
+}
+
+.pdf-canvas-container {
+    position: relative;
+    overflow: auto;
+    max-height: 700px;
+    background: #f8f9fa;
+}
+
+#pdfCanvas {
+    display: block;
+    margin: 0 auto;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Lines Overlay */
+.lines-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.vertical-line, .horizontal-line {
+    position: absolute;
+    pointer-events: all;
+    z-index: 10;
+}
+
+.vertical-line {
+    width: 2px;
+    background: #e53e3e;
+    cursor: col-resize;
+    border-left: 2px solid #e53e3e;
+    min-height: 100%;
+}
+.vertical-line:hover {
+    background: #c53030;
+    border-left-color: #c53030;
+    width: 3px;
+}
+
+.horizontal-line {
+    height: 2px;
+    background: #3182ce;
+    cursor: row-resize;
+    border-top: 2px solid #3182ce;
+    width: 100%;
+}
+
+.horizontal-line:hover {
+    background: #2c5aa0;
+    border-top-color: #2c5aa0;
+    height: 3px;
+}
+
+.line-handle {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border: 2px solid;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: bold;
+    user-select: none;
+}
+.vertical-line .line-handle {
+    border-color: #e53e3e;
+    color: #e53e3e;
+    top: -10px;
+    left: -9px;
+}
+
+.horizontal-line .line-handle {
+    border-color: #3182ce;
+    color: #3182ce;
+    top: -9px;
+    right: -10px;
+}
+
+.line-handle:hover {
+    transform: scale(1.2);
+}
+
+/* Excel Preview */
+.excel-preview-container {
+    border: 1px solid #e2e8f0;
+    border-radius: 15px;
+    overflow: hidden;
+    background: white;
+}
+
+.preview-header {
+    padding: 1rem 1.5rem;
+    background: #f7fafc;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.preview-header h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2d3748;
+}
+.excel-preview {
+    padding: 1.5rem;
+    max-height: 650px;
+    overflow-y: auto; /* Changed to overflow-y: auto for vertical scrollbar */
+}
+
+.no-data {
+    text-align: center;
+    color: #718096;
+    font-style: italic;
+    padding: 2rem;
+}
+
+/* Excel Table Styles */
+.excel-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+    background: white;
+}
+
+.excel-table th,
+.excel-table td {
+    border: 1px solid #cbd5e0;
+    padding: 0.5rem;
+    text-align: left;
+    vertical-align: top;
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+.excel-table th {
+    background: #edf2f7;
+    font-weight: 600;
+    color: #2d3748;
+    position: sticky;
+    top: 0;
+}
+
+.excel-table tr:nth-child(even) {
+    background: #f7fafc;
+}
+.excel-table tr:hover {
+    background: #e6fffa;
+}
+
+/* Footer */
+.app-footer {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 1rem;
+    text-align: center;
+    color: #718096;
+    font-size: 0.875rem;
+}
+
+/* Loading Overlay */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.loading-spinner {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+}
+.loading-spinner i {
+    font-size: 2rem;
+    color: #4299e1;
+    margin-bottom: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .editor-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .controls-panel {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .control-buttons {
+        margin-left: 0;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        padding: 1rem;
+    }
+    
+    .header-content {
+        padding: 0 1rem;
+    }
+    
+    .header-content h1 {
+        font-size: 2rem;
+    }
+    .upload-area {
+        min-width: auto;
+        padding: 2rem;
+    }
+    
+    .control-buttons {
+        flex-direction: column;
+    }
+    
+    .btn {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-content h1 {
+        font-size: 1.5rem;
+    }
+    
+    .upload-area {
+        padding: 1.5rem;
+    }
+    
+    .controls-panel {
+        padding: 1rem;
+    }
+        
+    .editor-section {
+        padding: 1rem;
+    }
+}
+
+/* Animation Classes */
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-up {
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+/* Drag and Drop Effects */
+.upload-area.dragover {
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+} 
+        
+    </style>
+    
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="header-content">
+                <h1><i class="fas fa-file-excel"></i> PDF to Excel Converter</h1>
+                <p>Professional tool to convert PDF data to Excel with custom column splitting</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="upload-section" id="uploadSection">
+                <div class="upload-area" id="uploadArea">
+                    <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                    <h3>Upload your PDF file</h3>
+                    <p>Drag and drop your PDF file here or click to browse</p>
+                    <input type="file" id="pdfInput" accept=".pdf" hidden>
+                    <button class="btn btn-primary" onclick="document.getElementById('pdfInput').click()">
+                        <i class="fas fa-folder-open"></i> Choose File
+                    </button>
+                </div>
+            </section>
+
+            <section class="processing-section" id="processingSection" style="display: none;">
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <p id="progressText">Loading PDF...</p>
+                </div>
+            </section>
+
+            <section class="editor-section" id="editorSection" style="display: none;">
+                <div class="controls-panel">
+                    <div class="control-group">
+                        <label for="pageTypeSelect">Page Type:</label>
+                        <select id="pageTypeSelect" class="control-select">
+                            <option value="same">Same format for all pages</option>
+                            <option value="odd-even">Different format for odd/even pages</option>
+                        </select>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label for="currentPageSelect">Current Page:</label>
+                        <select id="currentPageSelect" class="control-select">
+                        </select>
+                    </div>
+
+                    <div class="control-buttons">
+                        <button class="btn btn-secondary" id="addVerticalLine">
+                            <i class="fas fa-plus"></i> Add Vertical Line
+                        </button>
+                        <button class="btn btn-secondary" id="toggleHorizontalLine">
+                            <i class="fas fa-minus"></i> Toggle Horizontal Line
+                        </button>
+                        <button class="btn btn-success" id="previewData">
+                            <i class="fas fa-eye"></i> Preview Excel Data
+                        </button>
+                        <button class="btn btn-primary" id="exportExcel">
+                            <i class="fas fa-download"></i> Export to Excel
+                        </button>
+                    </div>
+                </div>
+
+                <div class="editor-container">
+                    <div class="pdf-viewer-container">
+                        <div class="viewer-header">
+                            <h3 id="viewerTitle">PDF Preview - Set Column Boundaries</h3>
+                            <div class="page-navigation">
+                                <button class="btn btn-small" id="prevPage" disabled>
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <span id="pageInfo">Page 1 of 1</span>
+                                <button class="btn btn-small" id="nextPage" disabled>
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="pdf-canvas-container" id="pdfCanvasContainer">
+                            <canvas id="pdfCanvas"></canvas>
+                            <div class="lines-overlay" id="linesOverlay">
+                                </div>
+                        </div>
+                    </div>
+
+                    <div class="excel-preview-container">
+                        <div class="preview-header">
+                            <h3><i class="fas fa-table"></i> Excel Data Preview</h3>
+                        </div>
+                        <div class="excel-preview" id="excelPreview">
+                            <p class="no-data">Set column boundaries to see data preview</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="app-footer">
+            <p>&copy; 2024 PDF to Excel Converter. Professional tool for data extraction.</p>
+        </footer>
+    </div>
+
+    <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Processing your file...</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script>
+        class PDFToExcelConverter {
+            constructor() {
+                this.pdfDoc = null;
+                this.currentPage = 1;
+                this.totalPages = 0;
+                this.pdfText = [];
+                this.scale = 1.5;
+                this.canvas = null;
+                this.ctx = null;
+                this.linesOverlay = null;
+                this.verticalLines = [];
+                this.horizontalLine = null;
+                this.pageConfig = {
+                    type: 'same',
+                    oddLines: [],
+                    evenLines: [],
+                    oddHorizontal: null,
+                    evenHorizontal: null
+                };
+                this.isDragging = false;
+                this.dragLine = null;
+                
+                this.init();
+            }
+
+            init() {
+                this.setupEventListeners();
+                this.setupPDFJS();
+                console.log('PDF to Excel Converter initialized');
+            }
+
+            setupPDFJS() {
+                pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
+            }
+
+            setupEventListeners() {
+                const pdfInput = document.getElementById('pdfInput');
+                const uploadArea = document.getElementById('uploadArea');
+                
+                pdfInput.addEventListener('change', (e) => this.handleFileSelect(e));
+                
+                uploadArea.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    uploadArea.classList.add('dragover');
+                });
+                
+                uploadArea.addEventListener('dragleave', () => {
+                    uploadArea.classList.remove('dragover');
+                });
+                
+                uploadArea.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    uploadArea.classList.remove('dragover');
+                    const files = e.dataTransfer.files;
+                    if (files.length > 0 && files[0].type === 'application/pdf') {
+                        this.loadPDF(files[0]);
+                    }
+                });
+
+                document.getElementById('addVerticalLine').addEventListener('click', () => this.addVerticalLine());
+                document.getElementById('toggleHorizontalLine').addEventListener('click', () => this.toggleHorizontalLine());
+                document.getElementById('previewData').addEventListener('click', () => this.previewExcelData());
+                document.getElementById('exportExcel').addEventListener('click', () => this.exportToExcel());
+                
+                document.getElementById('prevPage').addEventListener('click', () => this.previousPage());
+                document.getElementById('nextPage').addEventListener('click', () => this.nextPage());
+                
+                document.getElementById('pageTypeSelect').addEventListener('change', (e) => this.handlePageTypeChange(e));
+                document.getElementById('currentPageSelect').addEventListener('change', (e) => this.handlePageChange(e));
+
+                this.setupLineEvents();
+            }
+
+            handleFileSelect(event) {
+                const file = event.target.files[0];
+                if (file && file.type === 'application/pdf') {
+                    this.loadPDF(file);
+                } else {
+                    alert('कृपया एक valid PDF file select करें।');
+                }
+            }
+
+            async loadPDF(file) {
+                this.showSection('processingSection');
+                this.updateProgress(0, 'Loading PDF...');
+
+                try {
+                    const arrayBuffer = await file.arrayBuffer();
+                    this.updateProgress(30, 'Parsing PDF structure...');
+                    
+                    this.pdfDoc = await pdfjsLib.getDocument(arrayBuffer).promise;
+                    this.totalPages = this.pdfDoc.numPages;
+                    
+                    this.updateProgress(60, 'Extracting text content...');
+                    await this.extractAllText();
+                    
+                    this.updateProgress(80, 'Preparing viewer...');
+                    this.setupEditor();
+                    
+                    this.updateProgress(100, 'Complete!');
+                    
+                    setTimeout(() => {
+                        this.showSection('editorSection');
+                        this.renderCurrentPage();
+                    }, 500);
+                    
+                } catch (error) {
+                    console.error('Error loading PDF:', error);
+                    alert('PDF load करने में error आई। कृपया दूसरी file try करें।');
+                    this.showSection('uploadSection');
+                }
+            }
+
+            async extractAllText() {
+                this.pdfText = [];
+                
+                for (let pageNum = 1; pageNum <= this.totalPages; pageNum++) {
+                    const page = await this.pdfDoc.getPage(pageNum);
+                    const textContent = await page.getTextContent();
+                    
+                    const pageText = {
+                        pageNum: pageNum,
+                        items: textContent.items.map(item => ({
+                            text: item.str,
+                            x: item.transform[4],
+                            y: item.transform[5],
+                            width: item.width,
+                            height: item.height,
+                            fontSize: item.height
+                        }))
+                    };
+                    
+                    this.pdfText.push(pageText);
+                }
+            }
+
+            setupEditor() {
+                this.canvas = document.getElementById('pdfCanvas');
+                this.ctx = this.canvas.getContext('2d');
+                this.linesOverlay = document.getElementById('linesOverlay');
+                
+                const pageSelect = document.getElementById('currentPageSelect');
+                pageSelect.innerHTML = '';
+                for (let i = 1; i <= this.totalPages; i++) {
+                    const option = document.createElement('option');
+                    option.value = i;
+                    option.textContent = `Page ${i}`;
+                    pageSelect.appendChild(option);
+                }
+                
+                document.getElementById('pageInfo').textContent = `Page 1 of ${this.totalPages}`;
+                document.getElementById('nextPage').disabled = this.totalPages <= 1;
+                
+                this.setupLineEvents();
+            }
+
+            setupLineEvents() {
+                // Mouse events
+                this.linesOverlay.addEventListener('mousedown', (e) => this.startDrag(e));
+                this.linesOverlay.addEventListener('mousemove', (e) => this.drag(e));
+                document.addEventListener('mouseup', () => this.endDrag());
+
+                // Touch events for mobile
+                this.linesOverlay.addEventListener('touchstart', (e) => this.startDrag(e));
+                this.linesOverlay.addEventListener('touchmove', (e) => this.drag(e));
+                document.addEventListener('touchend', () => this.endDrag());
+            }
+
+            async renderCurrentPage() {
+                if (!this.pdfDoc) return;
+                
+                const page = await this.pdfDoc.getPage(this.currentPage);
+                const viewport = page.getViewport({ scale: this.scale });
+                
+                this.canvas.width = viewport.width;
+                this.canvas.height = viewport.height;
+                
+                this.linesOverlay.style.width = viewport.width + 'px';
+                this.linesOverlay.style.height = viewport.height + 'px';
+                
+                const renderContext = {
+                    canvasContext: this.ctx,
+                    viewport: viewport
+                };
+                
+                await page.render(renderContext).promise;
+                
+                document.getElementById('pageInfo').textContent = `Page ${this.currentPage} of ${this.totalPages}`;
+                document.getElementById('prevPage').disabled = this.currentPage <= 1;
+                document.getElementById('nextPage').disabled = this.currentPage >= this.totalPages;
+                
+                this.renderLines();
+            }
+
+            addVerticalLine() {
+                const xPosition = this.linesOverlay.clientWidth / 2;
+                
+                const line = {
+                    id: Date.now(),
+                    x: xPosition,
+                    type: 'vertical'
+                };
+                
+                if (this.pageConfig.type === 'same') {
+                    this.verticalLines.push(line);
+                } else {
+                    if (this.currentPage % 2 === 1) {
+                        this.pageConfig.oddLines.push(line);
+                    } else {
+                        this.pageConfig.evenLines.push(line);
+                    }
+                }
+                
+                this.renderLines();
+                this.previewExcelData();
+            }
+
+            toggleHorizontalLine() {
+                const yPosition = this.linesOverlay.clientHeight / 3;
+                
+                if (this.pageConfig.type === 'same') {
+                    if (this.horizontalLine) {
+                        this.horizontalLine = null;
+                    } else {
+                        this.horizontalLine = {
+                            id: Date.now(),
+                            y: yPosition,
+                            type: 'horizontal'
+                        };
+                    }
+                } else {
+                    if (this.currentPage % 2 === 1) {
+                        if (this.pageConfig.oddHorizontal) {
+                            this.pageConfig.oddHorizontal = null;
+                        } else {
+                            this.pageConfig.oddHorizontal = {
+                                id: Date.now(),
+                                y: yPosition,
+                                type: 'horizontal'
+                            };
+                        }
+                    } else {
+                        if (this.pageConfig.evenHorizontal) {
+                            this.pageConfig.evenHorizontal = null;
+                        } else {
+                            this.pageConfig.evenHorizontal = {
+                                id: Date.now(),
+                                y: yPosition,
+                                type: 'horizontal'
+                            };
+                        }
+                    }
+                }
+                
+                this.renderLines();
+                this.previewExcelData();
+            }
+
+            renderLines() {
+                this.linesOverlay.innerHTML = '';
+                
+                let currentVerticalLines = [];
+                let currentHorizontalLine = null;
+                
+                if (this.pageConfig.type === 'same') {
+                    currentVerticalLines = this.verticalLines;
+                    currentHorizontalLine = this.horizontalLine;
+                } else {
+                    if (this.currentPage % 2 === 1) {
+                        currentVerticalLines = this.pageConfig.oddLines;
+                        currentHorizontalLine = this.pageConfig.oddHorizontal;
+                    } else {
+                        currentVerticalLines = this.pageConfig.evenLines;
+                        currentHorizontalLine = this.pageConfig.evenHorizontal;
+                    }
+                }
+                
+                currentVerticalLines.forEach(line => {
+                    const lineElement = this.createLineElement(line, 'vertical');
+                    this.linesOverlay.appendChild(lineElement);
+                });
+                
+                if (currentHorizontalLine) {
+                    const lineElement = this.createLineElement(currentHorizontalLine, 'horizontal');
+                    this.linesOverlay.appendChild(lineElement);
+                }
+            }
+
+            createLineElement(line, type) {
+                const lineElement = document.createElement('div');
+                lineElement.className = `${type}-line`;
+                if (type === 'vertical') {
+                    lineElement.style.left = line.x + 'px';
+                    lineElement.style.height = '100%';
+                } else {
+                    lineElement.style.top = line.y + 'px';
+                    lineElement.style.width = '100%';
+                }
+                lineElement.dataset.lineId = line.id;
+                lineElement.dataset.lineType = type;
+                
+                const handle = document.createElement('div');
+                handle.className = 'line-handle';
+                handle.innerHTML = '×';
+                handle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    this.removeLine(line.id, type);
+                });
+                
+                lineElement.appendChild(handle);
+                return lineElement;
+            }
+
+            removeLine(lineId, type) {
+                if (this.pageConfig.type === 'same') {
+                    if (type === 'vertical') {
+                        this.verticalLines = this.verticalLines.filter(line => line.id !== lineId);
+                    } else {
+                        this.horizontalLine = null;
+                    }
+                } else {
+                    const isOdd = this.currentPage % 2 === 1;
+                    if (isOdd) {
+                        if (type === 'vertical') {
+                            this.pageConfig.oddLines = this.pageConfig.oddLines.filter(line => line.id !== lineId);
+                        } else {
+                            this.pageConfig.oddHorizontal = null;
+                        }
+                    } else {
+                        if (type === 'vertical') {
+                            this.pageConfig.evenLines = this.pageConfig.evenLines.filter(line => line.id !== lineId);
+                        } else {
+                            this.pageConfig.evenHorizontal = null;
+                        }
+                    }
+                }
+                
+                this.renderLines();
+                this.previewExcelData();
+            }
+
+            getPointerPosition(event) {
+                const rect = this.linesOverlay.getBoundingClientRect();
+                if (event.touches) {
+                    return {
+                        x: event.touches[0].clientX - rect.left,
+                        y: event.touches[0].clientY - rect.top
+                    };
+                }
+                return {
+                    x: event.clientX - rect.left,
+                    y: event.clientY - rect.top
+                };
+            }
+
+            startDrag(e) {
+                const target = e.target;
+                if (target.classList.contains('vertical-line') || target.classList.contains('horizontal-line')) {
+                    this.isDragging = true;
+                    this.dragLine = {
+                        element: target,
+                        id: parseInt(target.dataset.lineId),
+                        type: target.dataset.lineType
+                    };
+                    target.style.opacity = '0.7';
+                    e.preventDefault();
+                }
+            }
+
+            drag(e) {
+                if (!this.isDragging || !this.dragLine) return;
+                
+                const { x, y } = this.getPointerPosition(e);
+                
+                if (this.dragLine.type === 'vertical') {
+                    const newX = Math.max(0, Math.min(x, this.linesOverlay.clientWidth));
+                    this.dragLine.element.style.left = newX + 'px';
+                    this.updateLinePosition(this.dragLine.id, newX, null);
+                } else {
+                    const newY = Math.max(0, Math.min(y, this.linesOverlay.clientHeight));
+                    this.dragLine.element.style.top = newY + 'px';
+                    this.updateLinePosition(this.dragLine.id, null, newY);
+                }
+                e.preventDefault();
+            }
+
+            endDrag() {
+                if (this.isDragging && this.dragLine) {
+                    this.dragLine.element.style.opacity = '1';
+                    this.isDragging = false;
+                    this.dragLine = null;
+                    this.previewExcelData();
+                }
+            }
+
+            updateLinePosition(lineId, x, y) {
+                if (this.pageConfig.type === 'same') {
+                    if (x !== null) {
+                        const line = this.verticalLines.find(l => l.id === lineId);
+                        if (line) line.x = x;
+                    } else {
+                        if (this.horizontalLine && this.horizontalLine.id === lineId) {
+                            this.horizontalLine.y = y;
+                        }
+                    }
+                } else {
+                    const isOdd = this.currentPage % 2 === 1;
+                    if (x !== null) {
+                        const lines = isOdd ? this.pageConfig.oddLines : this.pageConfig.evenLines;
+                        const line = lines.find(l => l.id === lineId);
+                        if (line) line.x = x;
+                    } else {
+                        const hLine = isOdd ? this.pageConfig.oddHorizontal : this.pageConfig.evenHorizontal;
+                        if (hLine && hLine.id === lineId) {
+                            hLine.y = y;
+                        }
+                    }
+                }
+            }
+
+            previousPage() {
+                if (this.currentPage > 1) {
+                    this.currentPage--;
+                    document.getElementById('currentPageSelect').value = this.currentPage;
+                    this.renderCurrentPage();
+                }
+            }
+
+            nextPage() {
+                if (this.currentPage < this.totalPages) {
+                    this.currentPage++;
+                    document.getElementById('currentPageSelect').value = this.currentPage;
+                    this.renderCurrentPage();
+                }
+            }
+
+            handlePageTypeChange(e) {
+                this.pageConfig.type = e.target.value;
+                this.renderLines();
+                this.previewExcelData();
+                
+                const title = document.getElementById('viewerTitle');
+                if (this.pageConfig.type === 'odd-even') {
+                    title.textContent = `PDF Preview - Set Column Boundaries (${this.currentPage % 2 === 1 ? 'Odd' : 'Even'} Page)`;
+                } else {
+                    title.textContent = 'PDF Preview - Set Column Boundaries';
+                }
+            }
+
+            handlePageChange(e) {
+                this.currentPage = parseInt(e.target.value);
+                this.renderCurrentPage();
+            }
+
+            async previewExcelData() {
+                const previewContainer = document.getElementById('excelPreview');
+                
+                try {
+                    const extractedData = await this.extractDataFromCurrentPage();
+                    if (extractedData.length === 0) {
+                        previewContainer.innerHTML = '<p class="no-data">No data found. Please adjust column boundaries.</p>';
+                        return;
+                    }
+                    
+                    const table = document.createElement('table');
+                    table.className = 'excel-table';
+                    
+                    const thead = document.createElement('thead');
+                    const headerRow = document.createElement('tr');
+                    
+                    const maxColumns = Math.max(...extractedData.map(row => row.length));
+                    for (let i = 0; i < maxColumns; i++) {
+                        const th = document.createElement('th');
+                        th.textContent = `Column ${i + 1}`;
+                        headerRow.appendChild(th);
+                    }
+                    thead.appendChild(headerRow);
+                    table.appendChild(thead);
+                    
+                    const tbody = document.createElement('tbody');
+                    extractedData.forEach(row => {
+                        const tr = document.createElement('tr');
+                        for (let i = 0; i < maxColumns; i++) {
+                            const td = document.createElement('td');
+                            td.textContent = row[i] || '';
+                            tr.appendChild(td);
+                        }
+                        tbody.appendChild(tr);
+                    });
+                    table.appendChild(tbody);
+                    
+                    previewContainer.innerHTML = '';
+                    previewContainer.appendChild(table);
+                    
+                } catch (error) {
+                    console.error('Error previewing data:', error);
+                    previewContainer.innerHTML = '<p class="no-data">Error processing data. Please check your column boundaries.</p>';
+                }
+            }
+
+            async extractDataFromCurrentPage() {
+                return await this.extractDataFromPage(this.currentPage);
+            }
+
+            async extractDataFromPage(pageNum) {
+                const page = await this.pdfDoc.getPage(pageNum);
+                const viewport = page.getViewport({ scale: this.scale });
+                const pageText = this.pdfText.find(p => p.pageNum === pageNum);
+                if (!pageText) return [];
+
+                const itemsWithPixel = pageText.items.map(item => {
+                    const [pixelX, pixelY] = viewport.convertToViewportPoint(item.x, item.y);
+                    return {
+                        text: item.text,
+                        pixelX,
+                        pixelY,
+                        width: item.width,
+                        height: item.height,
+                        fontSize: item.fontSize
+                    };
+                });
+
+                let verticalLines;
+                let horizontalLineY = null;
+
+                if (this.pageConfig.type === 'same') {
+                    verticalLines = this.verticalLines;
+                    if (this.horizontalLine) horizontalLineY = this.horizontalLine.y;
+                } else {
+                    const isOdd = (pageNum % 2 === 1);
+                    verticalLines = isOdd ? this.pageConfig.oddLines : this.pageConfig.evenLines;
+                    const hLine = isOdd ? this.pageConfig.oddHorizontal : this.pageConfig.evenHorizontal;
+                    if (hLine) horizontalLineY = hLine.y;
+                }
+
+                let filteredItems = itemsWithPixel;
+                if (horizontalLineY !== null) {
+                    filteredItems = itemsWithPixel.filter(item => item.pixelY > horizontalLineY);
+                }
+
+                const sortedX = verticalLines.map(l => l.x).sort((a, b) => a - b);
+                const boundaries = [0, ...sortedX, viewport.width];
+
+                const rows = {};
+                const roundFactor = 10; // Adjust rounding for row grouping in pixels
+                filteredItems.forEach(item => {
+                    const rowKey = Math.round(item.pixelY / roundFactor) * roundFactor;
+                    if (!rows[rowKey]) rows[rowKey] = [];
+                    rows[rowKey].push(item);
+                });
+
+                const rowArray = Object.entries(rows)
+                    .map(([key, items]) => ({ y: parseFloat(key), items: items.sort((a, b) => a.pixelX - b.pixelX) }))
+                    .sort((a, b) => a.y - b.y); // Top to bottom
+
+                const extractedData = [];
+                rowArray.forEach(row => {
+                    const rowData = [];
+                    for (let i = 0; i < boundaries.length - 1; i++) {
+                        const left = boundaries[i];
+                        const right = boundaries[i + 1];
+                        const columnText = row.items
+                            .filter(item => item.pixelX >= left && item.pixelX < right)
+                            .map(item => item.text)
+                            .join(' ')
+                            .trim();
+                        rowData.push(columnText);
+                    }
+                    if (rowData.some(cell => cell.length > 0)) {
+                        extractedData.push(rowData);
+                    }
+                });
+
+                return extractedData;
+            }
+
+            async exportToExcel() {
+                if (!this.pdfDoc) {
+                    alert('पहले PDF file upload करें।');
+                    return;
+                }
+                
+                this.showLoading(true);
+                
+                try {
+                    const allData = [];
+                    
+                    for (let pageNum = 1; pageNum <= this.totalPages; pageNum++) {
+                        const pageData = await this.extractDataFromPage(pageNum);
+                        allData.push(...pageData);
+                    }
+                    
+                    if (allData.length === 0) {
+                        alert('कोई data extract नहीं हुआ। कृपया column boundaries adjust करें।');
+                        this.showLoading(false);
+                        return;
+                    }
+                    
+                    const wb = XLSX.utils.book_new();
+                    const ws = XLSX.utils.aoa_to_sheet(allData);
+                    
+                    const colWidths = [];
+                    if (allData.length > 0) {
+                        for (let i = 0; i < allData[0].length; i++) {
+                            const maxLength = Math.max(
+                                ...allData.map(row => (row[i] || '').toString().length)
+                            );
+                            colWidths.push({ width: Math.min(Math.max(maxLength, 10), 50) });
+                        }
+                    }
+                    ws['!cols'] = colWidths;
+                    
+                    XLSX.utils.book_append_sheet(wb, ws, 'Extracted Data');
+                    
+                    const timestamp = new Date().toISOString().slice(0, 19).replace(/:/g, '-');
+                    const filename = `pdf-to-excel-${timestamp}.xlsx`;
+                    
+                    XLSX.writeFile(wb, filename);
+                    
+                    this.showLoading(false);
+                    alert(`Excel file "${filename}" successfully download हो गई!`);
+                    
+                } catch (error) {
+                    console.error('Export error:', error);
+                    alert('Excel export में error आई। कृपया फिर से try करें।');
+                    this.showLoading(false);
+                }
+            }
+
+            showSection(sectionId) {
+                document.getElementById('uploadSection').style.display = 'none';
+                document.getElementById('processingSection').style.display = 'none';
+                document.getElementById('editorSection').style.display = 'none';
+                
+                document.getElementById(sectionId).style.display = 'block';
+                document.getElementById(sectionId).classList.add('fade-in');
+            }
+
+            updateProgress(percent, text) {
+                document.getElementById('progressFill').style.width = percent + '%';
+                document.getElementById('progressText').textContent = text;
+            }
+
+            showLoading(show) {
+                document.getElementById('loadingOverlay').style.display = show ? 'flex' : 'none';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            new PDFToExcelConverter();
+        });
+    </script>
+</body>
+</html>
