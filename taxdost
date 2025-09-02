@@ -1,0 +1,264 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free GST Reconciliation tool who reconcile your data within a seconds.
+This GST Reconciliation Tool is designed to help you easily compare and match your GST data from GSTR-2B and GSTR-3B/books. This guide will walk you through the process step by step.
+
+Step-by-Step Guide
+Log in: Use your username and password to access the tool.
+Download Sample File: Click on "Download Sample Excel File" to get a template for your data.
+Prepare Your Data: Enter your GSTR-2B data in GST Portal sheet and GSTR-3B or books in client data sheet according to the sample file.
+Upload File: Upload your prepared Excel file using the "Upload GST Data File" option.
+Set Difference Allowed: Adjust the tolerance for differences in amounts (default is 1).
+Enable Detailed Reconciliation: Check this box for detailed reconciliation or leave unchecked for a simple simple reconciliation.
+Enable Filters (Optional): Use filters to sort or search through your data.
+Reconcile Data: Click "Reconcile" to process and match your data.
+Review Results: Check the GSTR-2B, GSTR-3B, and Summary tables for matched data.
+Edit Data (If Needed): Make direct edits in the tables and reconcile again.
+Download Output: Click "Download Reconciled Data" to save the results.
+Feature Descriptions
+Login System: Secure access with username and password. Subscription status is verified upon login.
+Sample File Download: Provides a template to ensure your data is correctly formatted.
+File Upload: Upload your GST data in Excel (.xlsx) format.
+Difference Allowed: Set the acceptable difference in taxable value, IGST, CGST, and SGST for matching (default: 1).
+Detailed Reconciliation: When enabled, shows detailed match criteria; when disabled, shows a simplified "Match" or "Unmatch".
+Enable Filters: Adds dropdown filters to table columns for easy data sorting and searching.
+Reconcile Button: Processes the data and updates the tables with match results.
+Reset Data Button: Clears all uploaded data and resets the tool.
+Editable Tables: Directly edit data in the tables; changes are reflected upon reconciling again.
+Download Reconciled Data: Generates an Excel file with matched data, including color-coded rows for clarity.
+Understanding Match Criteria
+When Detailed Reconciliation is enabled, the tool uses the following criteria:
+
+Match - GSTN, Invoice No., Date: Exact match on GSTN, invoice number, and date.
+Match - GSTN, Invoice No.: Match on GSTN and invoice number, with possible date differences.
+Match - GSTN, Date: Match on GSTN and date, with possible invoice number differences.
+Match - GSTN: Match only on GSTN, with differences in invoice number and date.
+Unmatch - GSTN Not Exist: GSTN from one sheet is not found in the other.
+Unmatch - Amt Diff: Showing unmatch invoices due to amt difference
+Unmatch: Data does not meet any match criteria, generally due to extra invoices in either GSTR-2B or GSTR-3B/Books
+When Detailed Reconciliation is disabled, the criteria are simplified:
+
+Match: Data matches based on any of the detailed criteria above.
+Unmatch - GSTN Not Exist: GSTN from one sheet is not found in the other.
+Unmatch - Amt Diff: Showing unmatch invoices due to amt difference
+Unmatch: Data does not meet any match criteria, generally due to extra invoices in either GSTR-2B or GSTR-3B/Books">
+    <meta name="keywords" content="GST,GST Reco, Reconciliation, GST Reconciliation, GSTR-2B, GSTR2B, GSTR-3B, GSTR3B, 2b vs 3b, gst.gov.in, https://www.gst.gov.in/, GST Login">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta property="og:title" content="GST Reconciliation">
+    <meta property="og:image" content="https://sumitgarg100000.github.io/GSTReconciliation/Image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="GST Reconciliation Preview">
+    <meta name="google-site-verification" content="FR7D2qkpciz6QmllRnOJ7Mv6bbsFJ1CA6Qn7mYDkqwE" />
+    <title>GST Reconciliation Tool - Professional Edition</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+        }
+
+        :root {
+            --primary-color: #1a73e8;
+            --primary-dark: #0d47a1;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --bg-gradient-1: linear-gradient(135deg, #f5f7fa, #e4f1ff);
+        }
+
+        body {
+            background: var(--bg-gradient-1);
+            color: var(--text-primary);
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 61, 115, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(135deg, #1a73e8, #0d47a1);
+        }
+
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+        }
+
+        .nav-links a {
+            margin-left: 25px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .mobile-menu-open .nav-links {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 20px;
+                background: white;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                z-index: 100;
+            }
+
+            .mobile-menu-open .nav-links a {
+                margin: 10px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header-nav">
+            <a href="#" class="logo">
+                <i class="fas fa-chart-line"></i>
+                <span>Sumit Garg</span>
+            </a>
+            <div class="nav-links">
+                <a href="https://sumitgarg100000.github.io/Home/">Home</a>
+                <a href="https://sumitgarg100000.github.io/Home/#services">Services</a>
+                <a href="https://sumitgarg100000.github.io/Home/#about">About</a>
+                <a href="https://sumitgarg100000.github.io/Home/#contact">Contact</a>
+            </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </header>
+
+        <!-- Chatbot code here -->
+        <div id="Chatbot">
+        
+    <div class="chatbot-container" style="display: flex; justify-content: center; padding: 20px 10px;">
+  <iframe
+    src="https://taxdost.vercel.app/"
+    style="width: 100%; max-width: 500px; height: 650px; border: none; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.15);"
+    title="Tax Dost AI Chatbot"
+  >
+    <p>Your browser does not support iframes.</p>
+  </iframe>
+</div>
+
+    
+    
+          
+
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            const container = document.querySelector('.container');
+            
+            menuBtn.addEventListener('click', function() {
+                container.classList.toggle('mobile-menu-open');
+            });
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('.mobile-menu-btn') && !event.target.closest('.nav-links')) {
+                    container.classList.remove('mobile-menu-open');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
