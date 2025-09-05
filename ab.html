@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Boyfriend/Girlfriend</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "react": "https://esm.sh/react@18.2.0",
+          "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+          "@google/generative-ai": "https://esm.sh/@google/generative-ai@0.7.0"
+        }
+      }
+    </script>
+    <style>
+      /* Custom animations for smoother feel */
+      @keyframes fade-in {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      @keyframes fade-in-up {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .animate-fade-in {
+        animation: fade-in 0.3s ease-out forwards;
+      }
+      .animate-fade-in-up {
+        animation: fade-in-up 0.4s ease-out forwards;
+      }
+    </style>
+    <!-- Include index.css if it exists -->
+    <link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-gray-900">
+    <div id="root"></div>
+    <script type="module">
+        // --- IMPORTS ---
+        import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
+        import ReactDOM from 'react-dom/client';
+        import { GoogleGenerativeAI as GoogleGenAI } from '@google/generative-ai';
+
+        // --- START OF types.ts ---
+        const Gender = {
+            MALE: "Boy",
+            FEMALE: "Girl"
+        };
+        const MessageSender = {
+            USER: "user",
+            AI: "ai"
+        };
+        const MessageType = {
+            TEXT: "text",
+            IMAGE: "image",
+            LOADING: "loading",
+            ERROR: "error"
+        };
+        // --- END OF types.ts ---
+
+        // --- START OF constants.ts ---
+        const MALE_PERSONAS = [
+            { value: 'Boyfriend', label: 'Boyfriend' },
+            { value: 'Husband', label: 'Husband' },
+            { value: 'Best Friend', label: 'Best Friend' },
+            { value: 'Fantasy Prince', label: 'Fantasy Prince' },
+            { value: 'Rude Rival', label: 'Rude Rival' },
+            { value: 'Strict Teacher', label: 'Strict Teacher' },
+            { value: 'Sexy Partner', label: 'Sexy Partner' },
+            { value: 'Mysterious Stranger', label: 'Mysterious Stranger' }
+        ];
+        const FEMALE_PERSONAS = [
+            { value: 'Girlfriend', label: 'Girlfriend' },
+            { value: 'Wife', label: 'Wife' },
+            { value: 'Best Friend', label: 'Best Friend' },
+            { value: 'Fantasy Princess', label: 'Fantasy Princess' },
+            { value: 'Sassy Classmate', label: 'Sassy Classmate' },
+            { value: 'Strict Teacher', label: 'Strict Teacher' },
+            { value: 'Sexy Partner', label: 'Sexy Partner' },
+            { value: 'Shy Admirer', label: 'Shy Admirer' }
+        ];
+        const PERSONAS = {
+            [Gender.MALE]: MALE_PERSONAS,
+            [Gender.FEMALE]: FEMALE_PERSONAS
+        };
+        // --- END OF constants.ts ---
+
+        // --- START OF components/icons ---
+        const Spinner = () => (
+            React.createElement("svg", {
+                className: "animate-spin h-5 w-5 text-white",
+                xmlns: "http://www.w3.org/2000/svg",
+                fill: "none",
+                viewBox: "0 0 24 24"
+            },
+                React.createElement("circle", {
+                    className: "opacity-25",
+                    cx: "12",
+                    cy: "12",
+                    r: "10",
+                    stroke: "currentColor",
+                    strokeWidth: "4"
+                }),
+                React.createElement("path", {
+                    className: "opacity-75",
+                    fill: "currentColor",
+                    d: "M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                })
+            )
+        );
+
+        const PencilIcon = () => (
+            React.createElement("svg", {
+                xmlns: "http://www.w3.org/2000/svg",
+                className: "h-5 w-5",
+                fill: "none",
+                viewBox: "0 0 24 24",
+                stroke: "currentColor"
+            },
+                React.createElement("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.5L15.232 5.232z"
+                })
+            )
+        );
+
+        const TrashIcon = () => (
+            React.createElement("svg", {
+                xmlns: "http://www.w3.org/2000/svg",
+                className: "h-5 w-5",
+                fill: "none",
+                viewBox: "0 0 24 24",
+                stroke: "currentColor"
+            },
+                React.createElement("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                })
+            )
+        );
+        // --- END OF components/icons ---
+
+        // --- START OF services/geminiService.ts ---
+        function fileToBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => {
+                    const result = reader.result;
+                    const base64 = result.split(',')[1];
+                    resolve({ base64, mimeType: file.type });
+                };
+                reader.onerror = error => reject(error);
+            });
+        }
+
+        // Replace with your actual Google API key or use environment variable
+        const API_KEY = import.meta.env.VITE_API_KEY || 'YOUR_API_KEY_HERE';
+        const ai = new GoogleGenAI(API_KEY);
+        let chat = null;
+
+        function getSystemInstruction(config, hasBaseImage) {
+            const imageInstructions = hasBaseImage
+                ? `When asked to generate or create an image, you MUST respond ONLY with the exact special token: '[[GENERATE_IMAGE]]'.
+                   When asked to edit an image, you MUST respond ONLY with the exact special token: '[[EDIT_IMAGE]]'.`
+                : `You cannot generate or edit images because you don't have a reference photo configured. If the user asks for an image, you must politely decline and explain this limitation.`;
+            return `You are ${config.name}, a ${config.gender} who is the user's ${config.persona}. 
+              Your personality should strictly match this role. 
+              Engage in a personal, emotional, and deeply conversational manner. 
+              Your name is ${config.name}. Never break character. 
+              ${imageInstructions}
+              For all other conversation, respond naturally in character.`;
+        }
+
+        async function startChat(config, hasBaseImage) {
+            const model = ai.getGenerativeModel({
+                model: 'gemini-1.5-flash',
+                systemInstruction: getSystemInstruction(config, hasBaseImage)
+            });
+            chat = model.startChat();
+        }
+
+        async function getChatResponseStream(prompt) {
+            if (!chat) {
+                throw new Error('Chat not initialized. Call startChat first.');
+            }
+            const result = await chat.generateContentStream([prompt]);
+            async function* streamGenerator() {
+                for await (const chunk of result.stream) {
+                    yield chunk.text();
+                }
+            }
+            return streamGenerator();
+        }
+
+        async function getChatResponseWithSearch(prompt) {
+            const model = ai.getGenerativeModel({
+                model: "gemini-1.5-flash",
+                tools: [{ functionDeclarations: [{ name: "googleSearch" }] }]
+            });
+            const result = await model.generateContent([prompt]);
+            const text = result.candidates[0].content.parts[0].text;
+            const sources = result.candidates[0].groundingMetadata?.groundingChunks
+                ?.map(chunk => chunk.web)
+                .filter(web => web?.uri && web?.title) ?? [];
+            return { text, sources };
+        }
+
+        async function generateImage(prompt, baseImage, previousImages, numberOfImages, conversationContext) {
+            const model = ai.getGenerativeModel({ model: 'gemini-1.5-flash' });
+            const contents = [
+                { inline_data: { data: baseImage.base64, mime_type: baseImage.mimeType } },
+                { text: "PRIMARY REFERENCE IMAGE. This is the person to be generated. You MUST treat this image as an IMMUTABLE reference for the person's facial features, hair style, and skin tone. Replicate their face with the HIGHEST POSSIBLE FIDELITY. Only the pose, expression, clothing, and background should change based on the prompt." },
+                ...previousImages.map(img => ({ inline_data: { data: img.base64, mime_type: img.mimeType } })),
+                { text: `CONTEXT: The images above show previous depictions of the person. Maintain consistency with the PRIMARY REFERENCE IMAGE above all else.
+                CONVERSATION HISTORY (for context):
+                ${conversationContext}
+                TASK: Generate a new image of the person from the PRIMARY REFERENCE IMAGE based on the conversation and this final instruction: "${prompt}"` }
+            ];
+            const generationPromises = [];
+            for (let i = 0; i < numberOfImages; i++) {
+                generationPromises.push(model.generateContent(contents));
+            }
+            const responses = await Promise.all(generationPromises);
+            const generatedImages = responses.flatMap(response => {
+                return response.candidates?.[0]?.content?.parts
+                    ?.filter(part => part.inline_data)
+                    ?.map(part => ({
+                        base64: part.inline_data.data,
+                        mimeType: part.inline_data.mime_type
+                    })) || [];
+            });
+            if (generatedImages.length === 0) {
+                throw new Error("Image generation failed or returned no image.");
+            }
+            return generatedImages;
+        }
+
+        async function editImage(prompt, image) {
+            const model = ai.getGenerativeModel({ model: 'gemini-1.5-flash' });
+            const response = await model.generateContent([
+                { inline_data: { data: image.base64, mime_type: image.mimeType } },
+                { text: prompt }
+            ]);
+            const editedImages = response.candidates[0].content.parts
+                .filter(part => part.inline_data)
+                .map(part => ({
+                    base64: part.inline_data.data,
+                    mimeType: part.inline_data.mime_type
+                }));
+            if (editedImages.length > 0) {
+                return editedImages;
+            }
+            throw new Error("Image editing failed or returned no image.");
+        }
+
+        async function combineImages(prompt, baseImage, userImage) {
+            const model = ai.getGenerativeModel({ model: 'gemini-1.5-flash' });
+            const response = await model.generateContent([
+                { inline_data: { data: baseImage.base64, mime_type: baseImage.mimeType } },
+                { text: "PERSON A: This is the AI partner. You must preserve their distinct facial features and appearance." },
+                { inline_data: { data: userImage.base64, mime_type: userImage.mimeType } },
+                { text: "PERSON B: This is the user. You must preserve their distinct facial features and appearance." },
+                { text: `TASK: Create a single new, realistic image that includes BOTH Person A and Person B together in a scene, based on the following instruction: "${prompt}". Do NOT merge their faces or create a hybrid person. They should appear as two separate individuals.` }
+            ]);
+            const combinedImages = response.candidates[0].content.parts
+                .filter(part => part.inline_data)
+                .map(part => ({
+                    base64: part.inline_data.data,
+                    mimeType: part.inline_data.mime_type
+                }));
+            if (combinedImages.length > 0) {
+                return combinedImages;
+            }
+            throw new Error("Image combination failed or returned no image.");
+        }
+        // --- END OF services/geminiService.ts ---
+
+        // --- START OF components/Header.tsx ---
+        const Header = ({ config, setConfig, isEditingDisabled, onEditProfile, onClearChat }) => {
+            const partnerTerm = config.gender === Gender.MALE ? 'Boyfriend' : 'Girlfriend';
+            const handleGenderChange = (e) => {
+                const newGender = e.target.value;
+                setConfig(prev => ({
+                    ...prev,
+                    gender: newGender,
+                    persona: PERSONAS[newGender][0].value
+                }));
+            };
+            const handleClearChat = () => {
+                if (window.confirm("Are you sure you want to clear the entire chat history? This cannot be undone.")) {
+                    onClearChat();
+                }
+            };
+            return React.createElement("header", {
+                className: "bg-gray-800/50 backdrop-blur-sm p-4 shadow-lg flex flex-col sm:flex-row gap-4 items-center justify-between border-b border-gray-700"
+            },
+                React.createElement("div", { className: "text-2xl font-bold text-white flex-shrink-0" },
+                    "AI ",
+                    React.createElement("span", { className: "text-pink-400" }, partnerTerm)),
+                React.createElement("div", { className: "flex flex-col sm:flex-row gap-4 w-full sm:w-auto items-center" },
+                    React.createElement("input", {
+                        type: "text",
+                        value: config.name,
+                        onChange: (e) => setConfig(prev => ({ ...prev, name: e.target.value })),
+                        placeholder: `${partnerTerm}'s Name`,
+                        disabled: isEditingDisabled,
+                        className: "bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-pink-500 focus:border-pink-500 block w-full p-2.5 disabled:opacity-50"
+                    }),
+                    React.createElement("select", {
+                        value: config.gender,
+                        onChange: handleGenderChange,
+                        disabled: isEditingDisabled,
+                        className: "bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-pink-500 focus:border-pink-500 block w-full p-2.5 disabled:opacity-50"
+                    }, Object.values(Gender).map(g => React.createElement("option", { key: g, value: g }, g))),
+                    React.createElement("select", {
+                        value: config.persona,
+                        onChange: (e) => setConfig(prev => ({ ...prev, persona: e.target.value })),
+                        disabled: isEditingDisabled,
+                        className: "bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-pink-500 focus:border-pink-500 block w-full p-2.5 disabled:opacity-50"
+                    }, PERSONAS[config.gender].map(p => React.createElement("option", { key: p.value, value: p.value }, p.label))),
+                    isEditingDisabled && React.createElement(React.Fragment, null,
+                        React.createElement("button", {
+                            onClick: onEditProfile,
+                            className: "p-2.5 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors",
+                            "aria-label": `Edit ${partnerTerm.toLowerCase()} profile`,
+                            title: `Edit ${partnerTerm.toLowerCase()} profile`
+                        }, React.createElement(PencilIcon, null)),
+                        React.createElement("button", {
+                            onClick: handleClearChat,
+                            className: "p-2.5 bg-gray-700 hover:bg-red-500/50 text-white rounded-lg transition-colors",
+                            "aria-label": "Clear chat history",
+                            title: "Clear chat history"
+                        }, React.createElement(TrashIcon, null))
+                    )
+                )
+            );
+        };
+        // --- END OF components/Header.tsx ---
+
+        // --- START OF components/Message.tsx ---
+        const MessageComponent = ({ message, personaName, aiAvatarUrl, onAttachImageFromChat }) => {
+            const isUser = message.sender === MessageSender.USER;
+            const isAI = message.sender === MessageSender.AI;
+            const renderContent = () => {
+                switch (message.type) {
+                    case MessageType.TEXT:
+                        return React.createElement("div", null,
+                            React.createElement("p", { className: "whitespace-pre-wrap" }, message.content),
+                            message.sources && message.sources.length > 0 && React.createElement("div", { className: "mt-3 pt-3 border-t border-gray-600" },
+                                React.createElement("h4", { className: "text-xs font-bold text-gray-400 mb-1" }, "Sources:"),
+                                React.createElement("ul", { className: "text-xs list-disc list-inside" },
+                                    message.sources.map((source, index) => React.createElement("li", { key: index, className: "truncate" },
+                                        React.createElement("a", {
+                                            href: source.uri,
+                                            target: "_blank",
+                                            rel: "noopener noreferrer",
+                                            className: "text-pink-400 hover:underline",
+                                            title: source.uri
+                                        }, source.title || new URL(source.uri).hostname)
+                                    ))
+                                )
+                            )
+                        );
+                    case MessageType.IMAGE:
+                        return React.createElement("div", { className: "relative group" },
+                            React.createElement("img", {
+                                src: `data:${message.mimeType};base64,${message.content}`,
+                                alt: "Generated content",
+                                className: "rounded-lg max-w-xs md:max-w-sm"
+                            }),
+                            isAI && React.createElement("button", {
+                                onClick: () => onAttachImageFromChat(message),
+                                className: "absolute bottom-2 right-2 bg-black bg-opacity-50 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 focus:opacity-100 transition-opacity duration-300",
+                                "aria-label": "Edit this image",
+                                title: "Edit this image"
+                            }, React.createElement(PencilIcon, null))
+                        );
+                    case MessageType.LOADING:
+                        return React.createElement("div", { className: "flex items-center space-x-2" },
+                            React.createElement(Spinner, null),
+                            React.createElement("span", null, message.content)
+                        );
+                    case MessageType.ERROR:
+                        return React.createElement("p", { className: "text-red-400" }, message.content);
+                    default:
+                        return null;
+                }
+            };
+            return React.createElement("div", {
+                className: `flex items-end gap-3 ${isUser ? 'justify-end' : 'justify-start'}`
+            },
+                isAI && aiAvatarUrl && React.createElement("img", {
+                    src: aiAvatarUrl,
+                    alt: "AI Avatar",
+                    className: "w-10 h-10 rounded-full object-cover flex-shrink-0"
+                }),
+                React.createElement("div", {
+                    className: `flex flex-col max-w-lg md:max-w-xl ${isUser ? 'items-end' : 'items-start'}`
+                },
+                    React.createElement("div", {
+                        className: `px-4 py-3 rounded-2xl ${isUser ? 'bg-pink-600 text-white rounded-br-none' : 'bg-gray-700 text-gray-200 rounded-bl-none'}`
+                    }, renderContent()),
+                    React.createElement("span", { className: "text-xs text-gray-500 mt-1 px-1" }, isAI ? personaName : 'You')
+                ),
+                isUser && React.createElement("div", { className: "w-10 h-10 flex-shrink-0" })
+            );
+        };
+        // --- END OF components/Message.tsx ---
+
+        // --- START OF components/ChatWindow.tsx ---
+        const ChatWindow = ({ messages, personaName, aiAvatarUrl, onAttachImageFromChat }) => {
+            const endOfMessagesRef = useRef(null);
+            useEffect(() => {
+                endOfMessagesRef.current?.scrollIntoView({ behavior: 'smooth' });
+            }, [messages]);
+            return React.createElement("div", { className: "flex-1 overflow-y-auto p-6 space-y-6" },
+                messages.map((msg) => React.createElement(MessageComponent, {
+                    key: msg.id,
+                    message: msg,
+                    personaName: personaName,
+                    aiAvatarUrl: aiAvatarUrl,
+                    onAttachImageFromChat: onAttachImageFromChat
+                })),
+                React.createElement("div", { ref: endOfMessagesRef })
+            );
+        };
+        // --- END OF components/ChatWindow.tsx ---
+
+        // --- START OF components/ChatInput.tsx ---
+        const PaperClipIcon = () => (
+            React.createElement("svg", {
+                xmlns: "http://www.w3.org/2000/svg",
+                className: "h-6 w-6",
+                fill: "none",
+                viewBox: "0 0 24 24",
+                stroke: "currentColor"
+            },
+                React.createElement("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"
+                })
+            )
+        );
+
+        const SendIcon = () => (
+            React.createElement("svg", {
+                xmlns: "http://www.w3.org/2000/svg",
+                className: "h-6 w-6 transform rotate-[-45deg]",
+                viewBox: "0 0 24 24",
+                fill: "currentColor"
+            },
+                React.createElement("path", {
+                    d: "M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"
+                })
+            )
+        );
+
+        const GridIcon = () => (
+            React.createElement("svg", {
+                xmlns: "http://www.w3.org/2000/svg",
+                className: "h-5 w-5",
+                fill: "none",
+                viewBox: "0 0 24 24",
+                stroke: "currentColor"
+            },
+                React.createElement("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    strokeWidth: 2,
+                    d: "M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 14a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 14a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+                })
+            )
+        );
+
+        const ChatInput = ({ onSendMessage, isLoading, numberOfImages, setNumberOfImages, attachedImage, setAttachedImage }) => {
+            const [input, setInput] = useState('');
+            const handleSend = () => {
+                if ((input.trim() || attachedImage) && !isLoading) {
+                    onSendMessage(input, attachedImage ?? undefined);
+                    setInput('');
+                }
+            };
+            const handleKeyPress = (e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    handleSend();
+                }
+            };
+            const handleFileChange = async (e) => {
+                const file = e.target.files?.[0];
+                if (file) {
+                    const imageFile = await fileToBase64(file);
+                    setAttachedImage(imageFile);
+                    if (!input) {
+                        setInput("Edit this image for me.");
+                    }
+                }
+                e.target.value = '';
+            };
+            return React.createElement("div", { className: "bg-gray-800 p-4 border-t border-gray-700" },
+                attachedImage && React.createElement("div", { className: "mb-2 flex items-center bg-gray-700 p-2 rounded-lg" },
+                    React.createElement("img", {
+                        src: `data:${attachedImage.mimeType};base64,${attachedImage.base64}`,
+                        className: "w-12 h-12 rounded-md object-cover",
+                        alt: "image to edit"
+                    }),
+                    React.createElement("p", { className: "ml-4 text-sm text-gray-300" }, "Editing/combining attached image. Add your instructions."),
+                    React.createElement("button", {
+                        onClick: () => setAttachedImage(null),
+                        className: "ml-auto text-gray-400 hover:text-white text-2xl font-bold leading-none p-1"
+                    }, "×")
+                ),
+                React.createElement("div", { className: "flex items-center bg-gray-700 rounded-full p-2" },
+                    React.createElement("label", {
+                        htmlFor: "file-input",
+                        className: "p-2 text-gray-400 hover:text-pink-400 cursor-pointer"
+                    }, React.createElement(PaperClipIcon, null)),
+                    React.createElement("input", {
+                        id: "file-input",
+                        type: "file",
+                        className: "hidden",
+                        accept: "image/*",
+                        onChange: handleFileChange
+                    }),
+                    React.createElement("div", {
+                        className: "relative flex items-center p-2 text-gray-400 hover:text-pink-400 cursor-pointer",
+                        title: "Number of images to generate"
+                    },
+                        React.createElement(GridIcon, null),
+                        React.createElement("span", { className: "ml-1.5 text-sm font-semibold" }, numberOfImages),
+                        React.createElement("select", {
+                            value: numberOfImages,
+                            onChange: (e) => setNumberOfImages(parseInt(e.target.value, 10)),
+                            className: "absolute inset-0 w-full h-full opacity-0 cursor-pointer",
+                            "aria-label": "Number of images to generate",
+                            disabled: isLoading
+                        },
+                            React.createElement("option", { value: 1 }, "1"),
+                            React.createElement("option", { value: 2 }, "2"),
+                            React.createElement("option", { value: 3 }, "3"),
+                            React.createElement("option", { value: 4 }, "4")
+                        )
+                    ),
+                    React.createElement("input", {
+                        type: "text",
+                        value: input,
+                        onChange: (e) => setInput(e.target.value),
+                        onKeyPress: handleKeyPress,
+                        placeholder: "Type your message...",
+                        disabled: isLoading,
+                        className: "flex-1 bg-transparent text-white placeholder-gray-500 focus:outline-none px-4"
+                    }),
+                    React.createElement("button", {
+                        onClick: handleSend,
+                        disabled: isLoading || (!input.trim() && !attachedImage),
+                        className: "bg-pink-600 text-white rounded-full p-3 hover:bg-pink-700 disabled:bg-gray-600 disabled:cursor-not-allowed transition-colors flex items-center justify-center"
+                    }, isLoading ? React.createElement("div", { className: "w-6 h-6" }, React.createElement(Spinner, null)) : React.createElement(SendIcon, null))
+                )
+            );
+        };
+        // --- END OF components/ChatInput.tsx ---
+
+        // --- START OF components/SettingsModal.tsx ---
+        const SettingsModal = ({ isOpen, onClose, onSave, currentConfig, currentImage }) => {
+            const [config, setConfig] = useState(currentConfig);
+            const [imageFile, setImageFile] = useState(currentImage);
+            const [preview, setPreview] = useState(currentImage ? `data:${currentImage.mimeType};base64,${currentImage.base64}` : null);
+            const [error, setError] = useState(null);
+            useEffect(() => {
+                setConfig(currentConfig);
+                setImageFile(currentImage);
+                setPreview(currentImage ? `data:${currentImage.mimeType};base64,${currentImage.base64}` : null);
+                setError(null);
+            }, [isOpen, currentConfig, currentImage]);
+            const partnerTerm = config.gender === Gender.MALE ? 'Boyfriend' : 'Girlfriend';
+            if (!isOpen) return null;
+            const handleFileChange = async (e) => {
+                const file = e.target.files?.[0];
+                if (file) {
+                    if (file.size > 4 * 1024 * 1024) {
+                        setError('File size must be less than 4MB.');
+                        return;
+                    }
+                    setError(null);
+                    const reader = new FileReader();
+                    reader.onloadend = () => setPreview(reader.result);
+                    reader.readAsDataURL(file);
+                    try {
+                        const newImageFile = await fileToBase64(file);
+                        setImageFile(newImageFile);
+                    } catch (err) {
+                        setError('Failed to process image. Please try again.');
+                    }
+                }
+            };
+            const handleGenderChange = (e) => {
+                const newGender = e.target.value;
+                setConfig(prev => ({
+                    ...prev,
+                    gender: newGender,
+                    persona: PERSONAS[newGender][0].value
+                }));
+            };
+            const handleSave = () => {
+                if (!config.name.trim()) {
+                    setError(`${partnerTerm}'s name cannot be empty.`);
+                    return;
+                }
+                onSave(config, imageFile);
+            };
+            return React.createElement("div", {
+                className: "fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 animate-fade-in"
+            },
+                React.createElement("div", {
+                    className: "bg-gray-800 rounded-lg shadow-2xl p-8 max-w-md w-full text-white transform transition-all animate-fade-in-up"
+                },
+                    React.createElement("h2", { className: "text-2xl font-bold mb-6 text-center text-pink-400" }, `${partnerTerm} Settings`),
+                    React.createElement("div", { className: "flex flex-col items-center mb-6" },
+                        React.createElement("label", { htmlFor: "avatar-upload-modal", className: "cursor-pointer group" },
+                            React.createElement("img", {
+                                src: preview,
+                                alt: `${partnerTerm} Avatar Preview`,
+                                className: "w-32 h-32 rounded-full object-cover border-4 border-gray-600 group-hover:border-pink-500 transition-all"
+                            })
+                        ),
+                        React.createElement("input", {
+                            id: "avatar-upload-modal",
+                            type: "file",
+                            accept: "image/png, image/jpeg",
+                            className: "hidden",
+                            onChange: handleFileChange
+                        }),
+                        React.createElement("p", { className: "text-sm text-gray-400 mt-2" }, "Click image to change")
+                    ),
+                    React.createElement("div", { className: "space-y-4" },
+                        React.createElement("input", {
+                            type: "text",
+                            value: config.name,
+                            onChange: (e) => setConfig(prev => ({ ...prev, name: e.target.value })),
+                            placeholder: `${partnerTerm}'s Name`,
+                            className: "bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-pink-500 focus:border-pink-500 block w-full p-2.5"
+                        }),
+                        React.createElement("select", {
+                            value: config.gender,
+                            onChange: handleGenderChange,
+                            className: "bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-pink-500 focus:border-pink-500 block w-full p-2.5"
+                        }, Object.values(Gender).map(g => React.createElement("option", { key: g, value: g }, g))),
+                        React.createElement("select", {
+                            value: config.persona,
+                            onChange: (e) => setConfig(prev => ({ ...prev, persona: e.target.value })),
+                            className: "bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-pink-500 focus:border-pink-500 block w-full p-2.5"
+                        }, PERSONAS[config.gender].map(p => React.createElement("option", { key: p.value, value: p.value }, p.label)))
+                    ),
+                    error && React.createElement("p", { className: "text-red-500 text-center mt-4" }, error),
+                    React.createElement("div", { className: "flex gap-4 mt-8" },
+                        React.createElement("button", {
+                            onClick: onClose,
+                            className: "w-full bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-4 rounded-lg transition-colors"
+                        }, "Cancel"),
+                        React.createElement("button", {
+                            onClick: handleSave,
+                            disabled: !config.name.trim(),
+                            className: "w-full bg-pink-600 hover:bg-pink-700 disabled:bg-gray-500 disabled:cursor-not-allowed text-white font-bold py-3 px-4 rounded-lg transition-colors"
+                        }, "Save Changes")
+                    )
+                )
+            );
+        };
+        // --- END OF components/SettingsModal.tsx ---
+
+        // --- START OF App.tsx ---
+        const SetupPlaceholderIcon = () => (
+            React.createElement("div", {
+                className: "w-40 h-40 rounded-full bg-gray-700 flex items-center justify-center border-4 border-dashed border-gray-600 group-hover:border-pink-500 transition-all"
+            },
+                React.createElement("svg", {
+                    className: "w-20 h-20 text-gray-500",
+                    fill: "currentColor",
+                    viewBox: "0 0 20 20",
+                    xmlns: "http://www.w3.org/2000/svg"
+                },
+                    React.createElement("path", {
+                        fillRule: "evenodd",
+                        d: "M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z",
+                        clipRule: "evenodd"
+                    })
+                )
+            )
+        );
+
+        const LOCAL_STORAGE_PREFIX = 'aiPartnerChat_';
+        const SEARCH_KEYWORDS = ['who', 'what', 'when', 'where', 'why', 'how', 'search for', 'tell me about', 'what is', 'define'];
+
+        const App = () => {
+            const [config, setConfig] = useState(() => {
+                try {
+                    const savedConfig = localStorage.getItem(`${LOCAL_STORAGE_PREFIX}config`);
+                    if (savedConfig) {
+                        const parsed = JSON.parse(savedConfig);
+                        if (parsed && typeof parsed === 'object') {
+                            return parsed;
+                        }
+                    }
+                } catch (error) {
+                    console.error("Failed to parse config from localStorage", error);
+                }
+                return {
+                    name: '',
+                    gender: Gender.FEMALE,
+                    persona: PERSONAS[Gender.FEMALE][0].value
+                };
+            });
+            const [baseImage, setBaseImage] = useState(() => {
+                try {
+                    const savedImage = localStorage.getItem(`${LOCAL_STORAGE_PREFIX}baseImage`);
+                    if (savedImage) {
+                        const parsed = JSON.parse(savedImage);
+                        if (parsed && typeof parsed === 'object') {
+                            return parsed;
+                        }
+                    }
+                } catch (error) {
+                    console.error("Failed to parse baseImage from localStorage", error);
+                }
+                return null;
+            });
+            const [messages, setMessages] = useState(() => {
+                try {
+                    const savedMessages = localStorage.getItem(`${LOCAL_STORAGE_PREFIX}messages`);
+                    if (savedMessages) {
+                        const parsed = JSON.parse(savedMessages);
+                        if (parsed && Array.isArray(parsed)) {
+                            return parsed;
+                        }
+                    }
+                } catch (error) {
+                    console.error("Failed to parse messages from localStorage", error);
+                }
+                return [];
+            });
+            const [isChatStarted, setIsChatStarted] = useState(() => {
+                try {
+                    const savedState = localStorage.getItem(`${LOCAL_STORAGE_PREFIX}isChatStarted`);
+                    if (savedState) {
+                        return JSON.parse(savedState);
+                    }
+                } catch (error) {
+                    console.error("Failed to parse isChatStarted from localStorage", error);
+                }
+                return false;
+            });
+            const [isLoading, setIsLoading] = useState(false);
+            const [setupPreview, setSetupPreview] = useState(null);
+            const [setupError, setSetupError] = useState(null);
+            const [numberOfImages, setNumberOfImages] = useState(1);
+            const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
+            const [attachedImage, setAttachedImage] = useState(null);
+            const partnerTerm = config.gender === Gender.MALE ? 'Boyfriend' : 'Girlfriend';
+
+            useEffect(() => {
+                try {
+                    localStorage.setItem(`${LOCAL_STORAGE_PREFIX}config`, JSON.stringify(config));
+                    localStorage.setItem(`${LOCAL_STORAGE_PREFIX}baseImage`, JSON.stringify(baseImage));
+                    localStorage.setItem(`${LOCAL_STORAGE_PREFIX}messages`, JSON.stringify(messages));
+                    localStorage.setItem(`${LOCAL_STORAGE_PREFIX}isChatStarted`, JSON.stringify(isChatStarted));
+                } catch (error) {
+                    console.error("Failed to save state to localStorage", error);
+                }
+            }, [config, baseImage, messages, isChatStarted]);
+
+            useEffect(() => {
+                if (isChatStarted && config.name) {
+                    startChat(config, !!baseImage);
+                }
+            }, [config, baseImage, isChatStarted]);
+
+            const aiAvatarUrl = useMemo(() => {
+                if (!baseImage) return null;
+                return `data:${baseImage.mimeType};base64,${baseImage.base64}`;
+            }, [baseImage]);
+
+            const addNewMessage = (sender, type, content, mimeType, sources) => {
+                const newMessage = {
+                    id: Date.now().toString() + Math.random(),
+                    sender,
+                    type,
+                    content,
+                    mimeType,
+                    timestamp: new Date().toISOString(),
+                    sources
+                };
+                setMessages(prev => [...prev, newMessage]);
+                return newMessage;
+            };
+
+            const handleBaseFileChange = async (e) => {
+                const file = e.target.files?.[0];
+                if (file) {
+                    if (file.size > 4 * 1024 * 1024) {
+                        setSetupError('File size must be less than 4MB.');
+                        return;
+                    }
+                    setSetupError(null);
+                    const reader = new FileReader();
+                    reader.onloadend = () => setSetupPreview(reader.result);
+                    reader.readAsDataURL(file);
+                    try {
+                        const imageFile = await fileToBase64(file);
+                        setBaseImage(imageFile);
+                    } catch (err) {
+                        setSetupError('Failed to process image. Please try again.');
+                    }
+                }
+            };
+
+            const handleStartChat = () => {
+                if (!baseImage || !config.name.trim()) {
+                    setSetupError("Please provide a name and upload a photo to start.");
+                    return;
+                }
+                startChat(config, !!baseImage);
+                setIsChatStarted(true);
+                if (messages.length === 0) {
+                    addNewMessage(MessageSender.AI, MessageType.TEXT, `Hey there! I'm ${config.name}. So happy we can finally talk. What's on your mind?`);
+                }
+            };
+
+            const handleUpdateConfig = (newConfig, newImage) => {
+                setConfig(newConfig);
+                setBaseImage(newImage);
+                startChat(newConfig, !!newImage);
+                addNewMessage(MessageSender.AI, MessageType.TEXT, `(System: My profile has been updated. I am now ${newConfig.name}, your ${newConfig.persona}.)`);
+                setIsSettingsModalOpen(false);
+            };
+
+            const handleClearChat = () => {
+                setMessages([]);
+                if (isChatStarted) {
+                    addNewMessage(MessageSender.AI, MessageType.TEXT, `(System: Chat history cleared.)\nHey there! I'm ${config.name}. Let's start fresh.`);
+                }
+            };
+
+            const processResponse = useCallback(async (prompt, imageToProcess) => {
+                setIsLoading(true);
+                let loadingMsg = addNewMessage(MessageSender.AI, MessageType.LOADING, `Thinking...`);
+                try {
+                    if (imageToProcess) {
+                        setMessages(prev => prev.map(m => m.id === loadingMsg.id ? { ...m, content: 'Working on your image...' } : m));
+                        const combineKeywords = ['us', 'we', 'together', 'me and you', 'both of us', 'with you', config.name.toLowerCase()];
+                        const isCombineRequest = combineKeywords.some(keyword => prompt.toLowerCase().includes(keyword));
+                        let resultingImages;
+                        if (isCombineRequest && baseImage) {
+                            resultingImages = await combineImages(prompt, baseImage, imageToProcess);
+                        } else {
+                            resultingImages = await editImage(prompt, imageToProcess);
+                        }
+                        const newImageMessages = resultingImages.map(img => ({
+                            id: Date.now().toString() + Math.random(),
+                            sender: MessageSender.AI,
+                            type: MessageType.IMAGE,
+                            content: img.base64,
+                            mimeType: img.mimeType,
+                            timestamp: new Date().toISOString()
+                        }));
+                        setMessages(prev => [...prev.filter(m => m.id !== loadingMsg.id), ...newImageMessages]);
+                    } else {
+                        const isSearchQuery = SEARCH_KEYWORDS.some(kw => prompt.toLowerCase().startsWith(kw));
+                        if (isSearchQuery) {
+                            setMessages(prev => prev.map(m => m.id === loadingMsg.id ? { ...m, content: 'Searching the web...' } : m));
+                            const { text, sources } = await getChatResponseWithSearch(prompt);
+                            const newResponseMessage = {
+                                id: Date.now().toString(),
+                                sender: MessageSender.AI,
+                                type: MessageType.TEXT,
+                                content: text.trim(),
+                                timestamp: new Date().toISOString(),
+                                sources
+                            };
+                            setMessages(prev => [...prev.filter(m => m.id !== loadingMsg.id), newResponseMessage]);
+                        } else {
+                            setMessages(prev => prev.map(m => m.id === loadingMsg.id ? { ...m, content: `${config.name} is typing...` } : m));
+                            let aiResponse = '';
+                            const stream = await getChatResponseStream(prompt);
+                            for await (const chunk of stream) {
+                                aiResponse += chunk;
+                            }
+                            setMessages(prev => prev.filter(m => m.id !== loadingMsg.id));
+                            if (aiResponse.includes('[[GENERATE_IMAGE]]')) {
+                                const genLoadingMsg = addNewMessage(MessageSender.AI, MessageType.LOADING, `Creating an image for you...`);
+                                const conversationHistory = messages.filter(m => m.type === MessageType.TEXT).slice(-6).map(m => `${m.sender === MessageSender.USER ? 'User' : 'AI'}: ${m.content}`).join('\n');
+                                const previousImages = messages.filter(m => m.type === MessageType.IMAGE && m.sender === MessageSender.AI && m.mimeType).slice(-2).map(m => ({ base64: m.content, mimeType: m.mimeType }));
+                                const generatedImages = await generateImage(prompt, baseImage, previousImages, numberOfImages, conversationHistory);
+                                const newImageMessages = generatedImages.map(img => ({
+                                    id: Date.now().toString() + Math.random(),
+                                    sender: MessageSender.AI,
+                                    type: MessageType.IMAGE,
+                                    content: img.base64,
+                                    mimeType: img.mimeType,
+                                    timestamp: new Date().toISOString()
+                                }));
+                                setMessages(prev => [...prev.filter(m => m.id !== genLoadingMsg.id), ...newImageMessages]);
+                            } else if (aiResponse.trim()) {
+                                addNewMessage(MessageSender.AI, MessageType.TEXT, aiResponse.trim());
+                            }
+                        }
+                    }
+                } catch (error) {
+                    console.error("Gemini API error:", error);
+                    const newErrorMessage = {
+                        id: Date.now().toString(),
+                        sender: MessageSender.AI,
+                        type: MessageType.ERROR,
+                        content: "Oh no, something went wrong. I couldn't process that. Let's try something else.",
+                        timestamp: new Date().toISOString()
+                    };
+                    setMessages(prev => [...prev.filter(m => m.id !== loadingMsg.id), newErrorMessage]);
+                } finally {
+                    setIsLoading(false);
+                }
+            }, [config.name, baseImage, messages, numberOfImages]);
+
+            const handleAttachImageFromChat = (message) => {
+                if (message.type === MessageType.IMAGE && message.mimeType) {
+                    setAttachedImage({ base64: message.content, mimeType: message.mimeType });
+                }
+            };
+
+            const handleSendMessage = (text, image) => {
+                if (isLoading || (!text.trim() && !image)) return;
+                let prompt = text;
+                if (image && !prompt.trim()) {
+                    prompt = "Edit this image for me.";
+                }
+                if (prompt.trim()) {
+                    addNewMessage(MessageSender.USER, MessageType.TEXT, prompt);
+                }
+                processResponse(prompt, image);
+                if (image) {
+                    setAttachedImage(null);
+                }
+            };
+
+            return React.createElement("div", {
+                className: "h-screen w-screen bg-gray-900 text-white flex flex-col font-sans antialiased"
+            },
+                React.createElement(Header, {
+                    config: config,
+                    setConfig: setConfig,
+                    isEditingDisabled: isChatStarted,
+                    onEditProfile: () => setIsSettingsModalOpen(true),
+                    onClearChat: handleClearChat
+                }),
+                React.createElement("main", { className: "flex-1 flex flex-col overflow-hidden" },
+                    isChatStarted ? React.createElement(React.Fragment, null,
+                        React.createElement(ChatWindow, {
+                            messages: messages,
+                            personaName: config.name,
+                            aiAvatarUrl: aiAvatarUrl,
+                            onAttachImageFromChat: handleAttachImageFromChat
+                        }),
+                        React.createElement(ChatInput, {
+                            onSendMessage: handleSendMessage,
+                            isLoading: isLoading,
+                            numberOfImages: numberOfImages,
+                            setNumberOfImages: setNumberOfImages,
+                            attachedImage: attachedImage,
+                            setAttachedImage: setAttachedImage
+                        })
+                    ) : React.createElement("div", {
+                        className: "flex-1 flex flex-col items-center justify-center p-8 bg-gray-800/50 text-center"
+                    },
+                        React.createElement("h2", { className: "text-3xl font-bold mb-2 text-white" }, `Setup Your AI ${partnerTerm}`),
+                        React.createElement("p", { className: "text-gray-400 mb-8" }, "Customize their personality and upload a photo to begin."),
+                        React.createElement("label", { htmlFor: "avatar-upload", className: "cursor-pointer mb-6 group" },
+                            setupPreview || (baseImage && `data:${baseImage.mimeType};base64,${baseImage.base64}`)
+                                ? React.createElement("img", {
+                                    src: setupPreview || `data:${baseImage.mimeType};base64,${baseImage.base64}`,
+                                    alt: `${partnerTerm} Avatar Preview`,
+                                    className: "w-40 h-40 rounded-full object-cover border-4 border-pink-500 transition-all"
+                                })
+                                : React.createElement(SetupPlaceholderIcon, null)
+                        ),
+                        React.createElement("input", {
+                            id: "avatar-upload",
+                            type: "file",
+                            accept: "image/png, image/jpeg",
+                            className: "hidden",
+                            onChange: handleBaseFileChange
+                        }),
+                        React.createElement("input", {
+                            type: "text",
+                            value: config.name,
+                            onChange: (e) => setConfig(prev => ({ ...prev, name: e.target.value })),
+                            placeholder: `Give your ${partnerTerm} a name...`,
+                            className: "bg-gray-700 border border-gray-600 text-white text-md rounded-lg focus:ring-pink-500 focus:border-pink-500 block w-full max-w-xs p-3.5 mb-6 placeholder-gray-400 text-center"
+                        }),
+                        setupError && React.createElement("p", { className: "text-red-500 text-center mb-4" }, setupError),
+                        React.createElement("button", {
+                            onClick: handleStartChat,
+                            disabled: !baseImage || !config.name.trim(),
+                            className: "w-full max-w-xs bg-pink-600 hover:bg-pink-700 disabled:bg-gray-500 disabled:cursor-not-allowed text-white font-bold py-3 px-4 rounded-lg transition-colors text-lg"
+                        }, "Start Chatting")
+                    )
+                ),
+                isChatStarted && baseImage && React.createElement(SettingsModal, {
+                    isOpen: isSettingsModalOpen,
+                    onClose: () => setIsSettingsModalOpen(false),
+                    onSave: handleUpdateConfig,
+                    currentConfig: config,
+                    currentImage: baseImage
+                })
+            );
+        };
+        // --- END OF App.tsx ---
+
+        // --- START OF index.tsx ---
+        const rootElement = document.getElementById('root');
+        if (!rootElement) {
+            throw new Error("Could not find root element to mount to");
+        }
+        const root = ReactDOM.createRoot(rootElement);
+        root.render(React.createElement(React.StrictMode, null, React.createElement(App, null)));
+        // --- END OF index.tsx ---
+    </script>
+</body>
+</html>
